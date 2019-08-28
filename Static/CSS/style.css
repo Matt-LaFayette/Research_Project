@@ -1,0 +1,23 @@
+#login.col-lg {
+	box-sizing: content-box;
+	
+}
+
+.outer_card {
+    border: 3px #d3d3d3;
+    border-style: solid;	
+}
+
+.login {
+    padding-right: 10%;
+    padding-top: 10%;
+    padding-left: 10%;
+}
+
+#name {
+	width: 100%;
+}
+
+#password {
+	width: 100%;
+}

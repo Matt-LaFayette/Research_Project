@@ -1,0 +1,30 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/style.css') }}">
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	<title>Log in</title>
+</head>
+<body style="overflow: hidden; height: 100%">
+	<div class="content" style="height: 100%; display: flex; align-items: center; justify-content: center;">
+	<div class="outer_card" style="flex-basis: 35%; justify-content: center;">
+	<div class="top_bar" style="height: 10px;"><h4 style="padding-left: 3%;">Login</h4></div>
+	<div class="login" >
+      	<form method="POST" action="/">
+    		{{ form.csrf_token }}
+    		{{ form.name.label }} {{ form.name(size=20) }}
+    	</br>
+    		{{ form.password.label }}  {{ form.password(size=20) }}
+    	</br>
+    	</br>
+    		<input class="btn btn-primary btn-sm btn-block" type="submit" value="login">
+		</form>
+	</div>
+	</div>
+	</div>
+</body>
