@@ -3,6 +3,7 @@ import sqlite3
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField
 from wtforms.validators import DataRequired
+from datetime import time
 
 
 class MyForm(FlaskForm):
@@ -43,3 +44,10 @@ def submit():
     if form.validate_on_submit():
         return redirect('/success')
     return render_template('submit.html', form=form)
+
+@app.route("/simple_chart")
+def chart():
+    legend = 'Monthly Data'
+    labels = ["January", "February", "March", "April", "May", "June", "July", "August"]
+    values = [10, 9, 8, 7, 6, 4, 7, 8]
+    return render_template('chart.html', values=values, labels=labels, legend=legend)
