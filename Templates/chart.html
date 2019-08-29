@@ -3,10 +3,11 @@
   <title>Chart.js Example</title>
 
   <!-- import plugin script -->
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
 </head>
 
-<h1>Simple Line Chart</h1>
+<h1>Total Office Activations</h1>
 <!-- bar chart canvas element -->
 <canvas id="myChart" width="600" height="400"></canvas>
 <p id="caption">The chart is displaying a simple line chart.</p>
@@ -53,4 +54,13 @@ var ctx = document.getElementById("myChart").getContext("2d");
 var myChart = new Chart(ctx, {
   type: 'line',
   data: chartData,
+  options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
 });</script>

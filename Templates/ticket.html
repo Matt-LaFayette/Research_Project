@@ -1,0 +1,32 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/style.css') }}">
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div class="content" style="height: 100%; display: flex; align-items: center; justify-content: center;">
+		<div class="row">
+  			<div class="col">
+				<div class="ticket_search" style="text-align: right;">
+					<h1 style="text-align: center;">Find Account</h1>
+					</br>
+			      	<form method="POST" action="/">
+			    		{{ form.csrf_token }}
+			    		{{ form.name.label }} {{ form.name(size=20) }}
+			    	</br>
+			    		{{ form.address.label }}  {{ form.address(cols="23", rows="2") }}
+			    	</br>
+			    		{{ form.cx_id.label }} {{ form.cx_id(size=20) }}
+			    	</br>
+			    	</br>
+			    		<input class="btn btn-secondary btn-sm" type="submit" value="Search">
+					</form>
+				</div>
+			</div>
+		</div>
+</body>
+</html>
