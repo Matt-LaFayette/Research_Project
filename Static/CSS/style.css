@@ -1,12 +1,58 @@
+/*make sure and put media queries at bottom*/
+
 #login.col-lg {
 	box-sizing: content-box;
 	
 }
 
-.outer_card {
-    border: 3px #d3d3d3;
-    border-style: solid;	
+.content {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
+
+.top_header {
+	position: absolute;
+	top: 0;
+}
+
+
+.outer_card {
+	border: 3px #d3d3d3;
+    border-style: solid;
+}
+
+/*login page media queries */
+@media only screen and (min-width: 744px) {
+	.outer_card {
+    	flex-basis: 35%;
+    	justify-content: center;
+
+	}
+}
+
+@media only screen and (max-width: 321px) {
+	.top_header h1 {
+		font-size: 2rem;
+	}
+}
+
+@media only screen and (max-width: 375px) {
+	.outer_card {
+		border: none;
+    	border-style: none;
+    	font-size: 20px;
+    }
+}
+
+/*@media only screen and (min-width: 375px) {
+	.outer_card {
+    	font-size: 19px;
+    }
+}*/
+
+/*end login page media queries*/
 
 .login {
     padding-right: 10%;

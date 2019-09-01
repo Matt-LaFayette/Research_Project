@@ -35,7 +35,7 @@ app.config['SECRET_KEY'] = SECRET_KEY
 #cd C:\Users\MGLafayette\Desktop\Projects\Undergrade Research Project
 #env\Scripts\activate
 #set FLASK_ENV=development
-#python -m flask run
+#py -m flask run
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
