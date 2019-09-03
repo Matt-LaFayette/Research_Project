@@ -15,6 +15,7 @@ class TicketSearch(FlaskForm):
 	name = StringField('Name', validators=[DataRequired()])
 	address = TextAreaField('Address', validators=[DataRequired()])
 	cx_id = IntegerField('Customer ID', validators=[NumberRange(min=4000000000,max=4009999999)])
+	order_num = IntegerField('Order Number', validators=[NumberRange(min=1000000000,max=1009999999)])
 
 app = Flask(__name__)
 app.debug = True

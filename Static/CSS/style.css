@@ -3,14 +3,15 @@
 
 .content {
 	height: 100%;
-	display: flex;
+	/*display: flex;*/
 	align-items: center;
 	justify-content: center;
 }
 
 .top_header {
-	position: absolute;
+	/*position: absolute;*/
 	top: 0;
+	text-align: center;
 }
 
 
@@ -56,6 +57,27 @@
 
 /*end login page media queries*/
 
+.outer_ticket_search {
+	border-style: solid;
+	font-size: 16px;
+}
+
+@media only screen and (max-width: 375px) {
+	.outer_ticket_search {
+		border: none;
+    	border-style: none;
+    }
+}
+
+@media only screen and (min-width: 375px) {
+    .outer_ticket_search {
+    	margin-left: 5%;
+    	margin-right: 5%;
+    }
+}
+
+
+
 .login {
     padding-right: 10%;
     padding-top: 10%;
@@ -63,16 +85,15 @@
 }
 
 
-#name, #address, #cx_id, #password, #log_in_name {
+#name, #address, #cx_id, #password, #log_in_name, #order_num {
 	width: 100%;
 }
 
-.outer_ticket_search {
-	border-style: solid;
-}
+
 
 #ticket_search {
 	padding-right: 7%;
     /*padding-top: 7%;*/
     padding-left: 7%;
 }
+

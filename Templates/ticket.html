@@ -9,10 +9,11 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 	<title></title>
 </head>
-<body style="overflow: hidden; height: 100%">
+<!-- <body style="overflow: hidden; height: 100%"> -->
+	<body>
 	<div class="content">
 		<div class="top_header">
-		<h1>Find Account</h1>
+			<h1>Search</h1>
 		</div>
 		<div class="outer_ticket_search">
 					<div id="ticket_search">
@@ -23,7 +24,8 @@
 			    		{{ form.name.label }} {{ form.name(size=20) }}
 			    	</br>
 			    		{{ form.address.label }}  {{ form.address(cols="23", rows="2") }}
-
+			    	</br>
+			    		{{ form.order_num.label }} {{ form.order_num(size=20) }}
 			    	</br>
 			    	</br>
 			    		<input class="btn btn-secondary btn-sm btn-block" type="submit" value="Search">
