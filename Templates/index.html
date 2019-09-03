@@ -12,20 +12,21 @@
 </head>
 <body style="overflow: hidden; height: 100%">
 	<div class="content">
-	<div class="top_header"><h1>Log In</h1></div>
-	<div class="outer_card">
-	<div class="top_bar" style="height: 10px;"><h4 style="padding-left: 3%;">Login</h4></div>
-	<div class="login" >
-      	<form method="POST" action="/">
-    		{{ form.csrf_token }}
-    		{{ form.log_in_name.label }} {{ form.log_in_name(size=20) }}
-    	</br>
-    		{{ form.password.label }}  {{ form.password(size=20) }}
-    	</br>
-    	</br>
-    		<input class="btn btn-primary btn-sm btn-block" type="submit" value="login">
-		</form>
-	</div>
-	</div>
+		<div class="top_header"><h1>Log In</h1></div>
+			<div class="outer_card">
+				<div class="top_bar" style="height: 10px;"><h4 style="padding-left: 3%;">Login</h4></div>
+					<div class="login" >
+				      	<form method="POST" action="/">
+				    		{{ form.csrf_token }}
+				    		{{ form.log_in_name.label }} {{ form.log_in_name(size=20) }}
+				    	</br>
+				    		{{ form.password.label }}  {{ form.password(size=20) }}
+				    	</br>
+				    	</br>
+				    		<input class="btn btn-primary btn-sm btn-block" type="submit" value="login">
+						</form>
+					</div>
+				</div>
+			</div>
 	</div>
 </body>

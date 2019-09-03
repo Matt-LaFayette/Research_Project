@@ -1,9 +1,5 @@
 /*make sure and put media queries at bottom*/
 
-#login.col-lg {
-	box-sizing: content-box;
-	
-}
 
 .content {
 	height: 100%;
@@ -26,7 +22,7 @@
 /*login page media queries */
 @media only screen and (min-width: 744px) {
 	.outer_card {
-    	flex-basis: 35%;
+    	/*flex-basis: 35%;*/
     	justify-content: center;
 
 	}
@@ -46,6 +42,12 @@
     }
 }
 
+@media only screen and (max-width: 476px) {
+	.outer_card {
+		border: none;
+		border-style: none;
+	}
+}
 /*@media only screen and (min-width: 375px) {
 	.outer_card {
     	font-size: 19px;
@@ -60,10 +62,17 @@
     padding-left: 10%;
 }
 
-#log_in_name {
+
+#name, #address, #cx_id, #password, #log_in_name {
 	width: 100%;
 }
 
-#password {
-	width: 100%;
+.outer_ticket_search {
+	border-style: solid;
+}
+
+#ticket_search {
+	padding-right: 7%;
+    /*padding-top: 7%;*/
+    padding-left: 7%;
 }
