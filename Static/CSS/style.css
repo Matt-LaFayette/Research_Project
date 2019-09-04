@@ -85,7 +85,7 @@
 }
 
 
-#name, #address, #cx_id, #password, #log_in_name, #order_num {
+#name, #address, #cx_id, #password, #log_in_name, #order_num, #cx_id, #contact_name, #description, #version, #priority, #status, #assigned_to {
 	width: 100%;
 }
 

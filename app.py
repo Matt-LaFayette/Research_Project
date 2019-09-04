@@ -1,9 +1,78 @@
 from flask import Flask, render_template, g
 import sqlite3
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, IntegerField, TextAreaField
+from wtforms import StringField, PasswordField, IntegerField, TextAreaField, BooleanField
 from wtforms.validators import DataRequired, NumberRange
 from datetime import time
+from sqlalchemy import create_engine, ForeignKey
+from sqlalchemy import Column, Date, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
+
+#creates the sqllite db 
+engine = create_engine('sqlite:///C:\\sqlitedbs\\newschool.db', echo=True)
+Base = declarative_base()
+
+
+app = Flask(__name__)
+
+
+class posts(Base):
+	__tablename__ = "woot"
+	id = Column(String, primary_key=True)
+	title = Column(String(80), unique=True, nullable=False)
+	link = Column(String(120), unique=True, nullable=False)
+	category = Column(String(120), unique=True, nullable=False)
+	date_added = Column(String(120), unique=False, nullable=False)
+	thread_text = Column(String(400), unique=True, nullable=False)
+	image = Column(String(400), unique=True, nullable=False)
+
+# For support tickets
+class ticket(Base):
+	__tablename__ = "ticket"
+	id = Column(String, primary_key=True)
+	contact_name = Column(String(80), unique=True, nullable=False)
+	description = Column(String(80), unique=True, nullable=False)
+	version = Column(String(120), unique=True, nullable=True)
+	priority = Column(String(120), unique=True, nullable=True)
+	status = Column(String(120), unique=False, nullable=True)
+	o365 = Column(String(400), unique=True, nullable=True)
+	assigned_to = Column(String(400), unique=True, nullable=True)
+
+class TicketCreate(FlaskForm):
+	cx_id = StringField('Customer ID', validators=[DataRequired()])
+	contact_name = StringField('Contact Name', validators=[DataRequired()])
+	description = TextAreaField('Description', validators=[DataRequired()])
+	version = IntegerField('Version', validators=[NumberRange(min=2000,max=2020)])
+	priority =  StringField('Priority')
+	status =StringField('Status')
+	o365 = BooleanField('Office 365')
+	assigned_to = StringField('Assigned to', validators=[DataRequired()])
+# end for support tickets
+	
+class User(Base):
+    __tablename__ = 'users'
+    id = Column(Integer, primary_key=True)
+    name = Column(String(50), unique=True)
+    email = Column(String(120), unique=True)
+
+
+#this is required. Similar to a "commit"
+Base.metadata.create_all(engine)
+
+
+#template for creating a table
+# class School(Base):
+#     __tablename__ = "woot"
+#     id = Column(Integer, primary_key=True)
+#     name = Column(String)  
+
+
+# don't know what this does
+#     def __init__(self, name):
+#         self.name = name    
+
+
+
 
 # Login form for index.html
 class MyForm(FlaskForm):
@@ -16,6 +85,11 @@ class TicketSearch(FlaskForm):
 	address = TextAreaField('Address', validators=[DataRequired()])
 	cx_id = IntegerField('Customer ID', validators=[NumberRange(min=4000000000,max=4009999999)])
 	order_num = IntegerField('Order Number', validators=[NumberRange(min=1000000000,max=1009999999)])
+
+
+
+
+
 
 app = Flask(__name__)
 app.debug = True
@@ -56,6 +130,21 @@ def submit():
 def ticket():
     form = TicketSearch()
     return render_template('ticket.html', form=form)
+
+@app.route('/createticket', methods=('GET', 'POST'))
+def ticketcreate():
+    form = TicketCreate()
+    if form.validate_on_submit():
+    	print (form.cx_id.data)
+    	engine.execute('INSERT INTO ticket (id, contact_name, description, version, priority, status, o365, assigned_to) VALUES (?,?,?,?,?,?,?);', (form.cx_id.data, form.contact_name.data, form.description.data, form.version.data, form.priority.data, form.status.data, form.o365.data, form.assigned_to.data))
+    	return render_template('createticket.html', form=form)
+    return render_template('createticket.html', form=form)
+
+@app.route('/createdb', methods=('GET', 'POST'))
+def createdb():
+	engine.execute('INSERT INTO ticket (id, description) VALUES ("2", "test");')
+	return 'done'
+
 
 #route for line graph
 @app.route("/simple_chart")
