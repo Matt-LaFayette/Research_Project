@@ -30,13 +30,13 @@ class posts(Base):
 class ticket(Base):
 	__tablename__ = "ticket"
 	id = Column(String, primary_key=True)
-	contact_name = Column(String(80), unique=True, nullable=False)
-	description = Column(String(80), unique=True, nullable=False)
-	version = Column(String(120), unique=True, nullable=True)
-	priority = Column(String(120), unique=True, nullable=True)
+	contact_name = Column(String(80), unique=False, nullable=False)
+	description = Column(String(80), unique=False, nullable=False)
+	version = Column(String(120), unique=False, nullable=True)
+	priority = Column(String(120), unique=False, nullable=True)
 	status = Column(String(120), unique=False, nullable=True)
-	o365 = Column(String(400), unique=True, nullable=True)
-	assigned_to = Column(String(400), unique=True, nullable=True)
+	o365 = Column(String(400), unique=False, nullable=True)
+	assigned_to = Column(String(400), nullable=True)
 
 class TicketCreate(FlaskForm):
 	cx_id = StringField('Customer ID', validators=[DataRequired()])
@@ -136,7 +136,7 @@ def ticketcreate():
     form = TicketCreate()
     if form.validate_on_submit():
     	print (form.cx_id.data)
-    	engine.execute('INSERT INTO ticket (id, contact_name, description, version, priority, status, o365, assigned_to) VALUES (?,?,?,?,?,?,?);', (form.cx_id.data, form.contact_name.data, form.description.data, form.version.data, form.priority.data, form.status.data, form.o365.data, form.assigned_to.data))
+    	engine.execute('INSERT INTO ticket (id, contact_name, description, version, priority, status, o365, assigned_to) VALUES (?,?,?,?,?,?,?,?);', (form.cx_id.data, form.contact_name.data, form.description.data, form.version.data, form.priority.data, form.status.data, form.o365.data, form.assigned_to.data))
     	return render_template('createticket.html', form=form)
     return render_template('createticket.html', form=form)
 
