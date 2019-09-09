@@ -4,7 +4,7 @@ from config import Config
 import sqlite3
 from datetime import time
 from flask_login import current_user, login_user
-from app.models import User
+from app.models import User, Ticket
 from app.forms import RegistrationForm, TicketCreate, MyForm
 
 
@@ -56,9 +56,14 @@ def ticket():
 def createticket():
     form = TicketCreate()
     if form.validate_on_submit():
-    	print (form.cx_id.data)
-    	engine.execute('INSERT INTO ticket (id, contact_name, description, version, priority, status, o365, assigned_to) VALUES (?,?,?,?,?,?,?,?);', (form.cx_id.data, form.contact_name.data, form.description.data, form.version.data, form.priority.data, form.status.data, form.o365.data, form.assigned_to.data))
-    	return render_template('createticket.html', form=form)
+        print (form.cx_id.data)
+        ticket = Ticket(id =form.cx_id.data, contact_name=form.contact_name.data, description=form.description.data, version=form.version.data, priority=form.priority.data, status=form.status.data, o365=form.o365.data, assigned_to=form.assigned_to.data)
+        print("adding")
+        db.session.add(ticket)
+        print("commit")
+        db.session.commit()
+        print("done")
+        return render_template('createticket.html', form=form)
     return render_template('createticket.html', form=form)
 
 # @app.route('/createdb', methods=('GET', 'POST'))

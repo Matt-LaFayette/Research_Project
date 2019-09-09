@@ -13,16 +13,15 @@ from app import db, login
 
 
 # For support tickets
-# class ticket(Base):
-# 	__tablename__ = "ticket"
-# 	id = Column(String, primary_key=True)
-# 	contact_name = Column(String(80), unique=False, nullable=False)
-# 	description = Column(String(80), unique=False, nullable=False)
-# 	version = Column(String(120), unique=False, nullable=True)
-# 	priority = Column(String(120), unique=False, nullable=True)
-# 	status = Column(String(120), unique=False, nullable=True)
-# 	o365 = Column(String(400), unique=False, nullable=True)
-# 	assigned_to = Column(String(400), nullable=True)
+class Ticket(db.Model):
+ 	id = db.Column(String, primary_key=True)
+ 	contact_name = db.Column(String(80), unique=False, nullable=False)
+ 	description = db.Column(String(80), unique=False, nullable=False)
+ 	version = db.Column(String(120), unique=False, nullable=True)
+ 	priority = db.Column(String(120), unique=False, nullable=True)
+ 	status = db.Column(String(120), unique=False, nullable=True)
+ 	o365 = db.Column(String(400), unique=False, nullable=True)
+ 	assigned_to = db.Column(String(400), nullable=True)
 
 class User(db.Model):
     id = db.Column(Integer, primary_key=True)
