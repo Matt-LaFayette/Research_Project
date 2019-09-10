@@ -1,17 +1,17 @@
 from flask_wtf import FlaskForm
 from flask_login import LoginManager, current_user, login_user
-from wtforms import StringField, PasswordField, IntegerField, TextAreaField, BooleanField, SubmitField
-from wtforms.validators import ValidationError, DataRequired, NumberRange, Email, EqualTo
+from wtforms import StringField, PasswordField, IntegerField, TextAreaField, BooleanField, SubmitField, SelectField
+from wtforms.validators import ValidationError, DataRequired, NumberRange, Email, EqualTo, Regexp
 from app.models import User
 
 # Form to create a support ticket
 class TicketCreate(FlaskForm):
-	cx_id = StringField('Customer ID', validators=[DataRequired()])
+	cx_id = StringField('Customer ID', validators=[DataRequired(), Regexp('\d+',  message="Username must contain only letters numbers or underscore")])
 	contact_name = StringField('Contact Name', validators=[DataRequired()])
 	description = TextAreaField('Description', validators=[DataRequired()])
 	version = IntegerField('Version', validators=[NumberRange(min=2000,max=2020)])
-	priority =  StringField('Priority')
-	status =StringField('Status')
+	priority =  SelectField(choices=[('high', 'High'), ('normal', 'Normal'), ('low', 'Low')])
+	status = SelectField(choices=[('open', 'Open'), ('closed', 'Closed'), ('wip', 'Work In Progress'), ('pending', 'Fix Pending')])
 	o365 = BooleanField('Office 365')
 	assigned_to = StringField('Assigned to', validators=[DataRequired()])
 

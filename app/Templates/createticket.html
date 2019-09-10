@@ -10,51 +10,90 @@
 	<title></title>
 
 <script>
-function myFunction() {
 
- 	alert("AJAX request successfully completed");
- 	var inputs = document.getElementsByTagName("input"); 
- 	var button = document.getElementsByClassName("btn.btn-secondary.btn-sm.btn-block")
-    	for (var i = 0; i < inputs.length; i++) { 
-         inputs[i].disabled = true;
-         button.disabled = false;
-     }
- };
-    var textareas = document.getElementsByTagName("textarea"); 
-    for (var i = 0; i < inputs.length; i++) { 
-        inputs[i].disabled = true;
-    }
-};
 
-// $("#cform").submit(function(event){
-// 	event.preventDefault(); //prevent default action 
-// 	var post_url = $(this).attr("action"); //get form action url
-// 	var request_method = $(this).attr("method"); //get form GET/POST method
-// 	var form_data = $(this).serialize(); //Encode form elements for submission
-	
-// 	$.ajax({
-// 		url : post_url,
-// 		type: request_method,
-// 		data : form_data
-// 	}).done(function(response){ //
-// 		$("#server-results").html(response);
-// 	});
-// });
+
+// function myFunction() {
+// 	submitOK = "true";
+// 	var str = document.getElementById("cx_id").value;
+// 	var patt_id = /^\d{10}$/;
+// 	var result = patt_id.test(str);
+// 	console.log(result);
+
+//   	if(result == false) {
+//   		alert("Customer ID is not in correct format");
+//   		submitOK = "false";
+//   		document.getElementById("wrong_id").innerHTML="Customer ID number be in a 10 digit format"; 
+//   	};
+
+//   	  if (submitOK == "false") {
+//     	return false;
+//   	};
+
+//   	if (submitOK == "true") {
+//   		var error = document.getElementsByClassName("error")
+//   		error.visibility = false;
+//   		error.height = 0;
+// 	  	document.getElementById("cx_id").disabled = true;
+// 		document.getElementById("contact_name").disabled = true;
+// 		document.getElementById("description").disabled = true;
+// 		document.getElementById("version").disabled = true;
+// 		document.getElementById("priority").disabled = true;
+// 		document.getElementById("status").disabled = true;
+// 		document.getElementById("o365").disabled = true;
+// 		document.getElementById("assigned_to").disabled = true;
+
+//           // event.preventDefault();
+
+//           // $.ajax({
+//           //   type: 'post',
+//           //   url: 'http://127.0.0.1:5000/createticket',
+//           //   data: $('form').serialize(),
+//           //   success: function () {
+//           //     alert('form was submitted');
+//           //   }
+//           // });
+
+
+//  };
+
+// 	};
+
+
+
+ // alert("Submitted");
+//  	var inputs = document.getElementsByTagName("input"); 
+//  	var button = document.getElementsByClassName("btn.btn-secondary.btn-sm.btn-block")
+//     	for (var i = 0; i < inputs.length; i++) { 
+//          inputs[i].disabled = true;
+//          button.disabled = false;
+//      }
+//  };
+//     var textareas = document.getElementsByTagName("textarea"); 
+//     for (var i = 0; i < inputs.length; i++) { 
+//         inputs[i].disabled = true;
+//     }
+// };
  </script>
+ <!-- https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_text_value_formval -->
 </head>
 
 <!-- <body style="overflow: hidden; height: 100%"> -->
 
 	<body>
-	<div class="content">
+	<div class="content"><a href="{{ url_for('index') }}">
+		
 		<div class="top_header">
+			<input class="btn btn-secondary btn-sm btn-block" id="back_button" value="Back" style="text-align: left;"></a>
 			<h1>Create Ticket</h1>
 		</div>
 		<div class="outer_ticket_search">
 					<div id="ticket_search">
 			      	<form method="POST" id="cform" action="#">
+			      		<div class="form-group">
 			    		{{ form.csrf_token }}
 			    		{{ form.cx_id.label }} {{ form.cx_id(size=20) }}
+			    		<div class="error" id="wrong_id"></div>
 			    	</br>
 			    		{{ form.contact_name.label }} {{ form.contact_name(size=20) }}
 			    	</br>
@@ -62,17 +101,37 @@ function myFunction() {
 					</br>
 						{{ form.version.label }} {{ form.version(size=20) }}
 					</br>
-						{{ form.priority.label }} {{ form.priority(size=20) }}
+						{{ form.priority.label }} {{ form.priority }}
 					</br>
-						{{ form.status.label }} {{ form.status(size=20) }}
+						{{ form.status.label }} {{ form.status }}
+
 					</br>
 						{{ form.o365.label }} {{ form.o365(size=20) }}
 					</br>
 						{{ form.assigned_to.label }} {{ form.assigned_to(size=20) }}
 			    	</br>
 			    	</br>
-			    		<input class="btn btn-secondary btn-sm btn-block"  type="submit" onclick="myFunction()" value="Create Ticket">
+			    		<input class="btn btn-secondary btn-sm btn-block" id="submit_button" onclick="myFunction()" type="submit"  value="Create Ticket">
+			    		</div>
 					</form>
+<!-- 					<script>
+						document.getElementById("priority").className = "form-control form-control-sm";
+						document.getElementById("status").className = "form-control form-control-sm";
+					</script> -->
+					<script>
+					var inputs = document.getElementsByTagName("input");
+						for (var i = 0; i < inputs.length; i++) {
+							console.log(inputs[i]);
+							if (inputs[i] != "btn.btn-secondary.btn-sm.btn-block") {
+          						inputs[i].className = "form-control form-control-sm";
+          					}; 
+						};
+						document.getElementById("back_button").className = "btn btn-secondary btn-sm"
+						document.getElementById("submit_button").className = "btn btn-secondary btn-sm btn-block"
+						document.getElementById("description").className = "form-control form-control-sm";
+						document.getElementById("priority").className = "form-control form-control-sm";
+						document.getElementById("status").className = "form-control form-control-sm";
+					</script>
 					</div>
 				</div>
 			</div>

@@ -50,7 +50,22 @@ def register():
 @app.route('/ticket', methods=('GET', 'POST'))
 def ticket():
     form = TicketSearch()
+
     return render_template('ticket.html', form=form)
+
+
+
+# @app.route('/process', methods=['POST'])
+# def process():
+#     form = TicketCreate()
+#     print(request.args.get('cx_id'))
+    
+#     print("adding")
+    
+#     print("commit")
+    
+#     print("done")
+#     return 'test'
 
 @app.route('/createticket', methods=('GET', 'POST'))
 def createticket():
@@ -58,14 +73,9 @@ def createticket():
     if form.validate_on_submit():
         print (form.cx_id.data)
         ticket = Ticket(id =form.cx_id.data, contact_name=form.contact_name.data, description=form.description.data, version=form.version.data, priority=form.priority.data, status=form.status.data, o365=form.o365.data, assigned_to=form.assigned_to.data)
-        print("adding")
         db.session.add(ticket)
-        print("commit")
-        db.session.commit()
-        print("done")
-        return render_template('createticket.html', form=form)
+        db.session.commit()    
     return render_template('createticket.html', form=form)
-
 # @app.route('/createdb', methods=('GET', 'POST'))
 # def createdb():
 # 	engine.execute('INSERT INTO ticket (id, description) VALUES ("2", "test");')
