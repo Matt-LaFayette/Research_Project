@@ -1,5 +1,5 @@
 /*make sure and put media queries at bottom*/
-
+/* file:///C:/Users/MGLafayette/AppData/Local/Microsoft/Windows/INetCache/Content.Outlook/ZB2BGV28/brand-color-update-july2018.pdf */
 
 .content {
 	height: 100%;
@@ -12,7 +12,7 @@
 	/*position: absolute;*/
 	top: 0;
 	text-align: center;
-	background-color: #004B87;
+	background: #004B87;
 	color: white;
 }
 
@@ -35,6 +35,11 @@
 	.top_header h1 {
 		font-size: 2rem;
 		clear: both;
+		margin-bottom: 0;
+	}
+	.top_header {
+		background: #004B87;
+		color: white;
 	}
 }
 
@@ -76,6 +81,7 @@
     .outer_ticket_search {
     	margin-left: 5%;
     	margin-right: 5%;
+    	overflow: hidden;
     }
 }
 
@@ -104,11 +110,71 @@
 	color: red;
 }
 
+#submit_button {
+	background-color: #00DC00
+}
+
 #back_button {
 	width: 3rem;
     height: 1rem;
     margin-top: .25rem;
     margin-left: .25rem;
     float: left;
+    background-color: #00DC00
+}
+/* The side navigation menu */
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  float: left;
+  height: 100%;
+  overflow: auto;
+}
+
+/* Sidebar links */
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+
+/* Active/current link */
+.sidebar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+div.content {
+  /*margin-left: 200px;*/
+  /*padding: 1px 16px;*/
+  height: 1000px;
+}
+@media screen and (min-width: 700px) {
+  .dropdown {
+  	display: none;
+}
+}
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+@media screen and (max-width: 700px) {
+  .sidebar {
+  	display: none;
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
 }
 }

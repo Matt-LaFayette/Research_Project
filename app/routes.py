@@ -50,7 +50,6 @@ def register():
 @app.route('/ticket', methods=('GET', 'POST'))
 def ticket():
     form = TicketSearch()
-
     return render_template('ticket.html', form=form)
 
 
