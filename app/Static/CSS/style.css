@@ -14,8 +14,18 @@
 	text-align: center;
 	background: #004B87;
 	color: white;
+	display: flex;
+	align-items: center;
 }
 
+#back_button {
+	width: 3rem;
+    height: 1rem;
+    margin-top: .25rem;
+    margin-left: .25rem;
+    float: left;
+    background-color: #00DC00
+}
 
 .outer_card {
 	border: 3px #d3d3d3;
@@ -36,12 +46,20 @@
 		font-size: 2rem;
 		clear: both;
 		margin-bottom: 0;
+
 	}
 	.top_header {
 		background: #004B87;
 		color: white;
 	}
+
 }
+@media only screen and (min-width: 334px) {
+	#back_button {
+				    width: 3rem;
+    height: 2rem;
+	}
+	}
 
 @media only screen and (max-width: 375px) {
 	.outer_card {
@@ -79,8 +97,9 @@
 
 @media only screen and (min-width: 375px) {
     .outer_ticket_search {
-    	margin-left: 5%;
-    	margin-right: 5%;
+/*    	margin-left: 5%;
+    	margin-right: 5%;*/
+    	height: 100%;
     	overflow: hidden;
     }
 }
@@ -114,14 +133,7 @@
 	background-color: #00DC00
 }
 
-#back_button {
-	width: 3rem;
-    height: 1rem;
-    margin-top: .25rem;
-    margin-left: .25rem;
-    float: left;
-    background-color: #00DC00
-}
+
 /* The side navigation menu */
 .sidebar {
   margin: 0;
