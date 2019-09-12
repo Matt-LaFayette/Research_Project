@@ -27,6 +27,25 @@ class TicketSearch(FlaskForm):
 	cx_id = IntegerField('Customer ID', validators=[NumberRange(min=4000000000,max=4009999999)])
 	order_num = IntegerField('Order Number', validators=[NumberRange(min=1000000000,max=1009999999)])
 
+# Search fields for support tickets
+class TicketSearch(FlaskForm):
+	name = StringField('Name', validators=[DataRequired()])
+	address = TextAreaField('Address', validators=[DataRequired()])
+	cx_id = IntegerField('Customer ID', validators=[NumberRange(min=4000000000,max=4009999999)])
+	order_num = IntegerField('Order Number', validators=[NumberRange(min=1000000000,max=1009999999)])
+
+class CreateCustomer(FlaskForm):
+	customer_name = StringField('Name', validators=[DataRequired()])
+	city = StringField('City', validators=[DataRequired()])
+	state = StringField('State', validators=[DataRequired()])
+	address = TextAreaField('Address', validators=[DataRequired()])
+	zip_code = StringField('Zip', validators=[DataRequired()])
+	email = StringField('Email', validators=[DataRequired()])
+	phone_num = StringField('Phone Number', validators=[DataRequired()])
+
+
+
+#Form to register a new username and password
 class RegistrationForm(FlaskForm):
 	username = StringField('Username', validators=[DataRequired()])
 	email = StringField('Email', validators=[DataRequired(), Email()])

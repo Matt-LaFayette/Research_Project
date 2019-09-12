@@ -4,8 +4,8 @@ from config import Config
 import sqlite3
 from datetime import time
 from flask_login import current_user, login_user
-from app.models import User, Ticket
-from app.forms import RegistrationForm, TicketCreate, MyForm
+from app.models import User, Ticket, Customer
+from app.forms import RegistrationForm, TicketCreate, MyForm, TicketSearch, CreateCustomer
 
 
 
@@ -52,8 +52,26 @@ def ticket():
     form = TicketSearch()
     return render_template('ticket.html', form=form)
 
+@app.route('/createcustomer', methods=('GET', 'POST'))
+def createcustomer():
+    form = CreateCustomer()
+    if form.validate_on_submit():
+        if request.form['name'] == 'Create Customer':
+            customer = Customer(customer_name=form.customer_name.data, city=form.city.data, state=form.state.data, address=form.address.data, zip_code=form.zip_code.data, email=form.email.data, phone_num=form.phone_num.data)
+            print(form.customer_name.data)
+            db.session.add(customer)
+            db.session.commit()
+            flash('success')
+            print (Customer.query.get(1))
+        # return redirect(url_for('test'))
+    return render_template('createcustomer.html', form=form)
 
-
+@app.route('/test', methods=('GET', 'POST'))
+def test():
+    form = CreateCustomer()
+    cx = Customer.query.filter_by(customer_name=form.customer_name.data).all()
+    print (Customer.query.get(1))
+    return render_template('test.html', customer=cx, customer_name=form.customer_name.data, city=form.city.data, state=form.state.data, address=form.address.data, zip_code=form.zip_code.data, email=form.email.data, phone_num=form.phone_num.data)
 # @app.route('/process', methods=['POST'])
 # def process():
 #     form = TicketCreate()

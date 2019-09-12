@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine, ForeignKey
-from sqlalchemy import Column, Date, Integer, String
+from sqlalchemy import Column, Date, Integer, String, Sequence
 from sqlalchemy.ext.declarative import declarative_base
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
@@ -28,6 +28,19 @@ class User(db.Model):
     username = db.Column(String(64), index=True, unique=True)
     email = db.Column(String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
+
+
+# Table for customers (when created)
+class Customer(db.Model):
+    cx_id = db.Column(Integer, primary_key=True)
+    customer_name = db.Column(String(120), unique=False, nullable=True)
+    city = db.Column(String(120), unique=False, nullable=True)
+    state = db.Column(String(120), unique=False, nullable=True)
+    address = db.Column(String(120), unique=False, nullable=True)
+    zip_code = db.Column(String(120), unique=False, nullable=True)
+    email = db.Column(String(120), unique=False, nullable=True)
+    phone_num = db.Column(String(120), unique=False, nullable=True)
+
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
