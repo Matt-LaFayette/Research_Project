@@ -1,11 +1,11 @@
 from app import app, db
-from flask import Flask, render_template, flash, redirect, url_for, request
+from flask import Flask, render_template, flash, redirect, url_for, request, session
 from config import Config
 import sqlite3
 from datetime import time
 from flask_login import current_user, login_user
 from app.models import User, Ticket, Customer
-from app.forms import RegistrationForm, TicketCreate, MyForm, TicketSearch, CreateCustomer
+from app.forms import RegistrationForm, TicketCreate, MyForm, TicketSearch, CreateCustomer, SearchCustomer
 
 
 
@@ -55,34 +55,38 @@ def ticket():
 @app.route('/createcustomer', methods=('GET', 'POST'))
 def createcustomer():
     form = CreateCustomer()
-    if form.validate_on_submit():
-        if request.form['name'] == 'Create Customer':
-            customer = Customer(customer_name=form.customer_name.data, city=form.city.data, state=form.state.data, address=form.address.data, zip_code=form.zip_code.data, email=form.email.data, phone_num=form.phone_num.data)
-            print(form.customer_name.data)
-            db.session.add(customer)
-            db.session.commit()
-            flash('success')
-            print (Customer.query.get(1))
-        # return redirect(url_for('test'))
     return render_template('createcustomer.html', form=form)
+
+@app.route('/searchcustomer', methods=('GET', 'POST'))
+def searchcustomer():
+    form = SearchCustomer()
+    title = "Search"
+    if form.validate_on_submit():
+        if request.form['name'] == 'Search Customer':
+            print (form.customer_name.data)
+            #print (Customer.query.all())
+            cx = Customer.query.filter_by(customer_name=form.customer_name.data)
+            print ("im printing")
+            print (cx)
+
+            for x in cx:
+                print(x.cx_id)
+    return render_template('searchcustomer.html', title=title, form=form)
 
 @app.route('/test', methods=('GET', 'POST'))
 def test():
     form = CreateCustomer()
+    customer = Customer(customer_name=form.customer_name.data, city=form.city.data, state=form.state.data, address=form.address.data, zip_code=form.zip_code.data, email=form.email.data, phone_num=form.phone_num.data)
+    db.session.add(customer)
+    db.session.commit()
     cx = Customer.query.filter_by(customer_name=form.customer_name.data).all()
-    print (Customer.query.get(1))
-    return render_template('test.html', customer=cx, customer_name=form.customer_name.data, city=form.city.data, state=form.state.data, address=form.address.data, zip_code=form.zip_code.data, email=form.email.data, phone_num=form.phone_num.data)
-# @app.route('/process', methods=['POST'])
-# def process():
-#     form = TicketCreate()
-#     print(request.args.get('cx_id'))
-    
-#     print("adding")
-    
-#     print("commit")
-    
-#     print("done")
-#     return 'test'
+    for x in cx:
+        print(x.cx_id)
+    return render_template('test.html')
+
+@app.route('/new', methods=('GET', 'POST'))
+def new():
+    return render_template('new.html')
 
 @app.route('/createticket', methods=('GET', 'POST'))
 def createticket():

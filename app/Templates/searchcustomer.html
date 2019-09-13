@@ -1,0 +1,55 @@
+{% include 'template.html' %}
+		<div class="outer_ticket_search">
+					<div id="ticket_search">
+			      	<form method="POST" id="cform" action="#">
+			      		<div class="form-group">
+			    		{{ form.csrf_token }}
+			    	</br>
+			    		{{ form.customer_name.label }} {{ form.customer_name(size=20) }}
+			    	</br>
+						{{ form.email.label }} {{ form.email(size=20) }}
+					</br>
+						{{ form.phone_num.label }} {{ form.phone_num(size=20) }}
+			    	</br>
+			    		{{ form.address.label }}  {{ form.address(cols="23", rows="2") }}
+					</br>
+					</br>
+						{{ form.city.label }} {{ form.city(size=20) }}
+					</br>
+						{{ form.state.label }} {{ form.state(size=20) }}
+					</br>
+						{{ form.zip_code.label }} {{ form.zip_code(size=20) }}
+			    	</br>
+			    	</br>
+			    		<input class="btn btn-secondary btn-sm btn-block" id="submit_button" onclick="myFunction()" type="submit" name="name"  value="Search Customer">
+			    		</div>
+					</form>
+<!-- 					<script>
+						document.getElementById("priority").className = "form-control form-control-sm";
+						document.getElementById("status").className = "form-control form-control-sm";
+					</script> -->
+					<script>
+					var inputs = document.getElementsByTagName("input");
+						for (var i = 0; i < inputs.length; i++) {
+							console.log(inputs[i]);
+							if (inputs[i] != "btn.btn-secondary.btn-sm.btn-block") {
+          						inputs[i].className = "form-control form-control-sm";
+          					}; 
+						};
+						document.getElementById("back_button").className = "btn btn-secondary btn-sm"
+						document.getElementById("submit_button").className = "btn btn-secondary btn-sm btn-block"
+						document.getElementById("description").className = "form-control form-control-sm";
+						document.getElementById("priority").className = "form-control form-control-sm";
+						document.getElementById("status").className = "form-control form-control-sm";
+					</script>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+</body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+</body>
+</html>

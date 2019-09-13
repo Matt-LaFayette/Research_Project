@@ -62,7 +62,7 @@
 
 
 
- // alert("Submitted");
+// alert("Submitted");
 //  	var inputs = document.getElementsByTagName("input"); 
 //  	var button = document.getElementsByClassName("btn.btn-secondary.btn-sm.btn-block")
 //     	for (var i = 0; i < inputs.length; i++) { 
@@ -109,7 +109,7 @@
 </div>
 		<div class="outer_ticket_search">
 					<div id="ticket_search">
-			      	<form method="POST" id="cform" action="#">
+			      	<form method="POST" id="cform" action="{{url_for('test')}}">
 			      		<div class="form-group">
 			    		{{ form.csrf_token }}
 			    	</br>

@@ -43,7 +43,14 @@ class CreateCustomer(FlaskForm):
 	email = StringField('Email', validators=[DataRequired()])
 	phone_num = StringField('Phone Number', validators=[DataRequired()])
 
-
+class SearchCustomer(FlaskForm):
+	customer_name = StringField('Name', validators=[DataRequired()])
+	city = StringField('City', validators=[DataRequired()])
+	state = StringField('State', validators=[DataRequired()])
+	address = TextAreaField('Address', validators=[DataRequired()])
+	zip_code = StringField('Zip', validators=[DataRequired()])
+	email = StringField('Email', validators=[DataRequired()])
+	phone_num = StringField('Phone Number', validators=[DataRequired()])
 
 #Form to register a new username and password
 class RegistrationForm(FlaskForm):
