@@ -1,7 +1,7 @@
 {% include 'template.html' %}
 		<div class="outer_ticket_search">
 					<div id="ticket_search">
-			      	<form method="POST" id="cform" action="#">
+			      	<form method="POST" id="cform" action="{{url_for('findaccount')}}">
 			      		<div class="form-group">
 			    		{{ form.csrf_token }}
 			    	</br>

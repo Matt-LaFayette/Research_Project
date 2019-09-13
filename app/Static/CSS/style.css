@@ -194,4 +194,10 @@ div.content {
     float: none;
   }
 }
+
+@media only screen and (min-width: 319px) {
+	body {
+		width:100%;        
+    	min-width:425px;
+	}
 }

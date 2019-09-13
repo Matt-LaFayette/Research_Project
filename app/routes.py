@@ -55,23 +55,31 @@ def ticket():
 @app.route('/createcustomer', methods=('GET', 'POST'))
 def createcustomer():
     form = CreateCustomer()
+    title = 'Create Customer'
     return render_template('createcustomer.html', form=form)
 
 @app.route('/searchcustomer', methods=('GET', 'POST'))
 def searchcustomer():
     form = SearchCustomer()
     title = "Search"
-    if form.validate_on_submit():
-        if request.form['name'] == 'Search Customer':
-            print (form.customer_name.data)
-            #print (Customer.query.all())
-            cx = Customer.query.filter_by(customer_name=form.customer_name.data)
-            print ("im printing")
-            print (cx)
-
-            for x in cx:
-                print(x.cx_id)
+    # if form.validate_on_submit():
+    #     if request.form['name'] == 'Search Customer':
+    #         print (form.customer_name.data)
+    #         #print (Customer.query.all())
+    #         cx = Customer.query.filter_by(customer_name=form.customer_name.data)
+    #         print ("im printing")
+    #         print (cx)
+    #         for x in cx:
+    #             print(x.cx_id)
+    #         return redirect (url_for('findaccount.html'))
     return render_template('searchcustomer.html', title=title, form=form)
+
+@app.route('/findaccount', methods=('GET', 'POST'))
+def findaccount():
+    title = "Find Account"
+    form = SearchCustomer()
+    cx = Customer.query.filter_by(customer_name=form.customer_name.data)
+    return render_template('findaccount.html', customer=cx, title=title)
 
 @app.route('/test', methods=('GET', 'POST'))
 def test():
@@ -82,7 +90,7 @@ def test():
     cx = Customer.query.filter_by(customer_name=form.customer_name.data).all()
     for x in cx:
         print(x.cx_id)
-    return render_template('test.html')
+    return render_template('test.html', customer=cx)
 
 @app.route('/new', methods=('GET', 'POST'))
 def new():
