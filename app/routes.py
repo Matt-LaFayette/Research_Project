@@ -47,6 +47,11 @@ def register():
     return render_template('register.html', title='Register', form=form)
 #END TEST
 
+@app.route('/salesorder', methods=('GET', 'POST'))
+def salesorder():
+    
+    return render_template('salesorder.html', form=form)
+
 
 @app.route('/ticket', methods=('GET', 'POST'))
 def ticket():

@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine, ForeignKey
-from sqlalchemy import Column, Date, Integer, String, Sequence
+from sqlalchemy import Column, Date, Integer, String, Sequence, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
@@ -15,6 +15,7 @@ from app import db, login
 ##After mysql migration
 #tables auto create
 #to create sequence please use ALTER TABLE ORD AUTO_INCREMENT = 622;
+##restart flask to recreate tables after dropping
 
 
 # For support tickets
@@ -54,7 +55,13 @@ class Customer(db.Model):
     email = db.Column(String(120), unique=False, nullable=True)
     phone_num = db.Column(String(120), unique=False, nullable=True)
     notes = db.Column(String(120), unique=False, nullable=True)
+    support = db.Column(Boolean, unique=False, nullable=True)
 
+
+class invoice(db.Model):
+    invoice_num = db.Column(Integer, primary_key=True, auto_increment=True)
+    cx_id = db.Column(Integer, ForeignKey("customer.cx_id"), unique=True, nullable=False) 
+    support_plan = db.Column(String(120), unique=False, nullable=True)
 
 
 
