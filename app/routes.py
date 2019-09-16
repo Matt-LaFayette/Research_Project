@@ -84,8 +84,10 @@ def findaccount():
 @app.route('/test', methods=('GET', 'POST'))
 def test():
     form = CreateCustomer()
+
     customer = Customer(customer_name=form.customer_name.data, city=form.city.data, state=form.state.data, address=form.address.data, zip_code=form.zip_code.data, email=form.email.data, phone_num=form.phone_num.data)
     db.session.add(customer)
+    db.create_all()
     db.session.commit()
     cx = Customer.query.filter_by(customer_name=form.customer_name.data).all()
     for x in cx:

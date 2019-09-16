@@ -12,9 +12,12 @@ from app import db, login
 # You will need to manually create the tables from the command line but will make future changes much easier as the app grows
 
 
+
+
+
 # For support tickets
 class Ticket(db.Model):
- 	id = db.Column(String, primary_key=True)
+ 	id = db.Column(String(80), primary_key=True)
  	contact_name = db.Column(String(80), unique=False, nullable=False)
  	description = db.Column(String(80), unique=False, nullable=False)
  	version = db.Column(String(120), unique=False, nullable=True)
@@ -64,3 +67,5 @@ def load_user(id):
     return User.query.get(int(id))
 
 #Base.metadata.create_all(engine)
+ # In case user table doesn't exists already. Else remove it.    
+db.create_all()

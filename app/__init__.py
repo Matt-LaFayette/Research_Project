@@ -6,13 +6,17 @@ from flask_migrate import Migrate
 
 app = Flask(__name__)
 app.config.from_object(Config)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://matt:Elements1@localhost/crm_system'
 app.debug = True
 db = SQLAlchemy(app)
 login = LoginManager(app)
 migrate = Migrate(app, db)
 
 
-	
+
+
+
+
 
 
 #Secrete key for WTF forms
