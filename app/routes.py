@@ -30,6 +30,7 @@ def submit():
         return redirect('/success')
     return render_template('submit.html', form=form)
 
+
 #TEST
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -55,8 +56,8 @@ def ticket():
 @app.route('/createcustomer', methods=('GET', 'POST'))
 def createcustomer():
     form = CreateCustomer()
-    title = 'Create Customer'
-    return render_template('createcustomer.html', form=form)
+    title = 'Customer'
+    return render_template('createcustomer.html', title=title, form=form)
 
 @app.route('/searchcustomer', methods=('GET', 'POST'))
 def searchcustomer():
@@ -84,10 +85,8 @@ def findaccount():
 @app.route('/test', methods=('GET', 'POST'))
 def test():
     form = CreateCustomer()
-
     customer = Customer(customer_name=form.customer_name.data, city=form.city.data, state=form.state.data, address=form.address.data, zip_code=form.zip_code.data, email=form.email.data, phone_num=form.phone_num.data)
     db.session.add(customer)
-    db.create_all()
     db.session.commit()
     cx = Customer.query.filter_by(customer_name=form.customer_name.data).all()
     for x in cx:
@@ -105,12 +104,22 @@ def createticket():
         print (form.cx_id.data)
         ticket = Ticket(id =form.cx_id.data, contact_name=form.contact_name.data, description=form.description.data, version=form.version.data, priority=form.priority.data, status=form.status.data, o365=form.o365.data, assigned_to=form.assigned_to.data)
         db.session.add(ticket)
-        db.session.commit()    
+        db.session.commit()
     return render_template('createticket.html', form=form)
 # @app.route('/createdb', methods=('GET', 'POST'))
 # def createdb():
 # 	engine.execute('INSERT INTO ticket (id, description) VALUES ("2", "test");')
 # 	return 'done'
+
+@app.route("/masterlist")
+def masterlist():
+    customer = Customer.query.all()
+    ticket = Ticket.query.all()
+    for x in ticket:
+        print(x.id)
+    for x in customer:
+        print(x.cx_id)
+    return render_template('masterlist.html', customer=customer, ticket=ticket)
 
 
 #route for line graph

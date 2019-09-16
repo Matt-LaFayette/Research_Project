@@ -12,7 +12,9 @@ from app import db, login
 # You will need to manually create the tables from the command line but will make future changes much easier as the app grows
 
 
-
+##After mysql migration
+#tables auto create
+#to create sequence please use ALTER TABLE ORD AUTO_INCREMENT = 622;
 
 
 # For support tickets
@@ -43,7 +45,7 @@ class User(db.Model):
 
 # Table for customers (when created)
 class Customer(db.Model):
-    cx_id = db.Column(Integer, primary_key=True)
+    cx_id = db.Column(Integer, primary_key=True, auto_increment=True)
     customer_name = db.Column(String(120), unique=False, nullable=True)
     city = db.Column(String(120), unique=False, nullable=True)
     state = db.Column(String(120), unique=False, nullable=True)

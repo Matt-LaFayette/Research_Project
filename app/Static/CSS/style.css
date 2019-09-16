@@ -1,6 +1,10 @@
 /*make sure and put media queries at bottom*/
 /* file:///C:/Users/MGLafayette/AppData/Local/Microsoft/Windows/INetCache/Content.Outlook/ZB2BGV28/brand-color-update-july2018.pdf */
 
+body {
+  /*display: flex;*/
+}
+
 .content {
 	height: 100%;
 	/*display: flex;*/
@@ -33,7 +37,7 @@
 }
 
 	#dropdownMenuButton {
-		margin-top: 96%;
+		/*margin-top: 96%;*/
 	}
 
 /*login page media queries */
