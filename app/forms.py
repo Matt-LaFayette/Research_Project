@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_login import LoginManager, current_user, login_user
-from wtforms import StringField, PasswordField, IntegerField, TextAreaField, BooleanField, SubmitField, SelectField
+from wtforms import StringField, PasswordField, IntegerField, TextAreaField, BooleanField, SubmitField, SelectField, DateField
 from wtforms.validators import ValidationError, DataRequired, NumberRange, Email, EqualTo, Regexp
 from app.models import User
 
@@ -35,10 +35,10 @@ class Invoice(FlaskForm):
 	invoice_num = IntegerField('Invoice Number', validators=[NumberRange(min=100000000,max=100999999)])
 	amount = IntegerField('Amount', validators=[DataRequired()])
 	date_created = DateField('Date', format='%m-%d-%Y')
-	cx_id = IntegerField('Customer ID', validators=[DataRequired()]) 
+	cx_id = IntegerField('Customer ID', validators=[DataRequired()])
 	support_plan = BooleanField('Valid Support?')
 	sales_rep_id = IntegerField('Sales Rep ID')
-	valid_support_date = db.Column(Date, unique=False, nullable=False)
+	valid_support_date = DateField('Support Vaid Through', format='%m-%d-%Y')
 
 # Search fields for customer
 class CustomerSearch(FlaskForm):

@@ -1,1 +1,28 @@
-New or view
+{% include 'template.html' %}
+
+
+<div class="outer_ticket_search">
+			<div id="ticket_search">
+	      	<form method="POST" id="cform" action="{{url_for('test')}}">
+	      		<div class="form-group">
+	    		{{ form.csrf_token }}
+	    	</br>
+	    		{{ form.invoice_num.label }} {{form.invoice_num(size=20) }}
+	    	</br>
+	    		{{ form.amount.label }} {{form.amount(size=20) }}	    		
+	    	</br>
+				{{ form.date_created.label }} {{ form.date_created(size=20) }}
+			</br>
+				{{ form.cx_id.label }} {{ form.cx_id(size=20) }}
+	    	</br>
+	    		{{ form.support_plan.label }}  {{ form.support_plan(cols="23", rows="2") }}
+			</br>
+			</br>
+				{{ form.sales_rep_id.label }} {{ form.sales_rep_id(size=20) }}
+			</br>
+				{{ form.valid_support_date.label }} {{ form.valid_support_date(size=20) }}
+	    	</br>
+	    	</br>
+	    		<input class="btn btn-secondary btn-sm btn-block" id="submit_button" onclick="myFunction()" type="submit" name="name"  value="Create Customer">
+	    		</div>
+			</form>

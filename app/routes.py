@@ -5,10 +5,7 @@ import sqlite3
 from datetime import time
 from flask_login import current_user, login_user
 from app.models import User, Ticket, Customer
-from app.forms import RegistrationForm, TicketCreate, MyForm, TicketSearch, CreateCustomer, SearchCustomer
-
-
-
+from app.forms import RegistrationForm, TicketCreate, MyForm, TicketSearch, CreateCustomer, SearchCustomer, Invoice
 
 #cd C:\Users\MGLafayette\Desktop\Projects\Undergrade Research Project
 #env\Scripts\activate
@@ -49,8 +46,9 @@ def register():
 
 @app.route('/salesorder', methods=('GET', 'POST'))
 def salesorder():
-
-    return render_template('salesorder.html', form=form)
+    form = Invoice()
+    title = 'New Order'
+    return render_template('salesorder.html', title=title, form=form)
 
 
 @app.route('/ticket', methods=('GET', 'POST'))
@@ -78,8 +76,10 @@ def searchcustomer():
     #         for x in cx:
     #             print(x.cx_id)
     #         return redirect (url_for('findaccount.html'))
+    
     return render_template('searchcustomer.html', title=title, form=form)
 
+#this route is linked to searchcustomer and displays the results found
 @app.route('/findaccount', methods=('GET', 'POST'))
 def findaccount():
     title = "Find Account"
@@ -93,10 +93,12 @@ def test():
     customer = Customer(customer_name=form.customer_name.data, company_name=form.company_name.data, city=form.city.data, state=form.state.data, address=form.address.data, zip_code=form.zip_code.data, email=form.email.data, phone_num=form.phone_num.data)
     db.session.add(customer)
     db.session.commit()
+    x = request.form['temptest']
     cx = Customer.query.filter_by(customer_name=form.customer_name.data).all()
+    print (x)
     for x in cx:
         print(x.cx_id)
-    return render_template('test.html', customer=cx)
+    return render_template('test.html',  x=x, customer=cx)
 
 @app.route('/new', methods=('GET', 'POST'))
 def new():
