@@ -4,6 +4,16 @@ from wtforms import StringField, PasswordField, IntegerField, TextAreaField, Boo
 from wtforms.validators import ValidationError, DataRequired, NumberRange, Email, EqualTo, Regexp
 from app.models import User
 
+class CreateCustomer(FlaskForm):
+	customer_name = StringField('Customer Name', validators=[DataRequired()])
+	company_name = StringField('Company Name', validators=[DataRequired()])
+	city = StringField('City', validators=[DataRequired()])
+	state = StringField('State', validators=[DataRequired()])
+	address = TextAreaField('Address', validators=[DataRequired()])
+	zip_code = StringField('Zip', validators=[DataRequired()])
+	email = StringField('Email', validators=[DataRequired()])
+	phone_num = StringField('Phone Number', validators=[DataRequired()])
+
 # Form to create a support ticket
 class TicketCreate(FlaskForm):
 	cx_id = StringField('Customer ID', validators=[DataRequired(), Regexp('\d+',  message="Username must contain only letters numbers or underscore")])
@@ -20,12 +30,22 @@ class MyForm(FlaskForm):
     log_in_name = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
 
-# Search fields for support tickets
-class TicketSearch(FlaskForm):
+#for customer invoices
+class Invoice(FlaskForm):
+	invoice_num = IntegerField('Invoice Number', validators=[NumberRange(min=100000000,max=100999999)])
+	amount = IntegerField('Amount', validators=[DataRequired()])
+	date_created = DateField('Date', format='%m-%d-%Y')
+	cx_id = IntegerField('Customer ID', validators=[DataRequired()]) 
+	support_plan = BooleanField('Valid Support?')
+	sales_rep_id = IntegerField('Sales Rep ID')
+	valid_support_date = db.Column(Date, unique=False, nullable=False)
+
+# Search fields for customer
+class CustomerSearch(FlaskForm):
 	name = StringField('Name', validators=[DataRequired()])
 	address = TextAreaField('Address', validators=[DataRequired()])
-	cx_id = IntegerField('Customer ID', validators=[NumberRange(min=4000000000,max=4009999999)])
-	order_num = IntegerField('Order Number', validators=[NumberRange(min=1000000000,max=1009999999)])
+	cx_id = IntegerField('Customer ID', validators=[NumberRange(min=400000000,max=400999999)])
+	order_num = IntegerField('Order Number', validators=[NumberRange(min=100000000,max=100999999)])
 
 # Search fields for support tickets
 class TicketSearch(FlaskForm):
@@ -34,14 +54,7 @@ class TicketSearch(FlaskForm):
 	cx_id = IntegerField('Customer ID', validators=[NumberRange(min=4000000000,max=4009999999)])
 	order_num = IntegerField('Order Number', validators=[NumberRange(min=1000000000,max=1009999999)])
 
-class CreateCustomer(FlaskForm):
-	customer_name = StringField('Name', validators=[DataRequired()])
-	city = StringField('City', validators=[DataRequired()])
-	state = StringField('State', validators=[DataRequired()])
-	address = TextAreaField('Address', validators=[DataRequired()])
-	zip_code = StringField('Zip', validators=[DataRequired()])
-	email = StringField('Email', validators=[DataRequired()])
-	phone_num = StringField('Phone Number', validators=[DataRequired()])
+
 
 class SearchCustomer(FlaskForm):
 	customer_name = StringField('Name', validators=[DataRequired()])

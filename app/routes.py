@@ -49,7 +49,7 @@ def register():
 
 @app.route('/salesorder', methods=('GET', 'POST'))
 def salesorder():
-    
+
     return render_template('salesorder.html', form=form)
 
 
@@ -90,7 +90,7 @@ def findaccount():
 @app.route('/test', methods=('GET', 'POST'))
 def test():
     form = CreateCustomer()
-    customer = Customer(customer_name=form.customer_name.data, city=form.city.data, state=form.state.data, address=form.address.data, zip_code=form.zip_code.data, email=form.email.data, phone_num=form.phone_num.data)
+    customer = Customer(customer_name=form.customer_name.data, company_name=form.company_name.data, city=form.city.data, state=form.state.data, address=form.address.data, zip_code=form.zip_code.data, email=form.email.data, phone_num=form.phone_num.data)
     db.session.add(customer)
     db.session.commit()
     cx = Customer.query.filter_by(customer_name=form.customer_name.data).all()
