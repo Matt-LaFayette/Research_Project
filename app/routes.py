@@ -27,6 +27,10 @@ def submit():
         return redirect('/success')
     return render_template('submit.html', form=form)
 
+@app.route('/template', methods=('GET', 'POST'))
+def template():
+    test =   session['response']
+    return render_template('template.html', test=test)
 
 #TEST
 @app.route('/register', methods=['GET', 'POST'])
@@ -84,6 +88,7 @@ def searchcustomer():
 def findaccount():
     title = "Find Account"
     form = SearchCustomer()
+    print (session['response'])
     cx = Customer.query.filter_by(customer_name=form.customer_name.data)
     return render_template('findaccount.html', customer=cx, title=title)
 
@@ -95,10 +100,10 @@ def test():
     db.session.commit()
     x = request.form['temptest']
     cx = Customer.query.filter_by(customer_name=form.customer_name.data).all()
-    print (x)
+    session['response']= x
     for x in cx:
         print(x.cx_id)
-    return render_template('test.html',  x=x, customer=cx)
+    return render_template('test.html',  test=test, customer=cx)
 
 @app.route('/new', methods=('GET', 'POST'))
 def new():
@@ -107,12 +112,13 @@ def new():
 @app.route('/createticket', methods=('GET', 'POST'))
 def createticket():
     form = TicketCreate()
+    title = 'Ticket'
     if form.validate_on_submit():
         print (form.cx_id.data)
         ticket = Ticket(id =form.cx_id.data, contact_name=form.contact_name.data, description=form.description.data, version=form.version.data, priority=form.priority.data, status=form.status.data, o365=form.o365.data, assigned_to=form.assigned_to.data)
         db.session.add(ticket)
         db.session.commit()
-    return render_template('createticket.html', form=form)
+    return render_template('createticket.html', title=title, form=form)
 # @app.route('/createdb', methods=('GET', 'POST'))
 # def createdb():
 # 	engine.execute('INSERT INTO ticket (id, description) VALUES ("2", "test");')

@@ -11,6 +11,19 @@ body {
 	align-items: center;
 	justify-content: center;
 }
+.bottom {
+  position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-left: 80%;
+    background-color: white;
+    border-style: outset;
+}
+
+#disableme {
+    pointer-events: none;
+    background: lightgray;
+}
 
 .top_header {
 	/*position: absolute;*/
