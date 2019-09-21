@@ -104,7 +104,7 @@ def load_user(id):
 
 #Base.metadata.create_all(engine)
  # In case user table doesn't exists already. Else remove it.    
-db.create_all()
+# db.create_all()
 
 sql = text('ALTER TABLE Customer AUTO_INCREMENT = 40000000')
 db.engine.execute(sql)
