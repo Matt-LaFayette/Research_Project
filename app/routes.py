@@ -1,7 +1,6 @@
 from app import app, db
 from flask import Flask, render_template, flash, redirect, url_for, request, session
 from config import Config
-import sqlite3
 from datetime import time
 from flask_login import current_user, login_user
 from app.models import User, Ticket, Customer
