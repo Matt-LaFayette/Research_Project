@@ -28,7 +28,10 @@ def submit():
 
 @app.route('/template', methods=('GET', 'POST'))
 def template():
-    test =   session['response']
+	try:
+    	test = session['response']
+    except:
+    	test = "broken"
     return render_template('template.html', test=test)
 
 #TEST
