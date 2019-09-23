@@ -34,7 +34,7 @@ def template():
 		test = session['response']
 	except:
 		test = "broken"
-	return render_template('template.html', test=test)
+	return render_template('template.html', test=str(test))
 
 #TEST
 @app.route('/register', methods=['GET', 'POST'])
