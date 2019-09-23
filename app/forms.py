@@ -42,8 +42,8 @@ class Invoice(FlaskForm):
 
 # Search fields for customer
 class CustomerSearch(FlaskForm):
-	name = StringField('Name', validators=[DataRequired()])
-	address = TextAreaField('Address', validators=[DataRequired()])
+	name = StringField('Name')
+	address = TextAreaField('Address')
 	cx_id = IntegerField('Customer ID', validators=[NumberRange(min=400000000,max=400999999)])
 	order_num = IntegerField('Order Number', validators=[NumberRange(min=100000000,max=100999999)])
 
