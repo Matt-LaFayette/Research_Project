@@ -4,6 +4,7 @@ from flask_login import LoginManager
 from config import Config
 from flask_migrate import Migrate
 
+
 app = Flask(__name__)
 app.config.from_object(Config)
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://matt:Elements1@localhost/crm_system'
