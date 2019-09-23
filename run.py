@@ -1,7 +1,8 @@
 from app import app, db
 from app.models import User
+from flask import Flask
 
-# app = Flask(__name__)
+app = Flask(__name__)
 
 @app.shell_context_processor
 def make_shell_context():
