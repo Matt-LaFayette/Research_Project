@@ -10,7 +10,8 @@ def make_shell_context():
 #engine = create_engine('sqlite:///C:\\sqlitedbs\\research_project.db', echo=True)
 
 
-
+if __name__ == "__main__":
+    app.run()
 
 #this is required. Similar to a "commit"
 #Base.metadata.create_all(engine)
