@@ -28,6 +28,8 @@ def submit():
 
 @app.route('/template', methods=('GET', 'POST'))
 def template():
+	#https://pythonhosted.org/Flask-Session/
+	#will probably need to add this
 	try:
 		test = session['response']
 	except:
