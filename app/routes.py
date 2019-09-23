@@ -34,6 +34,7 @@ def template():
 		test = session['response']
 	except:
 		test = "broken"
+	customer = ""
 	return render_template('template.html', test=str(test))
 
 #TEST
@@ -107,7 +108,7 @@ def test():
 	# session['response']= x
 	# for x in cx:
 	# 	print(x.cx_id)
-	return render_template('test.html',  test=test, customer=cx)
+	return render_template('test.html', test=test, customer=cx)
 
 @app.route('/new', methods=('GET', 'POST'))
 def new():
