@@ -100,11 +100,11 @@ def test():
 	customer = Customer(customer_name=form.customer_name.data, company_name=form.company_name.data, city=form.city.data, state=form.state.data, address=form.address.data, zip_code=form.zip_code.data, email=form.email.data, phone_num=form.phone_num.data)
 	db.session.add(customer)
 	db.session.commit()
-	x = request.form['temptest']
+	# x = request.form['temptest']
 	cx = Customer.query.filter_by(customer_name=form.customer_name.data).all()
-	session['response']= x
-	for x in cx:
-		print(x.cx_id)
+	# session['response']= x
+	# for x in cx:
+	# 	print(x.cx_id)
 	return render_template('test.html',  test=test, customer=cx)
 
 @app.route('/new', methods=('GET', 'POST'))
