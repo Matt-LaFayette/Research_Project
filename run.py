@@ -2,7 +2,6 @@ from app import app, db
 from app.models import User
 from flask import Flask
 
-app = Flask(__name__)
 
 @app.shell_context_processor
 def make_shell_context():
@@ -11,8 +10,7 @@ def make_shell_context():
 #engine = create_engine('sqlite:///C:\\sqlitedbs\\research_project.db', echo=True)
 
 
-if __name__ == "__main__":
-    app.run()
+
 
 #this is required. Similar to a "commit"
 #Base.metadata.create_all(engine)
