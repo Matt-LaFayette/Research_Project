@@ -90,7 +90,7 @@ def searchcustomer():
 def findaccount():
 	title = "Find Account"
 	form = SearchCustomer()
-	print (session['response'])
+	# print (session['response'])
 	cx = Customer.query.filter_by(customer_name=form.customer_name.data)
 	return render_template('findaccount.html', customer=cx, title=title)
 
