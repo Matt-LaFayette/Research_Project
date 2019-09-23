@@ -5,7 +5,7 @@ from flask import Flask
 
 @app.shell_context_processor
 def make_shell_context():
-    return {'db': db, 'User': User}
+	return {'db': db, 'User': User}
 #creates the sqllite db 
 #engine = create_engine('sqlite:///C:\\sqlitedbs\\research_project.db', echo=True)
 

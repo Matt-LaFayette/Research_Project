@@ -7,7 +7,7 @@ from flask_migrate import Migrate
 
 app = Flask(__name__)
 if __name__ == "__main__":
-    app.run()
+	app.run()
 app.config.from_object(Config)
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://matt:Elements1@localhost/crm_system'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://bcfb3fc3b457ff:fe8d2e38@us-cdbr-iron-east-02.cleardb.net/heroku_9302677d1154b2e?'
