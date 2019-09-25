@@ -5,6 +5,9 @@ from datetime import time
 from flask_login import current_user, login_user
 from app.models import User, Ticket, Customer
 from app.forms import RegistrationForm, TicketCreate, MyForm, TicketSearch, CreateCustomer, SearchCustomer, Invoice
+from sqlalchemy.exc import IntegrityError
+
+customer = ""
 
 #cd C:\Users\MGLafayette\Desktop\Projects\Undergrade Research Project
 #env\Scripts\activate
@@ -85,7 +88,6 @@ def searchcustomer():
 	#         for x in cx:
 	#             print(x.cx_id)
 	#         return redirect (url_for('findaccount.html'))
-	
 	return render_template('searchcustomer.html', title=title, form=form)
 
 #this route is linked to searchcustomer and displays the results found
@@ -94,16 +96,38 @@ def findaccount():
 	title = "Find Account"
 	form = SearchCustomer()
 	# print (session['response'])
-	cx = Customer.query.filter_by(customer_name=form.customer_name.data)
+	customername = form.customer_name.data
+	print(customername)
+	cx = Customer.query.filter_by(customer_name=customername)
+	if form.validate_on_submit():
+		x = 1
+		for customer in cx:
+			select = str(x) + 'Select'
+			print ("Im' printing " + select)
+			st = str(select)
+			print ("Im' printing " + st)
+			# selection = request.form.get(st)
+			# print (selection)
+			x = x + 1
+			print(type(st))
+			# session['name'] = customer.customer_name
+			if st == 'Select':
+				print("success")
 	return render_template('findaccount.html', customer=cx, title=title)
+
+
 
 @app.route('/test', methods=('GET', 'POST'))
 def test():
 	form = CreateCustomer()
 	customer = Customer(customer_name=form.customer_name.data, company_name=form.company_name.data, city=form.city.data, state=form.state.data, address=form.address.data, zip_code=form.zip_code.data, email=form.email.data, phone_num=form.phone_num.data)
-	db.session.add(customer)
-	db.session.commit()
-	# x = request.form['temptest']
+	try:
+		db.session.add(customer)
+		db.session.commit()
+	except IntegrityError:
+		db.session.rollback()
+		return 'I failed'
+	x = request.form['temptest']
 	cx = Customer.query.filter_by(customer_name=form.customer_name.data).all()
 	# session['response']= x
 	# for x in cx:
@@ -139,6 +163,24 @@ def masterlist():
 		print(x.cx_id)
 	return render_template('masterlist.html', customer=customer, ticket=ticket)
 
+@app.route("/selectcustomer/<name>")
+def selectcustomer(name):
+	session['name'] = name
+	try:
+		print(session['name'])
+	except:
+		print("I failed")
+	return "nothing"
+
+@app.route("/clearsession")
+def clearsession():
+	print(session['name'])
+	session.pop('name', None)
+	try:
+		print(session['name'])
+	except:
+		print("I failed")
+	return "nothing"
 
 #route for line graph
 @app.route("/simple_chart")

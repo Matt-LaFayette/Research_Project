@@ -1,4 +1,4 @@
-
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 
@@ -42,4 +42,22 @@
   <a href="{{ url_for('salesorder')}}">Orders</a>
 
 </div>
-<div class="bottom">Currently using customer: {{ test }}<br><br><button type="button" class="btn btn-warning">Warning</button></div>
+
+<script>
+function myFunction() {
+    $.ajax({
+      url : "http://127.0.0.1:5000/clearsession", 
+      type : 'GET',
+      success: function(msg) {
+                        $(test).fadeOut(800, function(){
+                            form.html(msg).fadeIn().delay(2000);
+
+                        });
+     
+        }
+    })
+};
+</script>
+<div class="bottom" id="test">{% if session['name'] %}Currently using customer: {{session['name']}}<br><br><button type="button" onclick="myFunction()" class="btn btn-warning">Warning</button>{% endif %}
+
+</div>

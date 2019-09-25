@@ -1,33 +1,44 @@
 {% include 'template.html' %}
+<script>
+function myFunction() {
+
+    $.ajax({
+      url : 'http://127.0.0.1:5000/selectcustomer/' + $('#name').html(), 
+      type : 'GET',
+      success: function(msg) {
+                        $(results).fadeOut(800);
+                        $('#test').fadeIn(800);
+                        location.reload();
+        }
+    })
+};
+</script>
 
 <div class="outer_ticket_search">
   <h2>Is this the correct customer?</h2>
-	<table class="table table-dark">
+	<table class="table table-dark" id="results">
   <thead>
     <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Phone Number</th>
-      <th scope="col">Email Address</th>
+      <th scope="col" id="id">ID</th>
+      <th scope="col" >Name</th>
+      <th scope="col" id="phonenumber">Phone Number</th>
+      <th scope="col" id="email">Email Address</th>
+      <th scope="col" id="select">Select</th>
     </tr>
   </thead>
   <tbody>
   	{% for x in customer %}
     <tr>
       <th scope="row">{{x.cx_id}}</th>
-      <td>{{x.customer_name}}</td>
+      <td id="name">{{x.customer_name}}</td>
       <td>{{x.phone_num}}</td>
       <td>{{x.email}}</td>
+        <!-- handle this with an ajax call like before -->
+      <td><input class="btn btn-secondary btn-sm btn-block" id="submit_button" type="submit" onclick="myFunction()" name="{{loop.index}}Select"  value="Select"></td>
     </tr>
     {% endfor %}
   </tbody>
 </table>
-<form method="POST" id="cform" action="{{url_for('test')}}">
-  <!--  -->
-    <input type="text" name="temptest">
-    <input type="submit" name="submit">
-  </form>
-
 
 </div>
 </html>
