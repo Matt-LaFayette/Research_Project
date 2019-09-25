@@ -3,23 +3,12 @@
 					<div id="ticket_search">
 			      	<form method="POST" id="cform" action="{{url_for('findaccount')}}">
 			      		<div class="form-group">
-			    		{{ form.csrf_token }}
+			    		{{ form1.csrf_token }}
 			    	</br>
-			    		{{ form.customer_name.label }} {{ form.customer_name(size=20) }}
+			    		{{ form1.customer_name.label }} {{ form1.customer_name(size=20) }}
 			    	</br>
-						{{ form.email.label }} {{ form.email(size=20) }}
+			    		{{ form1.address.label }}  {{ form1.address(cols="23", rows="2") }}
 					</br>
-						{{ form.phone_num.label }} {{ form.phone_num(size=20) }}
-			    	</br>
-			    		{{ form.address.label }}  {{ form.address(cols="23", rows="2") }}
-					</br>
-					</br>
-						{{ form.city.label }} {{ form.city(size=20) }}
-					</br>
-						{{ form.state.label }} {{ form.state(size=20) }}
-					</br>
-						{{ form.zip_code.label }} {{ form.zip_code(size=20) }}
-			    	</br>
 			    	</br>
 			    		<input class="btn btn-secondary btn-sm btn-block" id="submit_button" onclick="myFunction()" type="submit" name="name"  value="Search Customer">
 			    		</div>

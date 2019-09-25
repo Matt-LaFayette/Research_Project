@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_login import LoginManager, current_user, login_user
 from wtforms import StringField, PasswordField, IntegerField, TextAreaField, BooleanField, SubmitField, SelectField, DateField
-from wtforms.validators import ValidationError, DataRequired, NumberRange, Email, EqualTo, Regexp
+from wtforms.validators import ValidationError, DataRequired, NumberRange, Email, EqualTo, Regexp, Optional
 from app.models import User
 
 class CreateCustomer(FlaskForm):
@@ -40,12 +40,7 @@ class Invoice(FlaskForm):
 	sales_rep_id = IntegerField('Sales Rep ID')
 	valid_support_date = DateField('Support Vaid Through', format='%m-%d-%Y')
 
-# Search fields for customer
-class CustomerSearch(FlaskForm):
-	name = StringField('Name')
-	address = TextAreaField('Address')
-	cx_id = IntegerField('Customer ID', validators=[NumberRange(min=400000000,max=400999999)])
-	order_num = IntegerField('Order Number', validators=[NumberRange(min=100000000,max=100999999)])
+
 
 # Search fields for support tickets
 class TicketSearch(FlaskForm):
@@ -55,15 +50,16 @@ class TicketSearch(FlaskForm):
 	order_num = IntegerField('Order Number', validators=[NumberRange(min=1000000000,max=1009999999)])
 
 
-
+# Search fields for customer
 class SearchCustomer(FlaskForm):
-	customer_name = StringField('Name', validators=[DataRequired()])
+	customer_name = StringField('Name', validators=[Optional()])
 	city = StringField('City', validators=[DataRequired()])
 	state = StringField('State', validators=[DataRequired()])
-	address = TextAreaField('Address', validators=[DataRequired()])
+	address = TextAreaField('Address', validators=[Optional()])
 	zip_code = StringField('Zip', validators=[DataRequired()])
 	email = StringField('Email', validators=[DataRequired()])
 	phone_num = StringField('Phone Number', validators=[DataRequired()])
+	cx_id = IntegerField('Customer ID', validators=[NumberRange(min=400000000,max=400999999), Optional()])
 
 #Form to register a new username and password
 class RegistrationForm(FlaskForm):

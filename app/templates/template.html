@@ -58,6 +58,6 @@ function myFunction() {
     })
 };
 </script>
-<div class="bottom" id="test">{% if session['name'] %}Currently using customer: {{session['name']}}<br><br><button type="button" onclick="myFunction()" class="btn btn-warning">Warning</button>{% endif %}
+<div class="bottom" id="test">{% if session['id'] %}Currently using customer: {{session['id']}}<br>{{session['name']}}<br><br><button type="button" onclick="myFunction()" class="btn btn-warning">Warning</button>{% endif %}
 
 </div>

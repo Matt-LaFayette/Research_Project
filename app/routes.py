@@ -34,11 +34,17 @@ def template():
 	#https://pythonhosted.org/Flask-Session/
 	#will probably need to add this
 	try:
-		test = session['response']
+		test = session['id']
+		cx_info = Customer.query.filter_by(cx_id=test)
 	except:
 		test = "broken"
+		print ("i broke")
 	customer = ""
-	return render_template('template.html', test=str(test))
+	for x in cx_info:
+		print ("I'm printing")
+		print (x.cx_id)
+		print (x.customer_name)
+	return render_template('template.html', cx_info=cx_info, test=str(test))
 
 #TEST
 @app.route('/register', methods=['GET', 'POST'])
@@ -76,7 +82,7 @@ def createcustomer():
 
 @app.route('/searchcustomer', methods=('GET', 'POST'))
 def searchcustomer():
-	form = SearchCustomer()
+	form1 = SearchCustomer()
 	title = "Search"
 	# if form.validate_on_submit():
 	#     if request.form['name'] == 'Search Customer':
@@ -88,7 +94,7 @@ def searchcustomer():
 	#         for x in cx:
 	#             print(x.cx_id)
 	#         return redirect (url_for('findaccount.html'))
-	return render_template('searchcustomer.html', title=title, form=form)
+	return render_template('searchcustomer.html', title=title, form1=form1)
 
 #this route is linked to searchcustomer and displays the results found
 @app.route('/findaccount', methods=('GET', 'POST'))
@@ -163,20 +169,26 @@ def masterlist():
 		print(x.cx_id)
 	return render_template('masterlist.html', customer=customer, ticket=ticket)
 
-@app.route("/selectcustomer/<name>")
-def selectcustomer(name):
-	session['name'] = name
+@app.route("/selectcustomer/<id>")
+def selectcustomer(id):
+	session['id'] = id
+	cx_info = Customer.query.filter_by(cx_id=session['id'])
+	for x in cx_info:
+		session['name'] = x.customer_name
+		session['phone_num'] = x.phone_num
 	try:
-		print(session['name'])
+		print("session id")
+		print(session['id'])
 	except:
 		print("I failed")
 	return "nothing"
 
 @app.route("/clearsession")
 def clearsession():
+	session.pop('id', None)
 	session.pop('name', None)
 	try:
-		print(session['name'])
+		print(session['id'])
 	except:
 		print("I failed")
 	return "nothing"
