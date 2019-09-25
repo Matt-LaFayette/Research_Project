@@ -127,7 +127,7 @@ def test():
 	except IntegrityError:
 		db.session.rollback()
 		return 'I failed'
-	x = request.form['temptest']
+	# x = request.form['temptest']
 	cx = Customer.query.filter_by(customer_name=form.customer_name.data).all()
 	# session['response']= x
 	# for x in cx:
@@ -174,7 +174,6 @@ def selectcustomer(name):
 
 @app.route("/clearsession")
 def clearsession():
-	print(session['name'])
 	session.pop('name', None)
 	try:
 		print(session['name'])
