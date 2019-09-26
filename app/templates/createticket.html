@@ -4,17 +4,16 @@
 			      	<form method="POST" id="cform" action="#">
 			      		<div class="form-group">
 			    		{{ form.csrf_token }}
-			    		{% if session['response'] %}
-			    		{{ form.cx_id.label }}
-			    		<input type="text" id="disableme" value="{{session['response']}}">
-			    		
+			    		{% if session['id'] %}
+			    			{{ form.cx_id.label }}
+			    			<input type="text" id="disableme" value="{{session['id']}}">
+			    			{{ form.contact_name.label }}
+			    			<input type="text" id="disableme" value="{{session['name']}}">
 			    		{% else %}
-			    		
-			    		{{ form.cx_id.label }} {{ form.cx_id(size=20) }}
+			    			{{ form.cx_id.label }} {{ form.cx_id(size=20) }}
+			    			{{ form.contact_name.label }} {{ form.contact_name(size=20) }}
 			    		{% endif %}
 			    		<div class="error" id="wrong_id"></div>
-			    	</br>
-			    		{{ form.contact_name.label }} {{ form.contact_name(size=20) }}
 			    	</br>
 			    		{{ form.description.label }}  {{ form.description(cols="23", rows="2") }}
 					</br>

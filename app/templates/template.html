@@ -32,12 +32,31 @@
   </div>
 </div>
 		</div>
-
+<script>
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function dropDown() {
+    var x = document.getElementById("myDropdown");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
 		<!-- The sidebar -->
 <div class="sidebar">
   <a class="active" href="#">Home</a>
   <a href="{{ url_for('createcustomer')}}">New Customer</a>
-  <a href="{{ url_for('createticket')}}">Create Ticket</a>
+  <a href="#" onclick="dropDown()">Ticket</a>
+  <div class="dropdownside">
+  
+    <div id="myDropdown" class="dropdown-content" style="display: none">
+    <a href="{{ url_for('createticket')}}">Create Ticket</a>
+    <a href="#">Search Ticket</a>
+  </div>
+  </div>
+  
   <a href="{{ url_for('searchcustomer')}}">Search</a>
   <a href="{{ url_for('salesorder')}}">Orders</a>
 
@@ -58,6 +77,6 @@ function myFunction() {
     })
 };
 </script>
-<div class="bottom" id="test">{% if session['id'] %}Currently using customer: {{session['id']}}<br>{{session['name']}}<br><br><button type="button" onclick="myFunction()" class="btn btn-warning">Warning</button>{% endif %}
+<div class="bottom" id="test">{% if session['id'] %}Currently using customer: {{session['id']}}<br>{{session['name']}}<br><br><button type="button" onclick="myFunction()" class="btn btn-warning">Clear</button>{% endif %}
 
 </div>

@@ -4,6 +4,39 @@
 body {
   /*display: flex;*/
 }
+.dropdownside {
+  position: relative;
+  display: inline-block;
+}
+
+#myDropdown {
+  display: block;
+  position: fixed;
+  margin-left: 5%;
+  background: white;
+  border: solid;
+}
+
+.dropdownside-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdownside-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdownside a:hover {background-color: #ddd;}
+
+.show {display: block;}
 
 .content {
 	height: 100%;
