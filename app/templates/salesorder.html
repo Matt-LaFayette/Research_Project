@@ -15,7 +15,7 @@
 			</br>
 				{{ form.cx_id.label }} {{ form.cx_id(size=20) }}
 	    	</br>
-	    		{{ form.support_plan.label }}  {{ form.support_plan(cols="23", rows="2") }}
+	    		{{ form.support_plan(cols="23", rows="2") }} {{ form.support_plan.label }}  
 			</br>
 			</br>
 				{{ form.sales_rep_id.label }} {{ form.sales_rep_id(size=20) }}
@@ -26,3 +26,18 @@
 	    		<input class="btn btn-secondary btn-sm btn-block" id="submit_button" onclick="myFunction()" type="submit" name="name"  value="Create Customer">
 	    		</div>
 			</form>
+			<script>
+					var inputs = document.getElementsByTagName("input");
+						for (var i = 0; i < inputs.length; i++) {
+							console.log(inputs[i]);
+							if (inputs[i] != "btn.btn-secondary.btn-sm.btn-block") {
+          						inputs[i].className = "form-control form-control-sm";
+          					}; 
+						};
+						document.getElementById("back_button").className = "btn btn-secondary btn-sm"
+						document.getElementById("support_plan").className = "form-check-input"
+						document.getElementById("submit_button").className = "btn btn-secondary btn-sm btn-block"
+						document.getElementById("description").className = "form-control form-control-sm";
+						document.getElementById("priority").className = "form-control form-control-sm";
+						document.getElementById("status").className = "form-control form-control-sm";
+					</script>

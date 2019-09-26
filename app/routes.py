@@ -80,6 +80,12 @@ def createcustomer():
 	title = 'Customer'
 	return render_template('createcustomer.html', title=title, form=form)
 
+@app.route('/listticket', methods=('GET', 'POST'))
+def listticket():
+	title = 'List'
+
+	return render_template('listticket.html', title=title)
+
 @app.route('/searchcustomer', methods=('GET', 'POST'))
 def searchcustomer():
 	form1 = SearchCustomer()
@@ -154,6 +160,7 @@ def createticket():
 		db.session.add(ticket)
 		db.session.commit()
 	return render_template('createticket.html', title=title, form=form)
+
 # @app.route('/createdb', methods=('GET', 'POST'))
 # def createdb():
 # 	engine.execute('INSERT INTO ticket (id, description) VALUES ("2", "test");')
@@ -165,8 +172,6 @@ def masterlist():
 	ticket = Ticket.query.all()
 	for x in ticket:
 		print(x.id)
-	for x in customer:
-		print(x.cx_id)
 	return render_template('masterlist.html', customer=customer, ticket=ticket)
 
 @app.route("/selectcustomer/<id>")

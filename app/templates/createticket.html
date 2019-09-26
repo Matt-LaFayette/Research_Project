@@ -1,12 +1,13 @@
 {% include 'template.html' %}
 		<div class="outer_ticket_search">
 					<div id="ticket_search">
-			      	<form method="POST" id="cform" action="#">
+			      	<form method="POST" id="cform" action="{{url_for('createticket')}}">
 			      		<div class="form-group">
 			    		{{ form.csrf_token }}
 			    		{% if session['id'] %}
 			    			{{ form.cx_id.label }}
-			    			<input type="text" id="disableme" value="{{session['id']}}">
+			    			{{ form.cx_id(size=20) }}
+			    			<!-- <input type="text" id="disableme" value="{{session['id']}}"> -->
 			    			{{ form.contact_name.label }}
 			    			<input type="text" id="disableme" value="{{session['name']}}">
 			    		{% else %}
@@ -29,7 +30,7 @@
 						{{ form.assigned_to.label }} {{ form.assigned_to(size=20) }}
 			    	</br>
 			    	</br>
-			    		<input class="btn btn-secondary btn-sm btn-block" id="submit_button" onclick="myFunction()" type="submit"  value="Create Ticket">
+			    		<input class="btn btn-secondary btn-sm btn-block" id="submit_button" type="submit"  value="Create Ticket">
 			    		</div>
 					</form>
 <!-- 					<script>
