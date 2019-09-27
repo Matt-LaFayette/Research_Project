@@ -152,6 +152,27 @@ def test():
 def new():
 	return render_template('new.html')
 
+@app.route('/addticket', methods=('GET', 'POST'))
+def addticket():
+	acctid = request.args.get('cx_id')
+	acctname = request.args.get('cx_name')
+	desc = request.args.get('description')
+	version = request.args.get('version')
+	priority = request.args.get('priority')
+	status = request.args.get('status')
+	o365 = request.args.get('o365')
+	assigned_to = request.args.get('assigned_to')
+	sql = text('ALTER TABLE Ticket AUTO_INCREMENT = 80000000')
+	db.engine.execute(sql)
+	db.session.commit()
+	ticket = Ticket(account_id=acctid, contact_name=acctname, description=desc, version=version, priority=priority, status=status, o365=o365, assigned_to=assigned_to)
+	db.session.add(ticket)
+	t = Ticket.query.all()
+	for x in t:
+		print (x.id)
+	db.session.commit()
+	return "nothing printed"
+
 @app.route('/createticket', methods=('GET', 'POST'))
 def createticket():
 	form = TicketCreate()
@@ -170,6 +191,7 @@ def createticket():
 				print (x.id)
 			db.session.commit()
 	return render_template('createticket.html', title=title, form=form)
+
 
 # @app.route('/createdb', methods=('GET', 'POST'))
 # def createdb():

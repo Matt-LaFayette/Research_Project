@@ -1,18 +1,18 @@
 {% include 'template.html' %}
 <script>
-function myFunction3() {
+// function myFunction3() {
 
-    $.ajax({
-      url : 'http://127.0.0.1:5000/createticket', 
-      type : 'POST',
-      success: function(msg) {
-      					$('#ticket_search').html("test");
-                        // $(results).fadeOut(800);
-                        // $('#test').load(document.URL + ' #test')
-                        // $('#test').fadeIn(800);
-        }
-    })
-};
+//     $.ajax({
+//       url : 'http://127.0.0.1:5000/addticket', 
+//       type : 'GET',
+//       success: function(msg) {
+//       					$('#ticket_search').html("test");
+//                         // $(results).fadeOut(800);
+//                         // $('#test').load(document.URL + ' #test')
+//                         // $('#test').fadeIn(800);
+//         }
+//     })
+// };
 </script>
 		<div class="outer_ticket_search">
 					<div id="ticket_search">
@@ -45,10 +45,10 @@ function myFunction3() {
 						{{ form.assigned_to.label }} {{ form.assigned_to(size=20) }}
 			    	</br>
 			    	</br>
-<!-- 			    		<input class="btn btn-secondary btn-sm btn-block" id="submit_button" onclick="myFunction3()" type="submit"  value="Create Ticket">
-			    		</div> -->
-			    		<input class="btn btn-secondary btn-sm btn-block" id="submit_button" type="submit"  value="Create Ticket">
+			    		<input class="btn btn-secondary btn-sm btn-block" id="submit_button" type="submit" value="Create Ticket">
 			    		</div>
+<!-- 			    		<input class="btn btn-secondary btn-sm btn-block" id="submit_button" type="submit"  value="Create Ticket">
+			    		</div> -->
 					</form>
 <!-- 					<script>
 						document.getElementById("priority").className = "form-control form-control-sm";
