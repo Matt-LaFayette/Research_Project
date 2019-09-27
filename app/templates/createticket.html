@@ -1,15 +1,30 @@
 {% include 'template.html' %}
+<script>
+function myFunction3() {
+
+    $.ajax({
+      url : 'http://127.0.0.1:5000/createticket', 
+      type : 'POST',
+      success: function(msg) {
+      					$('#ticket_search').html("test");
+                        // $(results).fadeOut(800);
+                        // $('#test').load(document.URL + ' #test')
+                        // $('#test').fadeIn(800);
+        }
+    })
+};
+</script>
 		<div class="outer_ticket_search">
 					<div id="ticket_search">
-			      	<form method="POST" id="cform" action="{{url_for('createticket')}}">
+			      	<form method="POST" id="cform" action="#">
 			      		<div class="form-group">
 			    		{{ form.csrf_token }}
 			    		{% if session['id'] %}
 			    			{{ form.cx_id.label }}
-			    			{{ form.cx_id(size=20) }}
+			    			<input type="text" id="cx_id" name="cx_id" value="{{session['id']}}">
 			    			<!-- <input type="text" id="disableme" value="{{session['id']}}"> -->
 			    			{{ form.contact_name.label }}
-			    			<input type="text" id="disableme" value="{{session['name']}}">
+			    			<input type="text" id="cx_name" name="cx_name" value="{{session['name']}}">
 			    		{% else %}
 			    			{{ form.cx_id.label }} {{ form.cx_id(size=20) }}
 			    			{{ form.contact_name.label }} {{ form.contact_name(size=20) }}
@@ -30,13 +45,14 @@
 						{{ form.assigned_to.label }} {{ form.assigned_to(size=20) }}
 			    	</br>
 			    	</br>
-			    		<input class="btn btn-secondary btn-sm btn-block" id="submit_button" type="submit"  value="Create Ticket">
+			    		<input class="btn btn-secondary btn-sm btn-block" id="submit_button" onclick="myFunction3()" type="submit"  value="Create Ticket">
 			    		</div>
 					</form>
 <!-- 					<script>
 						document.getElementById("priority").className = "form-control form-control-sm";
 						document.getElementById("status").className = "form-control form-control-sm";
 					</script> -->
+
 					<script>
 					var inputs = document.getElementsByTagName("input");
 						for (var i = 0; i < inputs.length; i++) {

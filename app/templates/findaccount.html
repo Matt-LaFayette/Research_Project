@@ -35,7 +35,8 @@ function myFunction1() {
       <td id="phonenumber">{{x.phone_num}}</td>
       <td id="email">{{x.email}}</td>
         <!-- handle this with an ajax call like before -->
-      <td><input class="btn btn-secondary btn-sm btn-block" id="submit_button" type="submit" onclick="myFunction1()" name="{{loop.index}}Select"  value="Select"></td>
+      <td><input class="btn btn-secondary btn-sm btn-block" id="submit_button" type="submit" name="{{loop.index}}Select"  value="Select"></td>
+      <!-- <td><input class="btn btn-secondary btn-sm btn-block" id="submit_button" type="submit" onclick="myFunction1()" name="{{loop.index}}Select"  value="Select"></td> -->
     </tr>
     {% endfor %}
   </tbody>

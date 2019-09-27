@@ -36,7 +36,7 @@ class Customer(db.Model):
 # For support tickets
 #done
 class Ticket(db.Model):
-	id = db.Column(String(80), primary_key=True)
+	id = db.Column(Integer, primary_key=True, autoincrement=True)
 	contact_name = db.Column(String(80), unique=False, nullable=False)
 	account_id = db.Column(Integer, unique=False, nullable=False)
 	description = db.Column(String(80), unique=False, nullable=False)
@@ -104,10 +104,17 @@ def load_user(id):
 
 #Base.metadata.create_all(engine)
  # In case user table doesn't exists already. Else remove it.    
-# db.create_all()
+try:
+    db.create_all()
+except:
+    print("database already exists")
 
 sql = text('ALTER TABLE Customer AUTO_INCREMENT = 40000000')
 db.engine.execute(sql)
 
 sql = text('ALTER TABLE Invoice AUTO_INCREMENT = 10000000')
+db.engine.execute(sql)
+
+# https://stackoverflow.com/questions/30207493/sqlalchemy-orm-exc-flusherror-instance-has-a-null-identity-key
+sql = text('ALTER TABLE Ticket AUTO_INCREMENT = 80000000')
 db.engine.execute(sql)

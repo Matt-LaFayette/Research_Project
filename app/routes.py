@@ -6,6 +6,7 @@ from flask_login import current_user, login_user
 from app.models import User, Ticket, Customer
 from app.forms import RegistrationForm, TicketCreate, MyForm, TicketSearch, CreateCustomer, SearchCustomer, Invoice
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy import text
 
 customer = ""
 
@@ -33,6 +34,7 @@ def submit():
 def template():
 	#https://pythonhosted.org/Flask-Session/
 	#will probably need to add this
+	user = User.query.all()
 	try:
 		test = session['id']
 		cx_info = Customer.query.filter_by(cx_id=test)
@@ -44,7 +46,7 @@ def template():
 		print ("I'm printing")
 		print (x.cx_id)
 		print (x.customer_name)
-	return render_template('template.html', cx_info=cx_info, test=str(test))
+	return render_template('template.html', user=user, cx_info=cx_info, test=str(test))
 
 #TEST
 @app.route('/register', methods=['GET', 'POST'])
@@ -138,7 +140,7 @@ def test():
 		db.session.commit()
 	except IntegrityError:
 		db.session.rollback()
-		return 'I failed'
+		return 'I failed and rolled back'
 	# x = request.form['temptest']
 	cx = Customer.query.filter_by(customer_name=form.customer_name.data).all()
 	# session['response']= x
@@ -154,11 +156,19 @@ def new():
 def createticket():
 	form = TicketCreate()
 	title = 'Ticket'
-	if form.validate_on_submit():
-		print (form.cx_id.data)
-		ticket = Ticket(id =form.cx_id.data, contact_name=form.contact_name.data, description=form.description.data, version=form.version.data, priority=form.priority.data, status=form.status.data, o365=form.o365.data, assigned_to=form.assigned_to.data)
-		db.session.add(ticket)
-		db.session.commit()
+	if request.method == 'POST':
+		# if request.form['submit_button'] == 'submit':
+			acctid = request.form['cx_id']
+			acctname = request.form['cx_name']
+			sql = text('ALTER TABLE Ticket AUTO_INCREMENT = 80000000')
+			db.engine.execute(sql)
+			db.session.commit()
+			ticket = Ticket(account_id=acctid, contact_name=acctname, description=form.description.data, version=form.version.data, priority=form.priority.data, status=form.status.data, o365=form.o365.data, assigned_to=form.assigned_to.data)
+			db.session.add(ticket)
+			t = Ticket.query.all()
+			for x in t:
+				print (x.id)
+			db.session.commit()
 	return render_template('createticket.html', title=title, form=form)
 
 # @app.route('/createdb', methods=('GET', 'POST'))
@@ -170,9 +180,10 @@ def createticket():
 def masterlist():
 	customer = Customer.query.all()
 	ticket = Ticket.query.all()
+	user = User.query.all()
 	for x in ticket:
 		print(x.id)
-	return render_template('masterlist.html', customer=customer, ticket=ticket)
+	return render_template('masterlist.html', user=user, customer=customer, ticket=ticket)
 
 @app.route("/selectcustomer/<id>")
 def selectcustomer(id):

@@ -62,6 +62,7 @@
       <th scope="col">Username</th>
       <th scope="col">Email</th>
       <th scope="col">Password</th>
+      <th scope="col">Password Hash</th>
     </tr>
   </thead>
   <tbody>
@@ -70,6 +71,7 @@
       <th scope="row">{{x.id}}</th>
       <td>{{x.username}}</td>
       <td>{{x.email}}</td>
+      <td>{{x.password}}</td>
       <td>{{x.password_hash}}</td>
     </tr>
 {% endfor %}
