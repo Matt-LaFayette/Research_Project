@@ -20,7 +20,10 @@ customer = ""
 def index():
 	form = MyForm()
 	WTF_CSRF_SECRET_KEY = 'a random string'
+	if form.validate_on_submit():
+		return redirect('createticket')
 	return render_template('index.html', form=form)
+
 
 
 @app.route('/submit', methods=('GET', 'POST'))
@@ -84,9 +87,18 @@ def createcustomer():
 
 @app.route('/listticket', methods=('GET', 'POST'))
 def listticket():
-	title = 'List'
-
-	return render_template('listticket.html', title=title)
+	try:
+		if session['name']:
+			name = session['name']
+			title = 'Tickets for ' + name
+		else:
+			title = "Error"
+		ticket = Ticket.query.filter_by(account_id=session['id'])
+	except:
+		print("I've failed to list ticket")
+		ticket = ""
+		title = "Error"
+	return render_template('listticket.html', title=title, ticket=ticket)
 
 @app.route('/searchcustomer', methods=('GET', 'POST'))
 def searchcustomer():
@@ -152,26 +164,26 @@ def test():
 def new():
 	return render_template('new.html')
 
-@app.route('/addticket', methods=('GET', 'POST'))
-def addticket():
-	acctid = request.args.get('cx_id')
-	acctname = request.args.get('cx_name')
-	desc = request.args.get('description')
-	version = request.args.get('version')
-	priority = request.args.get('priority')
-	status = request.args.get('status')
-	o365 = request.args.get('o365')
-	assigned_to = request.args.get('assigned_to')
-	sql = text('ALTER TABLE Ticket AUTO_INCREMENT = 80000000')
-	db.engine.execute(sql)
-	db.session.commit()
-	ticket = Ticket(account_id=acctid, contact_name=acctname, description=desc, version=version, priority=priority, status=status, o365=o365, assigned_to=assigned_to)
-	db.session.add(ticket)
-	t = Ticket.query.all()
-	for x in t:
-		print (x.id)
-	db.session.commit()
-	return "nothing printed"
+# @app.route('/addticket', methods=('GET', 'POST'))
+# def addticket():
+# 	acctid = request.args.get('cx_id')
+# 	acctname = request.args.get('cx_name')
+# 	desc = request.args.get('description')
+# 	version = request.args.get('version')
+# 	priority = request.args.get('priority')
+# 	status = request.args.get('status')
+# 	o365 = request.args.get('o365')
+# 	assigned_to = request.args.get('assigned_to')
+# 	sql = text('ALTER TABLE Ticket AUTO_INCREMENT = 80000000')
+# 	db.engine.execute(sql)
+# 	db.session.commit()
+# 	ticket = Ticket(account_id=acctid, contact_name=acctname, description=desc, version=version, priority=priority, status=status, o365=o365, assigned_to=assigned_to)
+# 	db.session.add(ticket)
+# 	t = Ticket.query.all()
+# 	for x in t:
+# 		print (x.id)
+# 	db.session.commit()
+# 	return "nothing printed"
 
 @app.route('/createticket', methods=('GET', 'POST'))
 def createticket():
@@ -179,6 +191,7 @@ def createticket():
 	title = 'Ticket'
 	if request.method == 'POST':
 		# if request.form['submit_button'] == 'submit':
+		try:
 			acctid = request.form['cx_id']
 			acctname = request.form['cx_name']
 			sql = text('ALTER TABLE Ticket AUTO_INCREMENT = 80000000')
@@ -190,6 +203,8 @@ def createticket():
 			for x in t:
 				print (x.id)
 			db.session.commit()
+		except:
+			print("I failed during create ticket")
 	return render_template('createticket.html', title=title, form=form)
 
 

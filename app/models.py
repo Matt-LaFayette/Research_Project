@@ -21,17 +21,17 @@ from sqlalchemy import text
 # Table for customers (when created)
 #done
 class Customer(db.Model):
-    cx_id = db.Column(Integer, primary_key=True, auto_increment=True)
-    company_name = db.Column(String(120), unique=False, nullable=False)
-    customer_name = db.Column(String(120), unique=False, nullable=True)
-    city = db.Column(String(120), unique=False, nullable=True)
-    state = db.Column(String(120), unique=False, nullable=True)
-    address = db.Column(String(120), unique=False, nullable=True)
-    zip_code = db.Column(String(120), unique=False, nullable=True)
-    email = db.Column(String(120), unique=False, nullable=True)
-    phone_num = db.Column(String(120), unique=False, nullable=True)
-    valid_support = db.Column(Boolean, unique=False, nullable=True)
-    notes = db.Column(String(120), unique=False, nullable=True)
+	cx_id = db.Column(Integer, primary_key=True, auto_increment=True)
+	company_name = db.Column(String(120), unique=False, nullable=False)
+	customer_name = db.Column(String(120), unique=False, nullable=True)
+	city = db.Column(String(120), unique=False, nullable=True)
+	state = db.Column(String(120), unique=False, nullable=True)
+	address = db.Column(String(120), unique=False, nullable=True)
+	zip_code = db.Column(String(120), unique=False, nullable=True)
+	email = db.Column(String(120), unique=False, nullable=True)
+	phone_num = db.Column(String(120), unique=False, nullable=True)
+	valid_support = db.Column(Boolean, unique=False, nullable=True)
+	notes = db.Column(String(120), unique=False, nullable=True)
 
 # For support tickets
 #done
@@ -54,7 +54,8 @@ class User(db.Model):
 	username = db.Column(String(64), index=True, unique=True)
 	email = db.Column(String(120), index=True, unique=True)
 	password_hash = db.Column(db.String(128))
-    
+	role = db.Column(db.String(15))
+	
 	def set_password(self, password):
 		self.password_hash = generate_password_hash(password)
 
@@ -70,25 +71,25 @@ class User(db.Model):
 
 #done
 class Invoice(db.Model):
-    invoice_num = db.Column(Integer, primary_key=True, auto_increment=True)
-    amount = db.Column(Integer, unique=False, nullable=False)
-    date_created = db.Column(Date, unique=False, nullable=False)
-    cx_id = db.Column(Integer, ForeignKey("customer.cx_id"), unique=True, nullable=False) 
-    support_plan = db.Column(String(120), unique=False, nullable=True)
-    sales_rep_id = db.Column(Integer, unique=False, nullable=False)
-    valid_support_date = db.Column(Date, unique=False, nullable=False)
+	invoice_num = db.Column(Integer, primary_key=True, auto_increment=True)
+	amount = db.Column(Integer, unique=False, nullable=False)
+	date_created = db.Column(Date, unique=False, nullable=False)
+	cx_id = db.Column(Integer, ForeignKey("customer.cx_id"), unique=True, nullable=False) 
+	support_plan = db.Column(String(120), unique=False, nullable=True)
+	sales_rep_id = db.Column(Integer, unique=False, nullable=False)
+	valid_support_date = db.Column(Date, unique=False, nullable=False)
 
 #done
 class Support_Rep(db.Model):
-    support_rep_id = db.Column(Integer, primary_key=True, auto_increment=True)
-    support_first_name = db.Column(String(120), unique=False, nullable=False)
-    support_last_name = db.Column(String(120), unique=False, nullable=False)
+	support_rep_id = db.Column(Integer, primary_key=True, auto_increment=True)
+	support_first_name = db.Column(String(120), unique=False, nullable=False)
+	support_last_name = db.Column(String(120), unique=False, nullable=False)
 
 class Sales_Rep(db.Model):
-    sales_rep_id = db.Column(Integer, primary_key=True, auto_increment=True)
-    sales_first_name = db.Column(String(120), unique=False, nullable=False)
-    sales_last_name = db.Column(String(120), unique=False, nullable=False)
-    commission = db.Column(Integer, unique=False, nullable=False)
+	sales_rep_id = db.Column(Integer, primary_key=True, auto_increment=True)
+	sales_first_name = db.Column(String(120), unique=False, nullable=False)
+	sales_last_name = db.Column(String(120), unique=False, nullable=False)
+	commission = db.Column(Integer, unique=False, nullable=False)
 
 
 ####The __repr__ method tells Python how to print objects of this class
@@ -99,15 +100,15 @@ class Sales_Rep(db.Model):
 
 @login.user_loader
 def load_user(id):
-    return User.query.get(int(id))
+	return User.query.get(int(id))
 
 
 #Base.metadata.create_all(engine)
  # In case user table doesn't exists already. Else remove it.    
 try:
-    db.create_all()
+	db.create_all()
 except:
-    print("database already exists")
+	print("database already exists")
 
 sql = text('ALTER TABLE Customer AUTO_INCREMENT = 40000000')
 db.engine.execute(sql)
