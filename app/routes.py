@@ -124,7 +124,7 @@ def findaccount():
 	# print (session['response'])
 	customername = form.customer_name.data
 	print(customername)
-	cx = Customer.query.filter_by(customer_name=customername)
+	cx = Customer.query.filter_by(customer_fname=customername)
 	if form.validate_on_submit():
 		x = 1
 		for customer in cx:
@@ -227,7 +227,7 @@ def selectcustomer(id):
 	session['id'] = id
 	cx_info = Customer.query.filter_by(cx_id=session['id'])
 	for x in cx_info:
-		session['name'] = x.customer_name
+		session['name'] = x.customer_fname
 		session['phone_num'] = x.phone_num
 	try:
 		print("session id")
@@ -255,8 +255,8 @@ def chart():
 	return render_template('chart.html', values=values, labels=labels, legend=legend)
 
 #pie chart
-@app.route("/pie_chart")
-def pie():
+@app.route("/charts")
+def charts():
 	activated = 6
 	refused = 1
 	no_answer = 4
@@ -267,4 +267,4 @@ def pie():
 	ac_label = "red"
 	re_label = "yellow"
 	no_label = "blue"
-	return render_template('pie.html', values=values, labels=labels, legend=legend, activated=activated, refused=refused, no_answer=no_answer)
+	return render_template('charts.html', values=values, labels=labels, legend=legend, activated=activated, refused=refused, no_answer=no_answer)

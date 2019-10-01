@@ -23,14 +23,15 @@ from sqlalchemy import text
 class Customer(db.Model):
 	cx_id = db.Column(Integer, primary_key=True, auto_increment=True)
 	company_name = db.Column(String(120), unique=False, nullable=False)
-	customer_name = db.Column(String(120), unique=False, nullable=True)
+	customer_fname = db.Column(String(120), unique=False, nullable=True)
+	customer_lname = db.Column(String(120), unique=False, nullable=True)
 	city = db.Column(String(120), unique=False, nullable=True)
 	state = db.Column(String(120), unique=False, nullable=True)
 	address = db.Column(String(120), unique=False, nullable=True)
 	zip_code = db.Column(String(120), unique=False, nullable=True)
 	email = db.Column(String(120), unique=False, nullable=True)
 	phone_num = db.Column(String(120), unique=False, nullable=True)
-	valid_support = db.Column(Boolean, unique=False, nullable=True)
+	valid_support = db.Column(String(120), unique=False, nullable=True)
 	notes = db.Column(String(120), unique=False, nullable=True)
 
 # For support tickets
@@ -84,6 +85,17 @@ class Support_Rep(db.Model):
 	support_rep_id = db.Column(Integer, primary_key=True, auto_increment=True)
 	support_first_name = db.Column(String(120), unique=False, nullable=False)
 	support_last_name = db.Column(String(120), unique=False, nullable=False)
+
+#https://www.mockaroo.com/
+#C:\ProgramData\MySQL\MySQL Server 8.0\Data\crm_system
+#start mysql
+#disable secure option in my.ini
+#LOAD DATA INFILE 'sales_rep.csv' 
+#INTO TABLE sales__rep 
+#FIELDS TERMINATED BY ',' 
+#ENCLOSED BY '"'
+#LINES TERMINATED BY '\n'
+#IGNORE 1 ROWS;
 
 class Sales_Rep(db.Model):
 	sales_rep_id = db.Column(Integer, primary_key=True, auto_increment=True)
