@@ -246,8 +246,12 @@ def clearsession():
 		print("I failed")
 	return "nothing"
 
-@app.route("/calendar")
+@app.route("/calendar", methods=('GET', 'POST'))
 def calendar():
+	try:
+		print(request.form.get('appt'))
+	except:
+		print("I failed to grab the appt form")
 	return render_template('calendar.html')
 
 #route for line graph
