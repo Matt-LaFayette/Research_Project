@@ -9,6 +9,11 @@ body {
   display: inline-block;
 }
 
+.calendar td {
+  height: 80px;
+  width: 80px;
+}
+
 #myDropdown {
   display: block;
   position: fixed;

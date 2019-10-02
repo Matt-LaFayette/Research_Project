@@ -246,6 +246,10 @@ def clearsession():
 		print("I failed")
 	return "nothing"
 
+@app.route("/calendar")
+def calendar():
+	return render_template('calendar.html')
+
 #route for line graph
 @app.route("/simple_chart")
 def chart():
