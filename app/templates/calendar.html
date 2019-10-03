@@ -164,8 +164,15 @@
 
 </div>
 </div>
-<div class="hidden" style="display: none;">
-	Appointment list and this is where flask will input appts and javascript will pull from
+<div class="hidden" style="display: visible;">
+	{% for x in testtime %}
+	<div class="appt{{loop.index}}">
+	month<div class="month{{loop.index}}">{{x.month}}</div>
+	day<div class="day{{loop.index}}">{{x.day}}</div>
+	hour<div class="hour{{loop.index}}">{{x.hour}}</div>
+	<br>
+	</div>
+	{% endfor %}
 </div>
 
 
@@ -185,24 +192,24 @@ let monthAndYear = document.getElementById("monthAndYear");
 showCalendar(currentMonth, currentYear);
 
 
-// function next() {
-//     currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
-//     currentMonth = (currentMonth + 1) % 12;
-//     showCalendar(currentMonth, currentYear);
-// }
+function next() {
+    currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
+    currentMonth = (currentMonth + 1) % 12;
+    showCalendar(currentMonth, currentYear);
+}
 
-// function previous() {
-//     currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear;
-//     currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
-//     showCalendar(currentMonth, currentYear);
-// }
+function previous() {
+    currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear;
+    currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
+    showCalendar(currentMonth, currentYear);
+}
 
-// function jump() {
-//     currentYear = parseInt(selectYear.value);
-//     currentMonth = parseInt(selectMonth.value);
-//     showCalendar(currentMonth, currentYear);
-// }
-// https://medium.com/@nitinpatel_20236/challenge-of-building-a-calendar-with-pure-javascript-a86f1303267d
+function jump() {
+    currentYear = parseInt(selectYear.value);
+    currentMonth = parseInt(selectMonth.value);
+    showCalendar(currentMonth, currentYear);
+}
+//https://medium.com/@nitinpatel_20236/challenge-of-building-a-calendar-with-pure-javascript-a86f1303267d
 function showCalendar(month, year) {
 
     let firstDay = (new Date(year, month)).getDay();
@@ -218,19 +225,48 @@ function showCalendar(month, year) {
     selectYear.value = year;
     selectMonth.value = month;
 
+    var dayarray = [];
+    var hourarray = [];
+
+    for (let z = 0; z < 5; z++) {
+    	c = "day" + z;
+    	d = "hour" + z;
+    	dayarray.push(document.getElementsByClassName(c));
+    	hourarray.push(document.getElementsByClassName(d));
+    }
+
+    console.log(hourarray);
+
+
+
     // creating all cells
     let date = 1;
     for (let i = 0; i < 6; i++) {
         // creates a table row
         let row = document.createElement("tr");
-
+        
         //creating individual cells, filing them up with data.
         for (let j = 0; j < 7; j++) {
             if (i === 0 && j < firstDay) {
+                z = 0;
                 let cell = document.createElement("td");
+
                 let cellText = document.createTextNode("");
                 cell.appendChild(cellText);
                 row.appendChild(cell);
+
+                for (x in dayarray) {
+                    for (y in dayarray.length) {
+                        if (dayarray[x] == date){
+                            console.log(dayarray[x]);
+                            console.log(hourarray[x]);
+                            for (z in hourarray.length) {
+                                console.log(hourarray.length)
+                                 cell.appendChild(hourarray[x].toString());
+                             }
+                        }
+                    }
+                }
             }
             else if (date > daysInMonth) {
                 break;
@@ -239,12 +275,38 @@ function showCalendar(month, year) {
             else {
                 let cell = document.createElement("td");
                 let cellText = document.createTextNode(date);
+                z++;
+                x = "div" + z;
                 if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
                     cell.classList.add("bg-info");
                 } // color today's date
+                let cell1 = document.createElement(x);
                 cell.appendChild(cellText);
+
+                cell.appendChild(cell1);
+                //need to add class or id
+                //adding appts to correct day
+                for (x in dayarray) {
+                	for (y in dayarray.length) {
+                		if (dayarray[x] == date){
+                			console.log(dayarray[x]);
+                			console.log(hourarray[x]);
+                			//add array for hour and interate through it
+                            for (z in hourarray.length) {
+                                console.log(hourarray.length)
+                			    $( "div1" ).val(hourarray[x]);
+                             }
+                		}
+                	}
+                }
+                // if (date == day) {
+                // 	cell.appendChild(hour)
+                // }
+                // console.log(date)
                 row.appendChild(cell);
                 date++;
+
+
             }
 
 
@@ -276,7 +338,9 @@ function showCalendar(month, year) {
 });
 
 // how to add events
-// $(".bg-info").append("<b>Appended text</b>");
+// day = $(".day")
+//  hour = $(".hour1")
+//  $("div1").append(hour);
 
 </script>
 

@@ -67,6 +67,11 @@ class User(db.Model):
 		return '<User {}>'.format(self.username) 
 
 
+class Time(db.Model):
+	month = db.Column(String(120), primary_key=True, auto_increment=True)
+	day = db.Column(String(120), primary_key=True, auto_increment=True)
+	hour = db.Column(String(120), primary_key=True, auto_increment=True)
+	test = db.Column(String(120))
 
 # for valid support do an if (current date) falls within valid_support_date range, then set this field to true
 
@@ -130,4 +135,7 @@ db.engine.execute(sql)
 
 # https://stackoverflow.com/questions/30207493/sqlalchemy-orm-exc-flusherror-instance-has-a-null-identity-key
 sql = text('ALTER TABLE Ticket AUTO_INCREMENT = 80000000')
+db.engine.execute(sql)
+
+sql = text('ALTER TABLE Time AUTO_INCREMENT = 0')
 db.engine.execute(sql)

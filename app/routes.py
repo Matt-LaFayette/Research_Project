@@ -3,7 +3,7 @@ from flask import Flask, render_template, flash, redirect, url_for, request, ses
 from config import Config
 from datetime import time
 from flask_login import current_user, login_user
-from app.models import User, Ticket, Customer
+from app.models import User, Ticket, Customer, Time
 from app.forms import RegistrationForm, TicketCreate, MyForm, TicketSearch, CreateCustomer, SearchCustomer, Invoice
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy import text
@@ -248,11 +248,46 @@ def clearsession():
 
 @app.route("/calendar", methods=('GET', 'POST'))
 def calendar():
+	testtime = ""
 	try:
 		print(request.form.get('appt'))
+		timeadd = str(request.form.get('appt'))
+		print(type(timeadd))
+		print("insert")
+		time = Time(month=10, day=4,hour=timeadd)
+		# sql = text("INSERT INTO time (hour) VALUES (%s)", (timeadd))
+		print("attempting to execute")
+		db.session.add(time)
+		print("commit")
+		db.session.commit()
+		print("attempting to add")
+		print("adding to db")
+		print("committing...")
+		try:
+			testtime = Time.query.all()
+		except:
+			print("I failed to query time")
 	except:
 		print("I failed to grab the appt form")
-	return render_template('calendar.html')
+	return render_template('calendar.html', testtime=testtime)
+
+# @app.route("/addtime", methods=('GET', 'POST'))
+# def addtime():
+# 	print(request.form.get('appt'))
+# 	timeadd = str(request.form.get('appt'))
+# 	print(type(timeadd))
+# 	print("insert")
+# 	time = Time(hour=timeadd)
+# 	# sql = text("INSERT INTO time (hour) VALUES (%s)", (timeadd))
+# 	print("attempting to execute")
+# 	db.session.add(time)
+# 	print("attempting to execute")
+# 	print("commit")
+# 	db.session.commit()
+# 	print("attempting to add")
+# 	print("adding to db")
+# 	print("committing...")
+# 	return redirect('calendar')
 
 #route for line graph
 @app.route("/simple_chart")
