@@ -7,6 +7,7 @@ from app.models import User, Ticket, Customer, Time
 from app.forms import RegistrationForm, TicketCreate, MyForm, TicketSearch, CreateCustomer, SearchCustomer, Invoice
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy import text
+from calendar import *
 
 customer = ""
 
@@ -249,12 +250,19 @@ def clearsession():
 @app.route("/calendar", methods=('GET', 'POST'))
 def calendar():
 	testtime = ""
+	yy=2017
+	mm = 11
+# Doesn't work
+	# for x in calendar:
+	# 	print (x)
 	try:
 		print(request.form.get('appt'))
 		timeadd = str(request.form.get('appt'))
 		print(type(timeadd))
 		print("insert")
 		time = Time(month=10, day=4,hour=timeadd)
+		c = calendar.TextCalendar(calendar.SUNDAY)
+		strcal = c.formatmonth(2025,1)
 		# sql = text("INSERT INTO time (hour) VALUES (%s)", (timeadd))
 		print("attempting to execute")
 		db.session.add(time)
