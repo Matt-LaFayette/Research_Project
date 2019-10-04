@@ -8,8 +8,14 @@ from app.forms import RegistrationForm, TicketCreate, MyForm, TicketSearch, Crea
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy import text
 from calendar import *
+import datetime
 
 customer = ""
+try:
+	testtime = Time.query.all()
+	print (testtime)
+except:
+	print("I failed to query time")
 
 #cd C:\Users\MGLafayette\Desktop\Projects\Undergrade Research Project
 #env\Scripts\activate
@@ -190,6 +196,7 @@ def new():
 def createticket():
 	form = TicketCreate()
 	title = 'Ticket'
+
 	if request.method == 'POST':
 		# if request.form['submit_button'] == 'submit':
 		try:
@@ -250,11 +257,18 @@ def clearsession():
 @app.route("/calendar", methods=('GET', 'POST'))
 def calendar():
 	testtime = ""
-	yy=2017
-	mm = 11
-# Doesn't work
-	# for x in calendar:
-	# 	print (x)
+	dt = datetime.datetime.now()
+	yyyy = dt.year
+	mm = dt.month
+	print (yyyy)
+	print (mm)
+	testtime = Time.query.all()
+	print (testtime)
+	# num_days = monthrange(2019, 2)[1] # num_days = 28
+	# print(num_days)
+	tc= HTMLCalendar(firstweekday=6)
+	cal = tc.formatmonth(yyyy, mm)
+	# might not need
 	try:
 		print(request.form.get('appt'))
 		timeadd = str(request.form.get('appt'))
@@ -271,13 +285,9 @@ def calendar():
 		print("attempting to add")
 		print("adding to db")
 		print("committing...")
-		try:
-			testtime = Time.query.all()
-		except:
-			print("I failed to query time")
 	except:
 		print("I failed to grab the appt form")
-	return render_template('calendar.html', testtime=testtime)
+	return render_template('calendar.html', cal=cal, testtime=testtime)
 
 # @app.route("/addtime", methods=('GET', 'POST'))
 # def addtime():
