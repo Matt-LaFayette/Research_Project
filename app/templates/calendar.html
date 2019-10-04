@@ -230,11 +230,31 @@
     }
 
 
-//looks good need to work getting this correct. 
+len = $(".table").children().children().slice(2).children().length;
+top = $(".table").children().children().slice(2).children().text();
+
+// //testing area
+// for (i = 0; i < ($(".hidden").children().length); i++) {
+//     //console.log($(".td").eq(2));
+//      console.log(top);
+//         // console.log(top);
+//         //this one returning weird numbers
+//         //console.log($(".day"+(i+1)).text());
+//         if (top == $(".day"+(i+1)).text()) {
+//             $(top.append($(".hour"+(i+1)).text()));
+//             // console.log($(".hour"+(i+1)).text());
+//     }
+// };
+
+
+
+looks good need to work getting this correct. 
 ($(".table").children().children().slice(2).children()).each(function(index) {
     //console.log($(".td").eq(2));
+    top = $(this).text()
+    console.log(top)
     for (i = 0; i < ($(".hidden").children().length); i++) {
-        console.log($(this).text());
+        console.log(top);
         //this one returning weird numbers
         console.log($(".day"+(i+1)).text());
         if (($(this).text()) == $(".day"+(i+1)).text()) {
