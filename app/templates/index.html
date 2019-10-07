@@ -16,7 +16,7 @@
 			<div class="outer_card">
 				<div class="top_bar" style="height: 10px;"><h4 style="padding-left: 3%;">Login</h4></div>
 					<div class="login" >
-				      	<form method="POST" action="http://127.0.0.1:5000/createticket">
+				      	<form method="POST" action="http://127.0.0.1:5000/index">
 				    		{{ form.csrf_token }}
 				    		{{ form.log_in_name.label }} {{ form.log_in_name(size=20) }}
 				    	</br>

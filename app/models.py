@@ -4,7 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
-from flask_login import LoginManager
+from flask_login import LoginManager, UserMixin
 from app import db, login
 from sqlalchemy import text
 
@@ -50,12 +50,13 @@ class Ticket(db.Model):
 
 #
 #possibly done?
-class User(db.Model):
+class User(db.Model, UserMixin):
 	id = db.Column(Integer, primary_key=True)
 	username = db.Column(String(64), index=True, unique=True)
 	email = db.Column(String(120), index=True, unique=True)
 	password_hash = db.Column(db.String(128))
 	role = db.Column(db.String(15))
+
 	
 	def set_password(self, password):
 		self.password_hash = generate_password_hash(password)

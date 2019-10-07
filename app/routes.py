@@ -2,15 +2,29 @@ from app import app, db
 from flask import Flask, render_template, flash, redirect, url_for, request, session
 from config import Config
 from datetime import time
-from flask_login import current_user, login_user
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from app.models import User, Ticket, Customer, Time
 from app.forms import RegistrationForm, TicketCreate, MyForm, TicketSearch, CreateCustomer, SearchCustomer, Invoice
 from sqlalchemy.exc import IntegrityError
+from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import text
 from calendar import *
 import datetime
 
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'index'
+
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+
 customer = ""
+
 try:
 	testtime = Time.query.all()
 	print (testtime)
@@ -23,15 +37,27 @@ except:
 #py -m flask run
 
 @app.route('/')
-@app.route('/index')
+@app.route('/index', methods=('GET', 'POST'))
 def index():
 	form = MyForm()
 	WTF_CSRF_SECRET_KEY = 'a random string'
 	if form.validate_on_submit():
-		return redirect('createticket')
+		print("Query")
+		user = User.query.filter_by(username=form.log_in_name.data).first()
+		if user:
+			print("found user")
+			if check_password_hash(user.password_hash, form.password.data):
+				login_user(user, remember=True)
+				return redirect(url_for('createticket'))
+
+		return '<h1>Invalid username or password</h1>'
 	return render_template('index.html', form=form)
 
-
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
 
 @app.route('/submit', methods=('GET', 'POST'))
 def submit():
@@ -45,6 +71,7 @@ def template():
 	#https://pythonhosted.org/Flask-Session/
 	#will probably need to add this
 	user = User.query.all()
+
 	try:
 		test = session['id']
 		cx_info = Customer.query.filter_by(cx_id=test)
@@ -56,7 +83,7 @@ def template():
 		print ("I'm printing")
 		print (x.cx_id)
 		print (x.customer_name)
-	return render_template('template.html', user=user, cx_info=cx_info, test=str(test))
+	return render_template('template.html', userlogin=current_user.username, user=user, cx_info=cx_info, test=str(test))
 
 #TEST
 @app.route('/register', methods=['GET', 'POST'])
@@ -193,6 +220,7 @@ def new():
 # 	return "nothing printed"
 
 @app.route('/createticket', methods=('GET', 'POST'))
+@login_required
 def createticket():
 	form = TicketCreate()
 	title = 'Ticket'
