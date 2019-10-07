@@ -128,16 +128,39 @@
 </div>
 </div>
 <div class="hidden" style="display: visible;">
-	{% for x in testtime %}
+<!-- <table class="table table-striped table-bordered table-hover" id="hiddenvals" style="width: 10%">
+  <thead class="thead-dark">
+    <tr style="text-align: center;">
+      <th scope="col">Month</th>
+      <th scope="col">Day</th>
+      <th scope="col">Hour</th>
+    </tr>
+  </thead>
+
+<tbody>
+    <tr> -->
+{% for x in testtime %}
+    <div class="appt{{loop.index}}">
+      <th scope="row"><div class="month{{loop.index}}" style="display: inline-block;">{{x.month}}</div></th>
+      <td><div class="day{{loop.index}}" style="display: inline-block;">{{x.day}}</div></td>
+      <td><div class="hour{{loop.index}}" style="display: inline-block;">{{x.hour}}</div></td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+
+
+
+<!-- 	{% for x in testtime %}
 	<div class="appt{{loop.index}}">
-	month<div class="month{{loop.index}}">{{x.month}}</div>
-	day<div class="day{{loop.index}}">{{x.day}}</div>
-	hour<div class="hour{{loop.index}}">{{x.hour}}</div>
+	month:<div class="month{{loop.index}}" style="display: inline-block;">{{x.month}}</div>
+	day:<div class="day{{loop.index}}" style="display: inline-block;">{{x.day}}</div>
+	hour:<div class="hour{{loop.index}}" style="display: inline-block;">{{x.hour}}</div>
 	<br>
 	</div>
 	{% endfor %}
 </div>
-
+ -->
 
 
 <script>
@@ -211,10 +234,7 @@
     for(i = 0; i < $(".sun").length; i++) { 
         $(".sun").eq(i).addClass($(".sun").eq(i).html());
     }
-// $(".sat").last().addClass($(".sat").last().html());
-    // $(".sat").each(function(index) {
-    //     console.log($(this).text() );
-    // })
+
 
     //grab all months in hidden div
     for (i = 0; i < ($(".hidden").children().length/3); i++) {
@@ -232,24 +252,54 @@
 
 </script>
 <script>
+//35
 len = $(".table").children().children().slice(2).children().length;
 top = $(".table").children().children().slice(2).children();
 
-// area currently works for 2 appointments
+z = 0;
+
+// area currently works for appointments with hardcoded appends
  for (i = 0; i < len; i++) {
+
+//6
     for (x=0; x < $(".hidden").children().length; x++) {
         
-        if ($(".table").children().children().slice(2).children().eq(i).text() == $(".day"+(x + 1)).text()) {
-            
-            if($(".table").children().children().slice(2).children().eq(i).text() == $(".day"+(x + 2)).text()) {
-                $(".table").children().children().slice(2).children().eq(i).append("<span style='color:green;display:block;text-align:right'>" + $(".hour"+(x+2)).text()) + "</span>";
-            };
+        //test
+//         console.log($(".day"+(i)).text());
+//     }
+// }
+//endtest
+       
+        if ($(".table").children().children().slice(2).children().eq(i).text() == $(".day"+(i)).text()) {
+            z++;
+            console.log(i)
+            // console.log("Table cell:" + $(".table").children().children().slice(2).children().eq(i).text());
+            // console.log("Day cell:" + $(".day"+(x + 1)).text());
+            // // console.log("hour " + x + ":" + $(".hour" + (x)).text());
+            console.log("-------")
+
+            //partially working. Gets buggy after more values are added
+            $(".table").children().children().slice(2).children().eq(i).append("<span style='color:green;display:block;text-align:right'>" + $(".hour"+(x)).text()) + "</span>";
 
             $(".table").children().children().slice(2).children().eq(i).append("<span style='color:green;display:block;text-align:right'>" + $(".hour"+(x+1)).text()) + "</span>";
+
+            $(".table").children().children().slice(2).children().eq(i).append("<span style='color:green;display:block;text-align:right'>" + $(".hour"+(x+2)).text()) + "</span>";
         
-        //below shows 3 values but makes dups for other appts
-            // $(".table").children().children().slice(2).children().eq(i).append("<span style='color:green;display:block;text-align:right'>" + $(".hour"+(x+3)).text()) + "</span>";
+            $(".table").children().children().slice(2).children().eq(i).append("<span style='color:green;display:block;text-align:right'>" + $(".hour"+(x+3)).text()) + "</span>";
+
+            $(".table").children().children().slice(2).children().eq(i).append("<span style='color:green;display:block;text-align:right'>" + $(".hour"+(x+4)).text()) + "</span>";
+
+            // end working code
+
+            // //testing
+            // $(".table").children().children().slice(2).children().eq(i).append("<span style='color:green;display:block;text-align:right'>" + $(".hour"+(1)).text()) + "</span>";
+            // $(".table").children().children().slice(2).children().eq(i).append("<span style='color:green;display:block;text-align:right'>" + $(".hour"+(2)).text()) + "</span>";
+            // $(".table").children().children().slice(2).children().eq(i).append("<span style='color:green;display:block;text-align:right'>" + $(".hour"+(3)).text()) + "</span>";
+            // $(".table").children().children().slice(2).children().eq(i).append("<span style='color:green;display:block;text-align:right'>" + $(".hour"+(4)).text()) + "</span>";
+            // $(".table").children().children().slice(2).children().eq(i).append("<span style='color:green;display:block;text-align:right'>" + $(".hour"+(5)).text()) + "</span>";
+            // $(".table").children().children().slice(2).children().eq(i).append("<span style='color:green;display:block;text-align:right'>" + $(".hour"+(6)).text()) + "</span>";
         };
+        
      };
 
  };
