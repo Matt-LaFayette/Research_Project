@@ -5,7 +5,8 @@ from wtforms.validators import ValidationError, DataRequired, NumberRange, Email
 from app.models import User
 
 class CreateCustomer(FlaskForm):
-	customer_name = StringField('Customer Name', validators=[DataRequired()])
+	customer_fname = StringField('First Name', validators=[DataRequired()])
+	customer_lname = StringField('Last Name', validators=[DataRequired()])
 	company_name = StringField('Company Name', validators=[DataRequired()])
 	city = StringField('City', validators=[DataRequired()])
 	state = StringField('State', validators=[DataRequired()])

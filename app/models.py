@@ -95,12 +95,19 @@ class Support_Rep(db.Model):
 #C:\ProgramData\MySQL\MySQL Server 8.0\Data\crm_system
 #start mysql
 #disable secure option in my.ini
-#LOAD DATA INFILE 'sales_rep.csv' 
-#INTO TABLE sales__rep 
-#FIELDS TERMINATED BY ',' 
-#ENCLOSED BY '"'
-#LINES TERMINATED BY '\n'
-#IGNORE 1 ROWS;
+# LOAD DATA INFILE 'sales_rep.csv' 
+# INTO TABLE sales__rep 
+# FIELDS TERMINATED BY ',' 
+# ENCLOSED BY '"'
+# LINES TERMINATED BY '\n'
+# IGNORE 1 ROWS;
+
+# LOAD DATA INFILE 'customer.csv' 
+# INTO TABLE customer 
+# FIELDS TERMINATED BY ',' 
+# ENCLOSED BY '"'
+# LINES TERMINATED BY '\n'
+# IGNORE 1 ROWS;
 
 class Sales_Rep(db.Model):
 	sales_rep_id = db.Column(Integer, primary_key=True, auto_increment=True)
@@ -124,18 +131,23 @@ def load_user(id):
  # In case user table doesn't exists already. Else remove it.    
 try:
 	db.create_all()
+	db.commit
 except:
 	print("database already exists")
 
-sql = text('ALTER TABLE Customer AUTO_INCREMENT = 40000000')
-db.engine.execute(sql)
+try:
+	sql = text('ALTER TABLE Customer AUTO_INCREMENT = 40000000')
+	db.engine.execute(sql)
 
-sql = text('ALTER TABLE Invoice AUTO_INCREMENT = 10000000')
-db.engine.execute(sql)
+	sql = text('ALTER TABLE Invoice AUTO_INCREMENT = 10000000')
+	db.engine.execute(sql)
 
-# https://stackoverflow.com/questions/30207493/sqlalchemy-orm-exc-flusherror-instance-has-a-null-identity-key
-sql = text('ALTER TABLE Ticket AUTO_INCREMENT = 80000000')
-db.engine.execute(sql)
+	# https://stackoverflow.com/questions/30207493/sqlalchemy-orm-exc-flusherror-instance-has-a-null-identity-key
+	sql = text('ALTER TABLE Ticket AUTO_INCREMENT = 80000000')
+	db.engine.execute(sql)
 
-sql = text('ALTER TABLE Time AUTO_INCREMENT = 0')
-db.engine.execute(sql)
+	sql = text('ALTER TABLE Time AUTO_INCREMENT = 0')
+	db.engine.execute(sql)
+	db.commit
+except:
+	print("The alters failed")

@@ -223,11 +223,17 @@ def createticket():
 
 @app.route("/masterlist")
 def masterlist():
-	customer = Customer.query.all()
-	ticket = Ticket.query.all()
-	user = User.query.all()
-	for x in ticket:
-		print(x.id)
+	try:
+		customer = Customer.query.all()
+		ticket = Ticket.query.all()
+		user = User.query.all()
+		for x in ticket:
+			print(x.id)
+	except:
+		print("I failed the masterlist")
+		user = ""
+		customer = ""
+		ticket = ""
 	return render_template('masterlist.html', user=user, customer=customer, ticket=ticket)
 
 @app.route("/selectcustomer/<id>")
@@ -262,7 +268,10 @@ def calendar():
 	mm = dt.month
 	print (yyyy)
 	print (mm)
-	testtime = Time.query.all()
+	try:
+		testtime = Time.query.all()
+	except:
+		print("unable to query time")
 	print (testtime)
 	# num_days = monthrange(2019, 2)[1] # num_days = 28
 	# print(num_days)
