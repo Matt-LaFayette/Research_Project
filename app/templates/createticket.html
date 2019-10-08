@@ -36,10 +36,10 @@ function expandInfo() {
 			    		{{ form.csrf_token }}
 			    		{% if session['id'] %}
 			    			{{ form.cx_id.label }}
-			    			<input type="text" id="cx_id" name="cx_id" value="{{session['id']}}">
+			    			<input type="text" id="disableme" id="cx_id" name="cx_id" value="{{session['id']}}">
 			    			<!-- <input type="text" id="disableme" value="{{session['id']}}"> -->
 			    			{{ form.contact_name.label }}
-			    			<input type="text" id="cx_name" name="cx_name" value="{{session['name']}}">
+			    			<input type="text" id="disableme" id="cx_name" name="cx_name" value="{{session['name']}}">
 			    		{% else %}
 			    			{{ form.cx_id.label }} {{ form.cx_id(size=20) }}
 			    			{{ form.contact_name.label }} {{ form.contact_name(size=20) }}
@@ -55,13 +55,18 @@ function expandInfo() {
 					<br>
 <!-- https://medium.com/@nitinpatel_20236/challenge-of-building-a-calendar-with-pure-javascript-a86f1303267d
 need to build own calendar from scratch
- -->
+ -->					Status
+ 						<select name="Option" class="form-control form-control-sm">
+ 							<option value="Open">Open</option>
+ 							<option value="Work in progress">Work in progress</option>
+ 							<option value="Closed">Closed</option>
+ 						</select>
 
 					</br>
 						{{ form.o365.label }} {{ form.o365(size=20) }}
 					</br>
 					<div id="hidden" style="display: none;">ADD ADDITIONAL 365 FIELDS HERE<br><br></div>
-						{{ form.assigned_to.label }} {{ form.assigned_to(size=20) }}
+						<input type="text" id="disableme" id="assigned_to" name="assigned_to" value="{{current_user.username}}">
 			    	</br>
 			    	</br>
 			    		<input class="btn btn-secondary btn-sm btn-block" id="submit_button" type="submit" value="Create Ticket">

@@ -22,6 +22,14 @@ body {
   border: solid;
 }
 
+#myDropdown1 {
+  display: block;
+  position: fixed;
+  margin-left: 5%;
+  background: white;
+  border: solid;
+}
+
 .dropdownside-content {
   display: none;
   position: absolute;

@@ -20,6 +20,7 @@ from sqlalchemy import text
 
 # Table for customers (when created)
 #done
+
 class Customer(db.Model):
 	cx_id = db.Column(Integer, primary_key=True, auto_increment=True)
 	company_name = db.Column(String(120), unique=False, nullable=False)
@@ -48,7 +49,8 @@ class Ticket(db.Model):
 	valid_support = db.Column(Boolean, unique=False, nullable=True)
 	assigned_to = db.Column(String(400), nullable=True)
 
-#
+
+
 #possibly done?
 class User(db.Model, UserMixin):
 	id = db.Column(Integer, primary_key=True)

@@ -3,7 +3,7 @@ from flask import Flask, render_template, flash, redirect, url_for, request, ses
 from config import Config
 from datetime import time
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
-from app.models import User, Ticket, Customer, Time
+from app.models import User, Ticket, Customer, Time, Sales_Rep
 from app.forms import RegistrationForm, TicketCreate, MyForm, TicketSearch, CreateCustomer, SearchCustomer, Invoice
 from sqlalchemy.exc import IntegrityError
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -70,8 +70,8 @@ def submit():
 def template():
 	#https://pythonhosted.org/Flask-Session/
 	#will probably need to add this
-	user = User.query.all()
-
+	user = User.query.filter_by(username=current_user.username)
+	print(current_user.username)
 	try:
 		test = session['id']
 		cx_info = Customer.query.filter_by(cx_id=test)
@@ -79,11 +79,16 @@ def template():
 		test = "broken"
 		print ("i broke")
 	customer = ""
-	for x in cx_info:
-		print ("I'm printing")
-		print (x.cx_id)
-		print (x.customer_name)
-	return render_template('template.html', userlogin=current_user.username, user=user, cx_info=cx_info, test=str(test))
+	try:
+		for x in cx_info:
+			print ("I'm printing")
+			print (x.cx_id)
+			print (x.customer_name)
+	except:
+		print("I failed to print customer name")
+	for y in user:
+		print (y.role)
+	return render_template('template.html', user=user, cx_info=cx_info, test=str(test))
 
 #TEST
 @app.route('/register', methods=['GET', 'POST'])
@@ -92,7 +97,7 @@ def register():
 		return redirect(url_for('index'))
 	form = RegistrationForm()
 	if form.validate_on_submit():
-		user = User(username=form.username.data, email=form.email.data)
+		user = User(username=form.username.data, email=form.email.data, role=form.role.data)
 		user.set_password(form.password.data)
 		db.session.add(user)
 		db.session.commit()
@@ -102,25 +107,41 @@ def register():
 #END TEST
 
 @app.route('/salesorder', methods=('GET', 'POST'))
+@login_required
 def salesorder():
 	form = Invoice()
 	title = 'New Order'
-	return render_template('salesorder.html', title=title, form=form)
+	user = User.query.filter_by(username=current_user.username)
+	return render_template('salesorder.html', user=user, title=title, form=form)
 
 
 @app.route('/ticket', methods=('GET', 'POST'))
+@login_required
 def ticket():
+	user = User.query.filter_by(username=current_user.username)
 	form = TicketSearch()
-	return render_template('ticket.html', form=form)
+	return render_template('ticket.html', user=user, form=form)
 
 @app.route('/createcustomer', methods=('GET', 'POST'))
+@login_required
 def createcustomer():
 	form = CreateCustomer()
+	user = User.query.filter_by(username=current_user.username)
 	title = 'Customer'
-	return render_template('createcustomer.html', title=title, form=form)
+	return render_template('createcustomer.html', user=user, title=title, form=form)
+
+@app.route('/mytickets', methods=('GET', 'POST'))
+@login_required
+def mytickets():
+	title = "My Tickets"
+	ticket = Ticket.query.filter_by(assigned_to=current_user.username)
+	return render_template("mytickets.html", ticket=ticket)
+
 
 @app.route('/listticket', methods=('GET', 'POST'))
+@login_required
 def listticket():
+	user = User.query.filter_by(username=current_user.username)
 	try:
 		if session['name']:
 			name = session['name']
@@ -132,26 +153,19 @@ def listticket():
 		print("I've failed to list ticket")
 		ticket = ""
 		title = "Error"
-	return render_template('listticket.html', title=title, ticket=ticket)
+	return render_template('listticket.html', user=user, title=title, ticket=ticket)
 
 @app.route('/searchcustomer', methods=('GET', 'POST'))
+@login_required
 def searchcustomer():
 	form1 = SearchCustomer()
+	user = User.query.filter_by(username=current_user.username)
 	title = "Search"
-	# if form.validate_on_submit():
-	#     if request.form['name'] == 'Search Customer':
-	#         print (form.customer_name.data)
-	#         #print (Customer.query.all())
-	#         cx = Customer.query.filter_by(customer_name=form.customer_name.data)
-	#         print ("im printing")
-	#         print (cx)
-	#         for x in cx:
-	#             print(x.cx_id)
-	#         return redirect (url_for('findaccount.html'))
-	return render_template('searchcustomer.html', title=title, form1=form1)
+	return render_template('searchcustomer.html', user=user, title=title, form1=form1)
 
 #this route is linked to searchcustomer and displays the results found
 @app.route('/findaccount', methods=('GET', 'POST'))
+@login_required
 def findaccount():
 	title = "Find Account"
 	form = SearchCustomer()
@@ -198,35 +212,14 @@ def test():
 def new():
 	return render_template('new.html')
 
-# @app.route('/addticket', methods=('GET', 'POST'))
-# def addticket():
-# 	acctid = request.args.get('cx_id')
-# 	acctname = request.args.get('cx_name')
-# 	desc = request.args.get('description')
-# 	version = request.args.get('version')
-# 	priority = request.args.get('priority')
-# 	status = request.args.get('status')
-# 	o365 = request.args.get('o365')
-# 	assigned_to = request.args.get('assigned_to')
-# 	sql = text('ALTER TABLE Ticket AUTO_INCREMENT = 80000000')
-# 	db.engine.execute(sql)
-# 	db.session.commit()
-# 	ticket = Ticket(account_id=acctid, contact_name=acctname, description=desc, version=version, priority=priority, status=status, o365=o365, assigned_to=assigned_to)
-# 	db.session.add(ticket)
-# 	t = Ticket.query.all()
-# 	for x in t:
-# 		print (x.id)
-# 	db.session.commit()
-# 	return "nothing printed"
 
 @app.route('/createticket', methods=('GET', 'POST'))
 @login_required
 def createticket():
 	form = TicketCreate()
 	title = 'Ticket'
-
+	user = User.query.filter_by(username=current_user.username)
 	if request.method == 'POST':
-		# if request.form['submit_button'] == 'submit':
 		try:
 			acctid = request.form['cx_id']
 			acctname = request.form['cx_name']
@@ -241,20 +234,17 @@ def createticket():
 			db.session.commit()
 		except:
 			print("I failed during create ticket")
-	return render_template('createticket.html', title=title, form=form)
+	return render_template('createticket.html', user=user, title=title, form=form)
 
-
-# @app.route('/createdb', methods=('GET', 'POST'))
-# def createdb():
-# 	engine.execute('INSERT INTO ticket (id, description) VALUES ("2", "test");')
-# 	return 'done'
 
 @app.route("/masterlist")
+@login_required
 def masterlist():
 	try:
 		customer = Customer.query.all()
 		ticket = Ticket.query.all()
 		user = User.query.all()
+		sales = Sales_Rep.query.all()
 		for x in ticket:
 			print(x.id)
 	except:
@@ -262,7 +252,8 @@ def masterlist():
 		user = ""
 		customer = ""
 		ticket = ""
-	return render_template('masterlist.html', user=user, customer=customer, ticket=ticket)
+		sales = ""
+	return render_template('masterlist.html', sales=sales, user=user, customer=customer, ticket=ticket)
 
 @app.route("/selectcustomer/<id>")
 def selectcustomer(id):
@@ -291,6 +282,7 @@ def clearsession():
 @app.route("/calendar", methods=('GET', 'POST'))
 def calendar():
 	testtime = ""
+	user = User.query.filter_by(username=current_user.username)
 	dt = datetime.datetime.now()
 	yyyy = dt.year
 	mm = dt.month
@@ -324,28 +316,12 @@ def calendar():
 		print("committing...")
 	except:
 		print("I failed to grab the appt form")
-	return render_template('calendar.html', cal=cal, testtime=testtime)
+	return render_template('calendar.html', user=user, cal=cal, testtime=testtime)
 
-# @app.route("/addtime", methods=('GET', 'POST'))
-# def addtime():
-# 	print(request.form.get('appt'))
-# 	timeadd = str(request.form.get('appt'))
-# 	print(type(timeadd))
-# 	print("insert")
-# 	time = Time(hour=timeadd)
-# 	# sql = text("INSERT INTO time (hour) VALUES (%s)", (timeadd))
-# 	print("attempting to execute")
-# 	db.session.add(time)
-# 	print("attempting to execute")
-# 	print("commit")
-# 	db.session.commit()
-# 	print("attempting to add")
-# 	print("adding to db")
-# 	print("committing...")
-# 	return redirect('calendar')
 
 #route for line graph
 @app.route("/simple_chart")
+@login_required
 def chart():
 	legend = 'Clients Activated'
 	labels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "December"]
@@ -354,6 +330,7 @@ def chart():
 
 #pie chart
 @app.route("/charts")
+@login_required
 def charts():
 	activated = 6
 	refused = 1
