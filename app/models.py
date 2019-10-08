@@ -74,7 +74,7 @@ class Time(db.Model):
 	month = db.Column(String(120), primary_key=True, auto_increment=True)
 	day = db.Column(String(120), primary_key=True, auto_increment=True)
 	hour = db.Column(String(120), primary_key=True, auto_increment=True)
-	test = db.Column(String(120))
+	cx_id = db.Column(Integer, nullable=False)
 
 # for valid support do an if (current date) falls within valid_support_date range, then set this field to true
 

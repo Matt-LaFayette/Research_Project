@@ -5,6 +5,8 @@
 			      		<div class="form-group">
 			    		{{ form1.csrf_token }}
 			    	</br>
+			    		{{ form1.cx_id.label }} {{ form1.cx_id(size=20) }}
+			    	</br>
 			    		{{ form1.customer_name.label }} {{ form1.customer_name(size=20) }}
 			    	</br>
 			    		{{ form1.address.label }}  {{ form1.address(cols="23", rows="2") }}

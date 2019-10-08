@@ -170,9 +170,11 @@ def findaccount():
 	title = "Find Account"
 	form = SearchCustomer()
 	# print (session['response'])
+	customerid = form.cx_id.data
 	customername = form.customer_name.data
 	print(customername)
-	cx = Customer.query.filter_by(customer_fname=customername)
+	cxbyid = Customer.query.filter_by(cx_id=customerid)
+	cxbyname = Customer.query.filter_by(customer_fname=customername)
 	if form.validate_on_submit():
 		x = 1
 		for customer in cx:
@@ -187,7 +189,7 @@ def findaccount():
 			# session['name'] = customer.customer_name
 			if st == 'Select':
 				print("success")
-	return render_template('findaccount.html', customer=cx, title=title)
+	return render_template('findaccount.html', cxbyid=cxbyid, customerbyname=cxbyname, title=title)
 
 
 
@@ -259,6 +261,14 @@ def masterlist():
 def selectcustomer(id):
 	session['id'] = id
 	cx_info = Customer.query.filter_by(cx_id=session['id'])
+	try:
+		appt_info = Time.query.filter_by(cx_id= session['id'])
+		for x in appt_info:
+			session['month'] = x.month
+			session['day'] = x.day
+			session['hour'] = x.hour
+	except:
+		print("time query failed")
 	for x in cx_info:
 		session['name'] = x.customer_fname
 		session['phone_num'] = x.phone_num

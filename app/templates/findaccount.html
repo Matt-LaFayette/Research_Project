@@ -28,7 +28,8 @@ function myFunction1() {
     </tr>
   </thead>
   <tbody>
-  	{% for x in customer %}
+{% if customerbyname %}
+  	{% for x in customerbyname %}
     <tr>
       <th scope="row" id="id">{{x.cx_id}}</th>
       <td id="name">{{x.customer_fname}}</td>
@@ -38,6 +39,20 @@ function myFunction1() {
       <td><input class="btn btn-secondary btn-sm btn-block" id="submit_button" type="submit" onclick="myFunction1()" name="{{loop.index}}Select"  value="Select"></td>
     </tr>
     {% endfor %}
+    {% endif %}
+    
+{% if cxbyid %}
+    {% for x in cxbyid %}
+    <tr>
+      <th scope="row" id="id">{{x.cx_id}}</th>
+      <td id="name">{{x.customer_fname}}</td>
+      <td id="phonenumber">{{x.phone_num}}</td>
+      <td id="email">{{x.email}}</td>
+        <!-- handle this with an ajax call like before -->
+      <td><input class="btn btn-secondary btn-sm btn-block" id="submit_button" type="submit" onclick="myFunction1()" name="{{loop.index}}Select"  value="Select"></td>
+    </tr>
+    {% endfor %}
+    {% endif %}
   </tbody>
 </table>
 </div>
