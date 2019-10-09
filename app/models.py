@@ -45,7 +45,8 @@ class Ticket(db.Model):
 	version = db.Column(String(120), unique=False, nullable=True)
 	priority = db.Column(String(120), unique=False, nullable=True)
 	status = db.Column(String(120), unique=False, nullable=True)
-	o365 = db.Column(String(400), unique=False, nullable=True)
+	o365 = db.Column(String(120), unique=False, nullable=True)
+	o365status = db.Column(String(120), unique=False, nullable=True)
 	valid_support = db.Column(Boolean, unique=False, nullable=True)
 	assigned_to = db.Column(String(400), nullable=True)
 

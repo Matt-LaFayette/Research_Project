@@ -31,6 +31,7 @@ function expandInfo() {
 
 		<div class="outer_ticket_search">
 					<div id="ticket_search">
+						<br>
 			      	<form method="POST" id="cform" action="#">
 			      		<div class="form-group">
 			    		{{ form.csrf_token }}
@@ -65,7 +66,7 @@ need to build own calendar from scratch
 					</br>
 						{{ form.o365.label }} {{ form.o365(size=20) }}
 					</br>
-					<div id="hidden" style="display: none;">ADD ADDITIONAL 365 FIELDS HERE<br><br></div>
+					<div id="hidden" style="display: none;">{{ form.o365status.label }} {{ form.o365status}}<br><br></div>
 						<input type="text" id="disableme" id="assigned_to" name="assigned_to" value="{{current_user.username}}">
 			    	</br>
 			    	</br>

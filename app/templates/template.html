@@ -61,27 +61,26 @@ function dropDown1() {
 		<!-- The sidebar -->
 <div class="sidebar">
   <a class="active" href="#">Home</a>
-  <a href="{{ url_for('createcustomer')}}">New Customer</a>
-  <a href="{{ url_for('calendar')}}">Make Appointment</a>
-  <a href="#" onclick="dropDown()">Ticket...</a>
+  <a href="#">Search Ticket</a>
+  <a href="#" onclick="dropDown()">Create...</a>
   <div class="dropdownside">
     <div id="myDropdown" class="dropdown-content" style="display: none">
-    <a href="{{ url_for('createticket')}}">Create Ticket</a>
-    <a href="#">Search Ticket</a>
-    {% if session['id'] %}
-    <a href="{{url_for('listticket')}}">View Tickets</a>
-    {% endif %}
+    <a href="{{ url_for('createticket')}}">Ticket</a>
+    <a href="{{ url_for('createcustomer')}}">Customer</a>
+    <a href="{{ url_for('calendar')}}">Appointment</a>
+    <a href="{{ url_for('salesorder')}}">Orders</a>
   </div>
   </div>
   <a href="#" onclick="dropDown1()">History..</a>
   <div class="dropdownside1">
     <div id="myDropdown1" class="dropdown-content" style="display: none">
     <a href="{{ url_for('mytickets') }}">My Tickets</a>
-    <a href="{{ url_for('listticket') }}">Customer's Tickets</a>
+    {% if session['id'] %}
+    <a href="{{url_for('listticket')}}">View Tickets</a>
+    {% endif %}
     </div>
   </div>
   <a href="{{ url_for('searchcustomer')}}">Search</a>
-  <a href="{{ url_for('salesorder')}}">Orders</a>
   <!-- Change later for other roles -->
   {% for x in user %} 
   {% if x.role == "Support" or "manager" %}
@@ -110,6 +109,6 @@ function myFunction() {
     })
 };
 </script>
-<div class="bottom" id="test">{% if session['id'] %}Currently using customer: {{session['id']}}<br>{{session['name']}}<br>{{session['day']}}/{{session['hour']}}<br><button type="button" onclick="myFunction()" class="btn btn-warning">Clear</button>{% endif %}
+<div class="bottom" id="test">{% if session['id'] %}<div class="customer_info">Currently using customer: {{session['id']}}<br>{{session['name']}}<br></div>{% if session['day'] %}<div class="appt" style="position: fixed; right: 1%; color: lightgreen;">Appointment: {{ session['month'] }}/{{session['day']}} at {{session['hour']}}</div>{% endif %}<button type="button" onclick="myFunction()" class="btn btn-warning">Clear</button>{% endif %}
 
 </div>

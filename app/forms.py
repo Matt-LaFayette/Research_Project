@@ -24,6 +24,7 @@ class TicketCreate(FlaskForm):
 	priority =  SelectField(choices=[('high', 'High'), ('normal', 'Normal'), ('low', 'Low')])
 	status = SelectField(choices=[('open', 'Open'), ('closed', 'Closed'), ('wip', 'Work In Progress'), ('pending', 'Fix Pending')])
 	o365 = BooleanField('Office 365')
+	o365status = SelectField(choices=[('onboarded', 'Onboarded'), ('no_contact', 'No Contact'), ('badinfo', 'Incorrect contact number'), ('Doesnt_want', 'Does not want')])
 	assigned_to = StringField('Assigned to', validators=[DataRequired()])
 
 # Login form for index.html

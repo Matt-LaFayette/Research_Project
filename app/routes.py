@@ -228,7 +228,7 @@ def createticket():
 			sql = text('ALTER TABLE Ticket AUTO_INCREMENT = 80000000')
 			db.engine.execute(sql)
 			db.session.commit()
-			ticket = Ticket(account_id=acctid, contact_name=acctname, description=form.description.data, version=form.version.data, priority=form.priority.data, status=form.status.data, o365=form.o365.data, assigned_to=form.assigned_to.data)
+			ticket = Ticket(account_id=acctid, contact_name=acctname, description=form.description.data, version=form.version.data, priority=form.priority.data, status=form.status.data, o365=form.o365.data, o365status=form.o365status.data, assigned_to=form.assigned_to.data)
 			db.session.add(ticket)
 			t = Ticket.query.all()
 			for x in t:
