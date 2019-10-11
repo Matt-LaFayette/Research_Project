@@ -16,6 +16,9 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'index'
 
+now = datetime.datetime.now()
+month = int(now.month)
+year = int(now.year)
 
 
 @login_manager.user_loader
@@ -88,7 +91,7 @@ def template():
 		print("I failed to print customer name")
 	for y in user:
 		print (y.role)
-	return render_template('template.html', user=user, cx_info=cx_info, test=str(test))
+	return render_template('template.html', month=month, user=user, cx_info=cx_info, test=str(test))
 
 #TEST
 @app.route('/register', methods=['GET', 'POST'])
@@ -111,8 +114,9 @@ def register():
 def salesorder():
 	form = Invoice()
 	title = 'New Order'
+	print(month)
 	user = User.query.filter_by(username=current_user.username)
-	return render_template('salesorder.html', user=user, title=title, form=form)
+	return render_template('salesorder.html', month=month, user=user, title=title, form=form)
 
 
 @app.route('/ticket', methods=('GET', 'POST'))
@@ -289,24 +293,26 @@ def clearsession():
 		print("I failed")
 	return "nothing"
 
-@app.route("/calendar", methods=('GET', 'POST'))
-def calendar():
+@app.route("/calendar/<month>", methods=('GET', 'POST'))
+def calendar(month):
 	testtime = ""
 	user = User.query.filter_by(username=current_user.username)
 	dt = datetime.datetime.now()
 	yyyy = dt.year
-	mm = dt.month
-	print (yyyy)
-	print (mm)
+
 	try:
-		testtime = Time.query.all()
+		testtime = Time.query.order_by('hour').all()
+		#####Need to change
+		#sql = text('ALTER TABLE Customer AUTO_INCREMENT = 40000000')
+		#db.engine.execute(sql)
+##########################################		
 	except:
 		print("unable to query time")
 	print (testtime)
 	# num_days = monthrange(2019, 2)[1] # num_days = 28
 	# print(num_days)
 	tc= HTMLCalendar(firstweekday=6)
-	cal = tc.formatmonth(yyyy, mm)
+	cal = tc.formatmonth(int(year), int(month))
 	# might not need
 	try:
 		print(request.form.get('appt'))
@@ -326,7 +332,7 @@ def calendar():
 		print("committing...")
 	except:
 		print("I failed to grab the appt form")
-	return render_template('calendar.html', user=user, cal=cal, testtime=testtime)
+	return render_template('calendar.html', month=month, user=user, cal=cal, testtime=testtime)
 
 
 #route for line graph

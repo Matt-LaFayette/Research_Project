@@ -18,6 +18,7 @@
 </script>
 
 <div class="outer_ticket_search">
+    <a href="{{url_for('calendar', month=month|int-1)}}"><p>test</p></a>
 	<!-- div for  -->
 <div id="appt_time" style="display: none;margin-left: 50%">
 	<br>
@@ -53,12 +54,19 @@
 <div class="calendar" id="calendar" style="width: 70%; display: block;">
 {{cal|safe}}
         </table>
+    </form>
         <div class="form-inline">
 
-            <button class="btn btn-outline-primary col-sm-6" id="previous" onclick="previous()">Previous</button>
+            <a href="{{url_for('calendar', month=month|int-1)}}"><button type="button" class="btn btn-outline-primary btn-md" id="previous_month">Previous</button></a>
 
-            <button class="btn btn-outline-primary col-sm-6" id="next" onclick="next()">Next</button>
+
+            <a href="{{url_for('calendar', month=month|int + 1)}}"><button type="button" class="btn btn-outline-primary btn-md" id="next_month">Next</button></a>
         </div>
+
+        <script>
+            $('.btn.btn-outline-primary').css('width',($('.form-inline').width()/2))
+        </script>
+
         <br/>
         <form class="form-inline">
             <label class="lead mr-2 ml-2" for="month">Jump To: </label>

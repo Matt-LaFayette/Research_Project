@@ -67,7 +67,7 @@ function dropDown1() {
     <div id="myDropdown" class="dropdown-content" style="display: none">
     <a href="{{ url_for('createticket')}}">Ticket</a>
     <a href="{{ url_for('createcustomer')}}">Customer</a>
-    <a href="{{ url_for('calendar')}}">Appointment</a>
+    <a href="{{ url_for('calendar', month=month)}}">Appointment</a>
     <a href="{{ url_for('salesorder')}}">Orders</a>
   </div>
   </div>
