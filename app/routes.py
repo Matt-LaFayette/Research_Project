@@ -7,9 +7,11 @@ from app.models import User, Ticket, Customer, Time, Sales_Rep
 from app.forms import RegistrationForm, TicketCreate, MyForm, TicketSearch, CreateCustomer, SearchCustomer, Invoice
 from sqlalchemy.exc import IntegrityError
 from werkzeug.security import generate_password_hash, check_password_hash
+from app import db
 from sqlalchemy import text
 from calendar import *
 import datetime
+from sqlalchemy import create_engine
 
 
 login_manager = LoginManager()
@@ -301,11 +303,14 @@ def calendar(month):
 	yyyy = dt.year
 
 	try:
-		testtime = Time.query.order_by('hour').all()
+		#testtime = Time.query.order_by('hour').all()
 		#####Need to change
-		#sql = text('ALTER TABLE Customer AUTO_INCREMENT = 40000000')
-		#db.engine.execute(sql)
-##########################################		
+		#testtime = []
+		sqlquery = text("SELECT month, day, date_format(hour, '%l%p') from time;")
+		sql = db.engine.execute(sqlquery)
+		testtime = sql.fetchall()
+		for x in testtime:
+			print (x)
 	except:
 		print("unable to query time")
 	print (testtime)

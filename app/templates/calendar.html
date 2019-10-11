@@ -141,7 +141,7 @@
     <div class="appt{{loop.index}}">
       <th scope="row"><div class="month{{loop.index}}" style="display: inline-block;">{{x.month}}</div></th>
       <td><div class="day{{loop.index}}" style="display: inline-block;">{{x.day}}</div></td>
-      <td><div class="hour{{loop.index}}" style="display: inline-block;">{{x.hour}}</div></td>
+      <td><div class="hour{{loop.index}}" style="display: inline-block;">{{x[2]}}</div></td>
     </tr>
 </div>
 {% endfor %}

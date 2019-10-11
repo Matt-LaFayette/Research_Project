@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine, ForeignKey
-from sqlalchemy import Column, Date, Integer, String, Sequence, Boolean
+from sqlalchemy import Column, Date, Integer, String, Sequence, Boolean, Time
 from sqlalchemy.ext.declarative import declarative_base
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
@@ -74,7 +74,7 @@ class User(db.Model, UserMixin):
 class Time(db.Model):
 	month = db.Column(String(120), primary_key=True, auto_increment=True)
 	day = db.Column(String(120), primary_key=True, auto_increment=True)
-	hour = db.Column(String(120), primary_key=True, auto_increment=True)
+	hour = db.Column(Time, primary_key=True, auto_increment=True)
 	cx_id = db.Column(Integer, nullable=False)
 
 # for valid support do an if (current date) falls within valid_support_date range, then set this field to true
