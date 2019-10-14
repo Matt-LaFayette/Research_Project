@@ -54,7 +54,8 @@ class TicketSearch(FlaskForm):
 
 # Search fields for customer
 class SearchCustomer(FlaskForm):
-	customer_name = StringField('Name', validators=[Optional()])
+	customer_fname = StringField('First Name', validators=[Optional()])
+	customer_lname = StringField('Last Name', validators=[Optional()])
 	city = StringField('City', validators=[DataRequired()])
 	state = StringField('State', validators=[DataRequired()])
 	address = TextAreaField('Address', validators=[Optional()])

@@ -177,10 +177,14 @@ def findaccount():
 	form = SearchCustomer()
 	# print (session['response'])
 	customerid = form.cx_id.data
-	customername = form.customer_name.data
-	print(customername)
+	customerfname = form.customer_fname.data
+	customerlname = form.customer_lname.data
+	#Need to input logic so if someone enters name, then it then does a query to pull up the id by their name
 	cxbyid = Customer.query.filter_by(cx_id=customerid)
-	cxbyname = Customer.query.filter_by(customer_fname=customername)
+	# if customerfname:
+	# 	cxbyname = Customer.query.filter_by(customer_fname=customername)
+	# if customerlname:
+	# 	cxbyname = Customer.query.filter_by(customer_lname=customername)
 	if form.validate_on_submit():
 		x = 1
 		for customer in cx:
@@ -195,7 +199,7 @@ def findaccount():
 			# session['name'] = customer.customer_name
 			if st == 'Select':
 				print("success")
-	return render_template('findaccount.html', cxbyid=cxbyid, customerbyname=cxbyname, title=title)
+	return render_template('findaccount.html', cxbyid=cxbyid, title=title)
 
 
 

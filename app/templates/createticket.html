@@ -32,8 +32,10 @@ function expandInfo() {
 		<div class="outer_ticket_search">
 					<div id="ticket_search">
 						<br>
+						<div class="float-right">{{ form.o365.label }} {{ form.o365(size=20) }}</div><br><br>
 			      	<form method="POST" id="cform" action="#">
 			      		<div class="form-group">
+			      			<br>
 			    		{{ form.csrf_token }}
 			    		{% if session['id'] %}
 			    			{{ form.cx_id.label }}
@@ -56,15 +58,16 @@ function expandInfo() {
 					<br>
 <!-- https://medium.com/@nitinpatel_20236/challenge-of-building-a-calendar-with-pure-javascript-a86f1303267d
 need to build own calendar from scratch
- -->					Status
- 						<select name="Option" class="form-control form-control-sm">
+ -->			
+ 						{{ form.status.label }} {{ form.status }}
+<!--  						<select name="Option" id="status" class="form-control form-control-sm">
  							<option value="Open">Open</option>
  							<option value="Work in progress">Work in progress</option>
  							<option value="Closed">Closed</option>
- 						</select>
+ 						</select> -->
 
 					</br>
-						{{ form.o365.label }} {{ form.o365(size=20) }}
+						
 					</br>
 					<div id="hidden" style="display: none;">{{ form.o365status.label }} {{ form.o365status}}<br><br></div>
 						<input type="text" id="disableme" id="assigned_to" name="assigned_to" value="{{current_user.username}}">
