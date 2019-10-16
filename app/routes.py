@@ -4,7 +4,7 @@ from config import Config
 from datetime import time
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from app.models import User, Ticket, Customer, Time, Sales_Rep
-from app.forms import RegistrationForm, TicketCreate, MyForm, TicketSearch, CreateCustomer, SearchCustomer, Invoice
+from app.forms import RegistrationForm, TicketCreate, MyForm, TicketSearch, CreateCustomer, SearchCustomer, Invoice, ApptDate
 from sqlalchemy.exc import IntegrityError
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import db
@@ -77,6 +77,8 @@ def template():
 	#will probably need to add this
 	user = User.query.filter_by(username=current_user.username)
 	print(current_user.username)
+	month = int(now.month)
+	print (month)
 	try:
 		test = session['id']
 		cx_info = Customer.query.filter_by(cx_id=test)
@@ -246,7 +248,7 @@ def createticket():
 			db.session.commit()
 		except:
 			print("I failed during create ticket")
-	return render_template('createticket.html', user=user, title=title, form=form)
+	return render_template('createticket.html', month=month, user=user, title=title, form=form)
 
 
 @app.route("/masterlist")
@@ -302,6 +304,7 @@ def clearsession():
 @app.route("/calendar/<month>", methods=('GET', 'POST'))
 def calendar(month):
 	testtime = ""
+	form = ApptDate()
 	user = User.query.filter_by(username=current_user.username)
 	dt = datetime.datetime.now()
 	yyyy = dt.year
@@ -341,7 +344,11 @@ def calendar(month):
 		print("committing...")
 	except:
 		print("I failed to grab the appt form")
-	return render_template('calendar.html', month=month, user=user, cal=cal, testtime=testtime)
+	try:
+		print(form.date_input.data)
+	except:
+		print("failed to get date input")
+	return render_template('calendar.html', form=form, month=month, user=user, cal=cal, testtime=testtime)
 
 
 #route for line graph
@@ -354,6 +361,14 @@ def chart():
 	return render_template('chart.html', values=values, labels=labels, legend=legend)
 
 #pie chart
+#select s.sales_first_name, count(tic.id) from time t
+#join ticket tic
+#on t.cx_id = tic.account_id
+#join sales__rep s 
+#on s.sales_rep_id = t.assigned_by
+#where tic.o365status = "onboarded"
+#group by s.sales_first_name;
+
 @app.route("/charts")
 @login_required
 def charts():
@@ -363,8 +378,23 @@ def charts():
 	#probably want to use a dict for some of these values
 	legend = 'Clients Activated'
 	labels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "December"]
+	try:
+		rep = current_user.username
+		sqlquery = text("select s.sales_first_name, count(tic.id) from time t "
+			+ "join ticket tic "
+			+ "on t.cx_id = tic.account_id "
+			+ "join sales__rep s  "
+			+ "on s.sales_rep_id = t.assigned_by "
+			+ "where tic.o365status = 'onboarded' "
+			+ "group by s.sales_first_name "			
+			+ "having s.sales_first_name = 'joy'")
+		sql = db.engine.execute(sqlquery)
+		rep_stats = sql.fetchall()
+		print (rep_stats)
+	except:
+	 	print("I wasn't able to query the reps stats")
 	values = [10, 9, 8, 7, 6, 4, 7, 8]
 	ac_label = "red"
 	re_label = "yellow"
 	no_label = "blue"
-	return render_template('charts.html', values=values, labels=labels, legend=legend, activated=activated, refused=refused, no_answer=no_answer)
+	return render_template('charts.html', rep_stats=rep_stats, values=values, labels=labels, legend=legend, activated=activated, refused=refused, no_answer=no_answer)

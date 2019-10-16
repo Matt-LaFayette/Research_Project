@@ -76,6 +76,7 @@ class Time(db.Model):
 	day = db.Column(String(120), primary_key=True, auto_increment=True)
 	hour = db.Column(Time, primary_key=True, auto_increment=True)
 	cx_id = db.Column(Integer, nullable=False)
+	assigned_by = db.Column(Integer, nullable=False, auto_increment=True)
 
 # for valid support do an if (current date) falls within valid_support_date range, then set this field to true
 
@@ -152,6 +153,10 @@ try:
 
 	sql = text('ALTER TABLE Time AUTO_INCREMENT = 0')
 	db.engine.execute(sql)
+
+	sql = text('ALTER TABLE Support_Rep AUTO_INCREMENT = 90000000')
+	db.engine.execute(sql)
+
 	db.commit
 except:
 	print("The alters failed")

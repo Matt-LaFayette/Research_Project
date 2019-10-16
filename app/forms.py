@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_login import LoginManager, current_user, login_user
-from wtforms import StringField, PasswordField, IntegerField, TextAreaField, BooleanField, SubmitField, SelectField, DateField
+from wtforms import StringField, PasswordField, IntegerField, TextAreaField, BooleanField, SubmitField, SelectField, DateField, DateTimeField
 from wtforms.validators import ValidationError, DataRequired, NumberRange, Email, EqualTo, Regexp, Optional
 from app.models import User
 
@@ -42,6 +42,8 @@ class Invoice(FlaskForm):
 	sales_rep_id = IntegerField('Sales Rep ID')
 	valid_support_date = DateField('Support Vaid Through', format='%m-%d-%Y')
 
+class ApptDate(FlaskForm):
+	date_input = DateTimeField(format='%Y-%m-%d %H:%M:%S')
 
 
 # Search fields for support tickets

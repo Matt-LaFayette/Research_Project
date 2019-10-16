@@ -18,8 +18,11 @@
 </script>
 
 <div class="outer_ticket_search">
-    <a href="{{url_for('calendar', month=month|int-1)}}"><p>test</p></a>
-	<!-- div for  -->
+    <form method="GET" action="#">
+    {{ form.date_input }}
+	<button>test</button>
+</form>
+    <!-- div for  -->
 <div id="appt_time" style="display: none;margin-left: 50%">
 	<br>
 	<br>
@@ -48,6 +51,14 @@
 	document.getElementById("month").innerHTML = d.getMonth() + 1;
 	document.getElementById("day").innerHTML = d.getDate();
 
+
+</script>
+
+<script>
+    $('#date_input').addClass('form-control');
+    $('#date_input').prop({type:"datetime-local"});
+    $('#date_input').css("width","30%");
+    $('#date_input').css("text-align","center");
 
 </script>
 
@@ -135,6 +146,7 @@
 
 </div>
 </div>
+
 <div class="hidden" style="display: visible;">
 
 {% for x in testtime %}
@@ -148,7 +160,7 @@
   </tbody>
 </table>
 
-
+<div class="current_month" style="display: visible;">{{month}}</div>
 
 
 
@@ -239,11 +251,12 @@ for (i = 0; i < len; i++) {
 
     for (x=0; x < $(".hidden").children().length; x++) {
 
-        console.log("------");
-        console.log($(".day"+(x)).text());
-        console.log($('.calendar').children().children().children().children('td').eq(i).text());
-        console.log("------")
+        // console.log("------");
+        // console.log($(".day"+(x)).text());
+        // console.log($('.calendar').children().children().children().children('td').eq(i).text());
+        // console.log("------")
         
+        if ($(".month"+x).text() == $('.current_month').text()){
 
         if ($(".day"+x).text() == $('.calendar').children().children().children().children('td').eq(i).contents().eq(0).text()) {
             
@@ -253,7 +266,7 @@ for (i = 0; i < len; i++) {
             //partially working. Gets buggy after more values are added
             $('.calendar').children().children().children().children('td').eq(i).append("<span style='color:green;display:block;text-align:right'>" + $(".hour"+(x)).text()) + "</span>";
             }
-
+        }
             // end working code
             
         };
