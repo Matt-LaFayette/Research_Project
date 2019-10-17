@@ -32,7 +32,7 @@ customer = ""
 
 try:
 	testtime = Time.query.all()
-	print (testtime)
+	#print (testtime)
 except:
 	print("I failed to query time")
 
@@ -378,23 +378,72 @@ def charts():
 	#probably want to use a dict for some of these values
 	legend = 'Clients Activated'
 	labels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "December"]
+
 	try:
 		rep = current_user.username
-		sqlquery = text("select s.sales_first_name, count(tic.id) from time t "
+		getonboarded = text('select s.sales_first_name, count(tic.id) from time t '
+		+ 'join ticket tic '
+		+ 'on t.cx_id = tic.account_id '
+		+ 'join sales__rep s  '
+		+ 'on s.sales_rep_id = t.assigned_by '
+		+ 'where tic.o365status = "onboarded" '
+		+ 'group by s.sales_first_name '			
+		+ 'having s.sales_first_name = "{}";'.format(rep))
+		sql = db.engine.execute(getonboarded)
+		onboard_stats = sql.fetchall()
+		#print (onboard_stats)
+
+		getnotwant = ("select s.sales_first_name, count(tic.o365status) from time t "
 			+ "join ticket tic "
 			+ "on t.cx_id = tic.account_id "
-			+ "join sales__rep s  "
+			+ "join sales__rep s "
 			+ "on s.sales_rep_id = t.assigned_by "
-			+ "where tic.o365status = 'onboarded' "
-			+ "group by s.sales_first_name "			
-			+ "having s.sales_first_name = 'joy'")
-		sql = db.engine.execute(sqlquery)
-		rep_stats = sql.fetchall()
-		print (rep_stats)
+			+ "where tic.o365status = 'Does not want' "
+			+ "group by s.sales_first_name "
+			+ "having sales_first_name = '{}';".format(rep))
+		sql1 = db.engine.execute(getnotwant)
+		notwant_status = sql1.fetchall()
+		#print (notwant_status)
+
+		getnocontact = text("select s.sales_first_name, count(tic.o365status) from time t "
+			+ "join ticket tic "
+			+ "on t.cx_id = tic.account_id "
+			+ "join sales__rep s "
+			+ "on s.sales_rep_id = t.assigned_by "
+			+ "where tic.o365status = 'No Contact' "
+			+ "group by s.sales_first_name "
+			+ "having sales_first_name = '{}';".format(rep))
+		sql2 = db.engine.execute(getnocontact)
+		nocontact_status = sql2.fetchall()
+		#print (nocontact_status)
+
+		getincorrect = text("select s.sales_first_name, count(tic.o365status) from time t "
+			+ "join ticket tic "
+			+ "on t.cx_id = tic.account_id "
+			+ "join sales__rep s "
+			+ "on s.sales_rep_id = t.assigned_by "
+			+ "where tic.o365status = 'Incorrect contact number' "
+			+ "group by s.sales_first_name "
+			+ "having sales_first_name = '{}';".format(rep))
+		sql3 = db.engine.execute(getincorrect)
+		incorrect_status = sql3.fetchall()
+		#print(total_status)
+
+		gettotal = text("select s.sales_first_name, count(tic.o365status) from time t "
+			+ "join ticket tic "
+			+ "on t.cx_id = tic.account_id "
+			+ "join sales__rep s "
+			+ "on s.sales_rep_id = t.assigned_by "
+			+ "group by s.sales_first_name "
+			+ "having sales_first_name = '{}';".format(rep))
+		sql4 = db.engine.execute(gettotal)
+		total_status = sql4.fetchall()
+		print(total_status)
+
 	except:
 	 	print("I wasn't able to query the reps stats")
 	values = [10, 9, 8, 7, 6, 4, 7, 8]
 	ac_label = "red"
 	re_label = "yellow"
 	no_label = "blue"
-	return render_template('charts.html', rep_stats=rep_stats, values=values, labels=labels, legend=legend, activated=activated, refused=refused, no_answer=no_answer)
+	return render_template('charts.html', total_status=total_status, incorrect_status=incorrect_status, onboard_stats=onboard_stats, nocontact_status=nocontact_status, notwant_status=notwant_status, values=values, labels=labels, legend=legend, activated=activated, refused=refused, no_answer=no_answer)
