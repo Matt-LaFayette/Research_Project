@@ -54,6 +54,7 @@ def close_db(error):
 @app.route('/index', methods=('GET', 'POST'))
 def index():
 	form = MyForm()
+	get_db()
 	WTF_CSRF_SECRET_KEY = 'a random string'
 	if form.validate_on_submit():
 		print("Query")
