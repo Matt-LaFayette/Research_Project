@@ -41,6 +41,15 @@ except:
 #set FLASK_ENV=development
 #py -m flask run
 
+def get_db():
+	db.session()
+
+@app.teardown_appcontext
+def close_db(error):
+	db.session.close()
+	db.session.remove()
+
+
 @app.route('/')
 @app.route('/index', methods=('GET', 'POST'))
 def index():
@@ -63,6 +72,12 @@ def index():
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
+@app.route('/create')
+def create():
+    db.create_all()
+    return redirect(url_for('index'))
+
 
 @app.route('/submit', methods=('GET', 'POST'))
 def submit():

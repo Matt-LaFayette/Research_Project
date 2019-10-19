@@ -134,9 +134,12 @@ def load_user(id):
 
 #Base.metadata.create_all(engine)
  # In case user table doesn't exists already. Else remove it.    
+
+
 try:
 	db.create_all()
-	db.commit
+	db.commit()
+	db.close()
 except:
 	print("database already exists")
 
@@ -157,6 +160,7 @@ try:
 	sql = text('ALTER TABLE Support_Rep AUTO_INCREMENT = 90000000')
 	db.engine.execute(sql)
 
-	db.commit
+	db.engine.commit()
+	db.engine.close()
 except:
 	print("The alters failed")
