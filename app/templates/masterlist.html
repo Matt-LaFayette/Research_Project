@@ -6,7 +6,7 @@
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/style.css') }}">
 
 
-<h1>Customers</h1><button id="show_customer" class="btn btn-success">show</button><button id="hide_customer" class="btn btn-warning">hide</button>
+<h1>Customers</h1><button id="show_customer" class="btn btn-success">show</button><button id="hide_customer" class="btn btn-warning" style="display: none;">hide</button>
 <table class="table table-striped table-bordered table-hover">
   <thead class="thead-dark">
     <tr>
@@ -16,7 +16,7 @@
       <th scope="col">Phone</th>
     </tr>
   </thead>
-  <tbody id="customer">
+  <tbody id="customer" style="display: none;">
     <tr>
 {% for x in customer %}
       <th scope="row">{{x.cx_id}}</th>
@@ -31,15 +31,19 @@
 <script>
 	$("#hide_customer").click(function(){
 		$("#customer").hide();
+    $("#hide_customer").hide();
+    $("#show_customer").fadeIn();
 	});
 	$("#show_customer").click(function(){
 		$("#customer").show();
+    $("#show_customer").hide();
+    $("#hide_customer").fadeIn();
 	});
 </script>
 
 <br><br><br>
 
-<h1>Tickets</h1><button id="show_ticket" class="btn btn-success">show</button><button id="hide_ticket" class="btn btn-warning">hide</button>
+<h1>Tickets</h1><button id="show_ticket" class="btn btn-success">show</button><button id="hide_ticket" class="btn btn-warning" style="display: none;">hide</button>
 <table class="table table-striped table-bordered table-hover">
   <thead class="thead-dark">
     <tr>
@@ -54,7 +58,7 @@
       <th scope="col">Assigned to</th>
     </tr>
   </thead>
-  <tbody id="ticket">
+  <tbody id="ticket" style="display: none;">
     <tr>
 {% for x in ticket %}
       <th scope="row">{{x.id}}</th>
@@ -74,15 +78,19 @@
 <script>
 	$("#hide_ticket").click(function(){
 		$("#ticket").hide();
+    $("#hide_ticket").hide();
+    $("#show_ticket").fadeIn();
 	});
 	$("#show_ticket").click(function(){
 		$("#ticket").show();
+    $("#show_ticket").hide();
+    $("#hide_ticket").fadeIn();
 	});
 </script>
 
 <br><br><br>
 
-<h1>Sales Reps</h1>
+<h1>Sales Reps</h1><button id="show_sales_rep" class="btn btn-success">show</button><button id="hide_sales_rep" class="btn btn-warning" style="display: none;">hide</button>
 <table class="table table-striped table-bordered table-hover">
   <thead class="thead-dark">
     <tr>
@@ -92,7 +100,7 @@
       <th scope="col">Commission</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id="sales_rep" style="display: none;">
   	<tr>
 	{% for x in sales %}
       <th scope="row">{{x.sales_rep_id}}</th>
@@ -104,9 +112,23 @@
   </tbody>
 </table>
 
+<script>
+  $("#hide_sales_rep").click(function(){
+    $("#sales_rep").hide();
+    $("#hide_sales_rep").hide();
+    $("#show_sales_rep").fadeIn();
+  });
+  $("#show_sales_rep").click(function(){
+    $("#sales_rep").show();
+    $("#show_sales_rep").hide();
+    $("#hide_sales_rep").fadeIn();
+  });
+</script>
+
+
 <br><br><br>
 
-<h1>Users</h1>
+<h1>Users</h1><button id="show_user" class="btn btn-success">show</button><button id="hide_user" class="btn btn-warning" style="display: none;">hide</button>
 <table class="table table-striped table-bordered table-hover">
   <thead class="thead-dark">
     <tr>
@@ -117,7 +139,7 @@
       <th scope="col">Password Hash</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id="user" style="display: none;">
     <tr>
 {% for x in user %}
       <th scope="row">{{x.id}}</th>
@@ -130,4 +152,19 @@
   </tbody>
 </table>
 
-<a href="{{url_for('createcustomer')}}"><button type="button" class="btn btn-success">Go Back</button></a>
+<script>
+  $("#hide_user").click(function(){
+    $("#user").hide();
+    $("#hide_user").hide();
+    $("#show_user").fadeIn();
+  });
+  $("#show_user").click(function(){
+    $("#user").show();
+    $("#show_user").hide();
+    $("#hide_user").fadeIn();
+  });
+</script>
+
+<br><br>
+
+<a href="{{url_for('createcustomer')}}"><button type="button" class="btn btn-success" style="margin-left: 50%;">Go Back</button></a>

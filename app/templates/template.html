@@ -26,7 +26,7 @@
 			<div style="display:inline-block; margin-left: auto;">
 				<div id="title" style="display: inline-block;"><h1>{% if title %}{{ title }}{% else %}title{% endif %}</h1>
 				</div>
-				<div id="logged_in_user" style="display: inline-block;right: 15;">Logged in: {{current_user.username}}<br>{% for x in user %} ({{ x.role }}) {% endfor %} <a href="{{url_for('logout')}}">Log Out </a>
+				<div id="logged_in_user" style="display: inline-block; position: absolute; right: 15;">Logged in: {{current_user.username}}<br>{% for x in user %} ({{ x.role }}) {% endfor %} <a href="{{url_for('logout')}}">Log Out </a>
 				</div>
 			</div>
 			
@@ -81,8 +81,6 @@ function dropDown1() {
 	// 	$('#logged_in_user').css('right', $('.dropdown').width() + 5);
 	// };
 	
-
-
 </script>
 
 
@@ -94,22 +92,29 @@ function dropDown1() {
 	<a href="#" onclick="dropDown()">Create...</a>
 		<div class="dropdownside">
 			<div id="myDropdown" class="dropdown-content" style="display: none">
-			<a href="{{ url_for('createticket')}}">Ticket</a>
+			{% for x in user %} 
+				{% if x.role != 'sales' %}
+				<a href="{{ url_for('createticket')}}">Ticket</a>
+				{% endif %}
+			{% endfor %}
 			<a href="{{ url_for('createcustomer')}}">Customer</a>
 			<a href="{{ url_for('calendar', month=month)}}">Appointment</a>
 			<a href="{{ url_for('salesorder')}}">Orders</a>
 			</div>
 		</div>
-
-	<a href="#" onclick="dropDown1()">History..</a>
-		<div class="dropdownside1">
-			<div id="myDropdown1" class="dropdown-content" style="display: none">
-			<a href="{{ url_for('mytickets') }}">My Tickets</a>
-			{% if session['id'] %}
-			<a href="{{url_for('listticket')}}">View Tickets</a>
-			{% endif %}
-			</div>
-		</div>
+	{% for x in user %} 
+		{% if x.role != 'sales' %}
+			<a href="#" onclick="dropDown1()">History..</a>
+				<div class="dropdownside1">
+					<div id="myDropdown1" class="dropdown-content" style="display: none">
+					<a href="{{ url_for('mytickets') }}">My Tickets</a>
+					{% if session['id'] %}
+					<a href="{{url_for('listticket')}}">View Tickets</a>
+					{% endif %}
+					</div>
+				</div>
+		{% endif %}
+	{% endfor %}
 
 	<a href="{{ url_for('searchcustomer')}}">Search</a>
 		<!-- Change later for other roles -->
@@ -118,7 +123,7 @@ function dropDown1() {
 				<a href="{{ url_for('charts')}}">Charts</a>
 			{% endif %}
 			{% if x.role == "manager" %}
-				<a href="{{url_for('masterlist')}}">Master List</a>
+				<a href="{{url_for('masterlist')}}"  target="_blank">Master List</a>
 			{% endif %}
 		{% endfor %}
 </div>

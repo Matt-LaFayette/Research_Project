@@ -157,10 +157,11 @@ body {
     }
 }
 
-@media only screen and (max-width: 476px) {
+@media only screen and (max-width: 728px) {
 	.outer_card {
 		border: none;
 		border-style: none;
+    margin-top: 20%;
 	}
 }
 /*@media only screen and (min-width: 375px) {
@@ -172,10 +173,7 @@ body {
 /*end login page media queries*/
 
 .outer_ticket_search {
-	border-style: solid;
 	font-size: 16px;
-  border-left: none;
-  border-top: none;
 }
 
 @media only screen and (max-width: 375px) {
@@ -276,7 +274,7 @@ body {
 @media screen and (min-width: 700px) {
   .dropdown {
   	display: none;
-}
+  }
 }
 /* On screens that are less than 700px wide, make the sidebar into a topbar */
 @media screen and (max-width: 700px) {
@@ -292,9 +290,16 @@ body {
   }
 }
 
-@media screen and (min-width: 421px) {
+/*@media screen and (min-width: 421px) {
   #logged_in_user {
     position: absolute;
+  }
+}*/
+
+@media screen and (min-width: 701px) {
+  #logged_in_user {
+    position: absolute;
+    display: inline-block;
   }
 }
 
@@ -310,6 +315,8 @@ body {
     border-style: outset;
   }
 }
+
+
 
 @media only screen and (min-width: 319px) {
 	body {
