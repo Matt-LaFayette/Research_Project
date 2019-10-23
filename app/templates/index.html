@@ -15,7 +15,7 @@
 		<div class="top_header"><h1>Log In</h1></div>
 			<div class="outer_card">
 				<div class="top_bar" style="height: 10px;"><h4 style="padding-left: 3%;">Login</h4></div>
-				<div>
+				<div class="outer_login">
 					<div class="login" >
 				      	<form method="POST" action="http://127.0.0.1:5000/index">
 				    		{{ form.csrf_token }}
@@ -33,7 +33,9 @@
 			</div>
 	</div>
 
-
+<script>
+	$('.outer_card').css('height',($('.outer_login').height() + 50));
+</script>
 </body>
 
 <!-- <script>

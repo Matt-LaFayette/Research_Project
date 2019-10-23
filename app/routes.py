@@ -30,11 +30,11 @@ def load_user(user_id):
 
 customer = ""
 
-try:
-	testtime = Time.query.all()
-	#print (testtime)
-except:
-	print("I failed to query time")
+# try:
+# 	testtime = Time.query.all()
+# 	#print (testtime)
+# except:
+# 	print("I failed to query time")
 
 #cd C:\Users\MGLafayette\Desktop\Projects\Undergrade Research Project
 #env\Scripts\activate
@@ -63,7 +63,11 @@ def index():
 			print("found user")
 			if check_password_hash(user.password_hash, form.password.data):
 				login_user(user, remember=True)
-				return redirect(url_for('createticket'))
+				print(user.role)
+				if (user.role == "support"):
+					return redirect(url_for('createticket'))
+				if (user.role == "sales"):
+					return redirect(url_for('searchcustomer'))
 
 		return '<h1>Invalid username or password</h1>'
 	return render_template('index.html', form=form)
@@ -463,3 +467,22 @@ def charts():
 	re_label = "yellow"
 	no_label = "blue"
 	return render_template('charts.html', total_status=total_status, incorrect_status=incorrect_status, onboard_stats=onboard_stats, nocontact_status=nocontact_status, notwant_status=notwant_status, values=values, labels=labels, legend=legend, activated=activated, refused=refused, no_answer=no_answer)
+
+@app.route("/Activated")
+@login_required
+def Activated():
+	rep = current_user.username
+	onboarded_details= text('select s.sales_first_name, tic.o365status, tic.id, tic.description, tic.account_id from time t ' +
+	'join ticket tic ' +
+	'on t.cx_id = tic.account_id ' +
+	'join sales__rep s ' + 
+	'on s.sales_rep_id = t.assigned_by ' +
+	'where tic.o365status = "onboarded" and s.sales_first_name = "{}";'.format(rep))
+	sql5 = db.engine.execute(onboarded_details)
+	onboarded_query_details = sql5.fetchall()
+	#print(onboarded_query_details)
+	for x in onboarded_query_details:
+		print(x[0])
+	#still need to redo the sql queries to see individual tickets
+	#Maybe do an accordian? or drop down for the ticket stats?
+	return render_template('Activated.html', onboarded_query_details=onboarded_query_details)
