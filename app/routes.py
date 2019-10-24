@@ -462,6 +462,35 @@ def charts():
 
 	except:
 	 	print("I wasn't able to query the reps stats")
+
+	#need to add activations per month here
+	#
+	#select count(t.month), s.sales_first_name from time t
+	#join sales__rep s
+	#on s.sales_rep_id = t.assigned_by
+	#group by s.sales_rep_id;
+
+
+	#select count(t.month), s.sales_first_name from time t
+	#join sales__rep s
+	#on s.sales_rep_id = t.assigned_by
+	#where t.month = 2
+	#group by s.sales_rep_id;
+	x=1
+	# numbers do not look correct?
+	for x in range(1,13):
+		getmonthtotal = text("select count(t.month), s.sales_first_name from time t " +
+		"join sales__rep s " +
+		"on s.sales_rep_id = t.assigned_by " +
+		"where t.month = '{}' and s.sales_first_name = '{}' ".format(x,rep) +
+		"group by s.sales_first_name;")
+		sqlmonth = db.engine.execute(getmonthtotal)
+		test = sqlmonth.fetchall()
+		print(test)
+		print(x)
+		x = x + 1
+		#need to add an append to an array for below values for each month
+
 	values = [10, 9, 8, 7, 6, 4, 7, 8]
 	ac_label = "red"
 	re_label = "yellow"
