@@ -4,7 +4,8 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/style.css') }}">
 
-<h1 style="text-align: center;">Activated</h1>
+<h1 style="text-align: center;">Refused</h1>
+
 <table class="table table-striped table-bordered table-hover">
   <thead class="thead-dark">
     <tr>
@@ -18,7 +19,7 @@
   </thead>
   <tbody id="onboard_stats">
     <tr>
-{% for x in onboarded_query_details %}
+{% for x in refused_query_details %}
       <th scope="row">{{x[4]}}</th>
       <td>{{x[6]}}</td>
       <td>{{x[2]}}</td>

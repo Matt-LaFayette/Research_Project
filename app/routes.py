@@ -472,7 +472,7 @@ def charts():
 @login_required
 def Activated():
 	rep = current_user.username
-	onboarded_details= text('select s.sales_first_name, tic.o365status, tic.id, tic.description, tic.account_id from time t ' +
+	onboarded_details= text('select s.sales_first_name, tic.o365status, tic.id, tic.description, tic.account_id, tic.assigned_to, tic.contact_name from time t ' +
 	'join ticket tic ' +
 	'on t.cx_id = tic.account_id ' +
 	'join sales__rep s ' + 
@@ -480,9 +480,58 @@ def Activated():
 	'where tic.o365status = "onboarded" and s.sales_first_name = "{}";'.format(rep))
 	sql5 = db.engine.execute(onboarded_details)
 	onboarded_query_details = sql5.fetchall()
-	#print(onboarded_query_details)
-	for x in onboarded_query_details:
-		print(x[0])
+
 	#still need to redo the sql queries to see individual tickets
 	#Maybe do an accordian? or drop down for the ticket stats?
 	return render_template('Activated.html', onboarded_query_details=onboarded_query_details)
+
+@app.route("/Incorrect_Contact")
+@login_required
+def Incorrect_Contact():
+	rep = current_user.username
+	Incorrect_details= text('select s.sales_first_name, tic.o365status, tic.id, tic.description, tic.account_id, tic.assigned_to, tic.contact_name from time t ' +
+	'join ticket tic ' +
+	'on t.cx_id = tic.account_id ' +
+	'join sales__rep s ' + 
+	'on s.sales_rep_id = t.assigned_by ' +
+	'where tic.o365status = "Incorrect contact number" and s.sales_first_name = "{}";'.format(rep))
+	sql6 = db.engine.execute(Incorrect_details)
+	Incorrect_query_details = sql6.fetchall()
+	#still need to redo the sql queries to see individual tickets
+	#Maybe do an accordian? or drop down for the ticket stats?
+	return render_template('Incorrect_Contact.html', Incorrect_query_details=Incorrect_query_details)
+
+
+@app.route("/Refused")
+@login_required
+def Refused():
+	rep = current_user.username
+	refused_details= text('select s.sales_first_name, tic.o365status, tic.id, tic.description, tic.account_id, tic.assigned_to, tic.contact_name from time t ' +
+	'join ticket tic ' +
+	'on t.cx_id = tic.account_id ' +
+	'join sales__rep s ' + 
+	'on s.sales_rep_id = t.assigned_by ' +
+	'where tic.o365status = "Does not want" and s.sales_first_name = "{}";'.format(rep))
+	sql7 = db.engine.execute(refused_details)
+	refused_query_details = sql7.fetchall()
+	#still need to redo the sql queries to see individual tickets
+	#Maybe do an accordian? or drop down for the ticket stats?
+	return render_template('Refused.html', refused_query_details=refused_query_details)
+
+
+@app.route("/No_Contact")
+@login_required
+def No_Contact():
+	rep = current_user.username
+	contact_details= text('select s.sales_first_name, tic.o365status, tic.id, tic.description, tic.account_id, tic.assigned_to, tic.contact_name from time t ' +
+	'join ticket tic ' +
+	'on t.cx_id = tic.account_id ' +
+	'join sales__rep s ' + 
+	'on s.sales_rep_id = t.assigned_by ' +
+	'where tic.o365status = "No Contact" and s.sales_first_name = "{}";'.format(rep))
+	sql8 = db.engine.execute(contact_details)
+	contact_query_details = sql8.fetchall()
+	print(contact_query_details)
+	#still need to redo the sql queries to see individual tickets
+	#Maybe do an accordian? or drop down for the ticket stats?
+	return render_template('No_Contact.html', contact_query_details=contact_query_details)
