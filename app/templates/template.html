@@ -46,7 +46,7 @@
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
 function dropDown() {
-		var x = document.getElementById("myDropdown");
+	var x = document.getElementById("myDropdown");
 	if (x.style.display === "none") {
 		x.style.display = "block";
 	} else {
@@ -54,41 +54,40 @@ function dropDown() {
 	}
 }
 
-header_height = $('.top_header').height()
-
-$('#dropdownMenuButton').css('height', header_height)
-$('#dropdownMenuButton').css('width', header_height);
-</script>
-
-<script>
-/* When the user clicks on the button, 
-toggle between hiding and showing the dropdown content */
 function dropDown1() {
 	var x = document.getElementById("myDropdown1");
+	if (x.style.display === "none") {
+		x.style.display = "block";
+	}
+	else {
+		x.style.display = "none";
+	}
+}
 
+function dropDown2() {
+	var x = document.getElementById("myDropdown2");
 	if (x.style.display === "none") {
 		x.style.display = "block";
 	} 
-
 	else {
 		x.style.display = "none";
 	}
 }
 </script>
 
+<!-- helping to format css -->
 <script>
-	// if ($(window).width() > 423 && $(window).width() < 701) {
-	// 	$('#logged_in_user').css('right', $('.dropdown').width() + 5);
-	// };
-	
+header_height = $('.top_header').height()
+
+$('#dropdownMenuButton').css('height', header_height)
+$('#dropdownMenuButton').css('width', header_height);
+
 </script>
 
 
 <!-- The sidebar -->
 <div class="sidebar">
 	<a class="active" href="#">Home</a>
-	<a href="#">Search Ticket</a>
-
 	<a href="#" onclick="dropDown()">Create...</a>
 		<div class="dropdownside">
 			<div id="myDropdown" class="dropdown-content" style="display: none">
@@ -115,8 +114,13 @@ function dropDown1() {
 				</div>
 		{% endif %}
 	{% endfor %}
-
-	<a href="{{ url_for('searchcustomer')}}">Search</a>
+	<a href="#" onclick="dropDown2()">Search..</a>
+		<div class="dropdownside2">
+			<div id="myDropdown2" class="dropdown-content" style="display: none">
+				<a href="{{ url_for('searchcustomer')}}">Customer</a>
+				<a href="#">Search Ticket</a>
+			</div>
+		</div>
 		<!-- Change later for other roles -->
 		{% for x in user %} 
 			{% if x.role == "Support" or "manager" %}

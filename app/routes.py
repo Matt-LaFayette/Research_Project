@@ -396,8 +396,7 @@ def charts():
 	refused = 1
 	no_answer = 4
 	#probably want to use a dict for some of these values
-	legend = 'Clients Activated'
-	labels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "December"]
+	
 
 	try:
 		rep = current_user.username
@@ -458,40 +457,54 @@ def charts():
 			+ "having sales_first_name = '{}';".format(rep))
 		sql4 = db.engine.execute(gettotal)
 		total_status = sql4.fetchall()
-		print(total_status)
+		# print(total_status)
 
 	except:
 	 	print("I wasn't able to query the reps stats")
 
 	#need to add activations per month here
-	#
-	#select count(t.month), s.sales_first_name from time t
-	#join sales__rep s
-	#on s.sales_rep_id = t.assigned_by
-	#group by s.sales_rep_id;
 
+	#This is correct!
+	# select count(t.month), s.sales_first_name from time t
+	# join sales__rep s
+	# on s.sales_rep_id = t.assigned_by
+	# where t.month = 2
+	# group by s.sales_rep_id;
 
-	#select count(t.month), s.sales_first_name from time t
-	#join sales__rep s
-	#on s.sales_rep_id = t.assigned_by
-	#where t.month = 2
-	#group by s.sales_rep_id;
 	x=1
+	total_month_stats = []
+	values = []
+
 	# numbers do not look correct?
 	for x in range(1,13):
 		getmonthtotal = text("select count(t.month), s.sales_first_name from time t " +
 		"join sales__rep s " +
 		"on s.sales_rep_id = t.assigned_by " +
-		"where t.month = '{}' and s.sales_first_name = '{}' ".format(x,rep) +
+		"join ticket tic " +
+		"on tic.account_id = t.cx_id "
+		"where t.month = '{}' and tic.o365status = 'onboarded' and s.sales_first_name = '{}' ".format(x,rep) +
 		"group by s.sales_first_name;")
 		sqlmonth = db.engine.execute(getmonthtotal)
 		test = sqlmonth.fetchall()
-		print(test)
-		print(x)
+		total_month_stats.append(test)
+		if total_month_stats[x-1]:
+			print(x)
+			values.append(total_month_stats[x-1][0][0])
+		else:
+			values.append(0)
+		# print(test)
+		# print(x)
+		
 		x = x + 1
-		#need to add an append to an array for below values for each month
 
-	values = [10, 9, 8, 7, 6, 4, 7, 8]
+	#gets individual month value
+	#print(total_month_stats[2][0][0])
+	#out of range
+	#print(total_month_stats[0][0])
+	
+	legend = 'Clients Activated'
+	labels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+	#values = [10, 9, 8, 7, 6, 4, 7, 8]
 	ac_label = "red"
 	re_label = "yellow"
 	no_label = "blue"
@@ -501,7 +514,7 @@ def charts():
 @login_required
 def Activated():
 	rep = current_user.username
-	onboarded_details= text('select s.sales_first_name, tic.o365status, tic.id, tic.description, tic.account_id, tic.assigned_to, tic.contact_name from time t ' +
+	onboarded_details= text('select s.sales_first_name, tic.o365status, tic.id, tic.description, tic.account_id, tic.assigned_to, tic.contact_name, s.sales_rep_id, s.sales_first_name from time t ' +
 	'join ticket tic ' +
 	'on t.cx_id = tic.account_id ' +
 	'join sales__rep s ' + 
@@ -509,16 +522,13 @@ def Activated():
 	'where tic.o365status = "onboarded" and s.sales_first_name = "{}";'.format(rep))
 	sql5 = db.engine.execute(onboarded_details)
 	onboarded_query_details = sql5.fetchall()
-
-	#still need to redo the sql queries to see individual tickets
-	#Maybe do an accordian? or drop down for the ticket stats?
 	return render_template('Activated.html', onboarded_query_details=onboarded_query_details)
 
 @app.route("/Incorrect_Contact")
 @login_required
 def Incorrect_Contact():
 	rep = current_user.username
-	Incorrect_details= text('select s.sales_first_name, tic.o365status, tic.id, tic.description, tic.account_id, tic.assigned_to, tic.contact_name from time t ' +
+	Incorrect_details= text('select s.sales_first_name, tic.o365status, tic.id, tic.description, tic.account_id, tic.assigned_to, tic.contact_name, s.sales_rep_id, s.sales_first_name from time t ' +
 	'join ticket tic ' +
 	'on t.cx_id = tic.account_id ' +
 	'join sales__rep s ' + 
@@ -526,8 +536,6 @@ def Incorrect_Contact():
 	'where tic.o365status = "Incorrect contact number" and s.sales_first_name = "{}";'.format(rep))
 	sql6 = db.engine.execute(Incorrect_details)
 	Incorrect_query_details = sql6.fetchall()
-	#still need to redo the sql queries to see individual tickets
-	#Maybe do an accordian? or drop down for the ticket stats?
 	return render_template('Incorrect_Contact.html', Incorrect_query_details=Incorrect_query_details)
 
 
@@ -535,7 +543,7 @@ def Incorrect_Contact():
 @login_required
 def Refused():
 	rep = current_user.username
-	refused_details= text('select s.sales_first_name, tic.o365status, tic.id, tic.description, tic.account_id, tic.assigned_to, tic.contact_name from time t ' +
+	refused_details= text('select s.sales_first_name, tic.o365status, tic.id, tic.description, tic.account_id, tic.assigned_to, tic.contact_name, s.sales_rep_id, s.sales_first_name from time t ' +
 	'join ticket tic ' +
 	'on t.cx_id = tic.account_id ' +
 	'join sales__rep s ' + 
@@ -543,8 +551,6 @@ def Refused():
 	'where tic.o365status = "Does not want" and s.sales_first_name = "{}";'.format(rep))
 	sql7 = db.engine.execute(refused_details)
 	refused_query_details = sql7.fetchall()
-	#still need to redo the sql queries to see individual tickets
-	#Maybe do an accordian? or drop down for the ticket stats?
 	return render_template('Refused.html', refused_query_details=refused_query_details)
 
 
@@ -552,7 +558,7 @@ def Refused():
 @login_required
 def No_Contact():
 	rep = current_user.username
-	contact_details= text('select s.sales_first_name, tic.o365status, tic.id, tic.description, tic.account_id, tic.assigned_to, tic.contact_name from time t ' +
+	contact_details= text('select s.sales_first_name, tic.o365status, tic.id, tic.description, tic.account_id, tic.assigned_to, tic.contact_name, s.sales_rep_id, s.sales_first_name from time t ' +
 	'join ticket tic ' +
 	'on t.cx_id = tic.account_id ' +
 	'join sales__rep s ' + 
@@ -560,7 +566,4 @@ def No_Contact():
 	'where tic.o365status = "No Contact" and s.sales_first_name = "{}";'.format(rep))
 	sql8 = db.engine.execute(contact_details)
 	contact_query_details = sql8.fetchall()
-	print(contact_query_details)
-	#still need to redo the sql queries to see individual tickets
-	#Maybe do an accordian? or drop down for the ticket stats?
 	return render_template('No_Contact.html', contact_query_details=contact_query_details)
