@@ -64,10 +64,12 @@ def index():
 			if check_password_hash(user.password_hash, form.password.data):
 				login_user(user, remember=True)
 				print(user.role)
+				flash("success")
 				if (user.role == "support"):
 					return redirect(url_for('createticket'))
 				if (user.role == "sales"):
 					return redirect(url_for('searchcustomer'))
+				
 
 		return '<h1>Invalid username or password</h1>'
 	return render_template('index.html', form=form)
