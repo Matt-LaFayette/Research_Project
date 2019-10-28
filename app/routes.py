@@ -124,10 +124,17 @@ def register():
 		return redirect(url_for('index'))
 	form = RegistrationForm()
 	if form.validate_on_submit():
-		user = User(username=form.username.data, email=form.email.data, role=str(form.userrole.data))
+		username = form.username.data
+		email=form.email.data
+		role=form.userrole.data
+
+		# user = User(username=form.username.data, email=form.email.data, role=form.userrole.data)
 		user.set_password(form.password.data)
-		db.session.add(user)
+		sql = text('INSERT INTO user (username, email, password_hash, role) VALUES (%s, %s, %s, %s);'.format(username, email, user.password_hash, role))
+		db.engine.execute(sql)
 		db.session.commit()
+		# db.session.add(user)
+		# db.session.commit()
 		flash('Congratulations, you are now a registered user!')
 		return redirect(url_for('index'))
 	return render_template('register.html', title='Register', form=form)
