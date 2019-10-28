@@ -129,7 +129,7 @@ def register():
 		role=form.userrole.data
 		user = User(username=form.username.data, email=form.email.data, role=form.userrole.data)
 		user.set_password(form.password.data)
-		sql = text('INSERT INTO user (username, email, password_hash, role) VALUES (%s, %s, %s, %s);'.format(username, email, user.password_hash, role))
+		sql = text('INSERT INTO user (username, email, password_hash, role) VALUES ({}, {}, {}, {});'.format(username, email, user.password_hash, role))
 		db.engine.execute(sql)
 		db.session.commit()
 		# db.session.add(user)
