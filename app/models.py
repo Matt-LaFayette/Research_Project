@@ -13,10 +13,11 @@ from sqlalchemy import text
 # You will need to manually create the tables from the command line but will make future changes much easier as the app grows
 
 
-##After mysql migration
-#tables auto create
-#to create sequence please use ALTER TABLE ORD AUTO_INCREMENT = 622;
-##restart flask to recreate tables after dropping
+##open admin cmd
+#paste 
+# cd C:\Program Files\MySQL\MySQL Server 8.0\bin
+# mysqldump -e -uMatt -pElements1! -hlocalhost crm_system > C:\project.sql;
+
 
 # Table for customers (when created)
 #done
