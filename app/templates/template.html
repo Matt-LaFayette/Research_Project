@@ -20,28 +20,48 @@
 <body>
 	<div class="content">	
 		<div class="top_header">
-			<a href="{{ url_for('index') }}">
-			<input class="btn btn-secondary btn-sm btn-block" id="back_button" value="Back" style="text-align: left; margin-top: .75rem;"></a>
 			
+			<input class="btn btn-secondary btn-sm btn-block" id="back_button" value="Back" onclick="goBack()" style="text-align: left; margin-top: .75rem;">
+			<script>
+				function goBack() {
+					window.history.back();
+				}
+
+			</script>
+
+
 			<div style="display:inline-block; margin-left: auto;">
 				<div id="title" style="display: inline-block;"><h1>{% if title %}{{ title }}{% else %}title{% endif %}</h1>
 				</div>
 				<div id="logged_in_user" style="display: inline-block; position: absolute; right: 15;">Logged in: {{current_user.username}}<br>{% for x in user %} ({{ x.role }}) {% endfor %} <a href="{{url_for('logout')}}">Log Out </a>
 				</div>
 			</div>
-			
+			<!-- Hamburger button -->
 			<div class="dropdown" style="float: right; margin-left: auto;">
 				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
 
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					{% for x in user %} 
+						{% if x.role != 'sales' %}
+							<a class="dropdown-item" href="{{ url_for('createticket')}}">Create Ticket</a>
+						{% endif %}
+					{% endfor %}
 					<a class="dropdown-item" href="{{ url_for('createcustomer')}}">New Customer</a>
-					<a class="dropdown-item" href="{{ url_for('createticket')}}">Create Ticket</a>
-					<a class="dropdown-item" href="{{ url_for('searchcustomer')}}">Search</a>
+					<a class="dropdown-item" href="{{ url_for('calendar', month=month)}}">Appointment</a>
 					<a class="dropdown-item" href="{{ url_for('salesorder')}}">Orders</a>
+					<a class="dropdown-item" href="{{ url_for('searchcustomer')}}">Search</a>
+
+					{% for x in user %} 
+						{% if x.role == "Support" or "manager" %}
+							<a class="dropdown-item" href="{{ url_for('charts')}}">Charts</a>
+						{% endif %}
+						{% if x.role == "manager" %}
+							<a class="dropdown-item" href="{{url_for('masterlist')}}"  target="_blank">Master List</a>
+						{% endif %}
+					{% endfor %}
 				</div>
 			</div>
 		</div>
-
 <script>
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
@@ -52,6 +72,7 @@ function dropDown() {
 	} else {
 		x.style.display = "none";
 	}
+
 }
 
 function dropDown1() {
@@ -73,6 +94,29 @@ function dropDown2() {
 		x.style.display = "none";
 	}
 }
+
+
+// $('#myDropdown').on({
+//   mouseenter: function() {
+//     $(this).fadeTo(500, 1); // or whatever
+//   },
+//   mouseleave: function() {
+//     $(this).fadeTo(500, 0.85); // or whatever
+//   }
+// }, '#myDropdown');
+
+// $('#myDropdown').hover( function ()  { $(this).fadeTo(500,0);});
+
+
+$('#myDropdown').hover(
+    function () {
+        $(this).fadeTo(500, 1);
+    }, 
+    function () {
+        $(this).fadeOut("fast");
+    }
+);
+
 </script>
 
 <!-- helping to format css -->
@@ -133,6 +177,7 @@ $('#dropdownMenuButton').css('width', header_height);
 </div>
 
 <script>
+
 function myFunction() {
 	$.ajax({
 		url : "http://127.0.0.1:5000/clearsession", 
@@ -145,6 +190,28 @@ function myFunction() {
 		}
 	})
 };
+
+// when you move mouse off list, list disappears
+$('#myDropdown').hover(
+    function () {
+        $(this).fadeTo(500, 1);
+    }, 
+    function () {
+        $(this).fadeOut();
+    }
+);
+
+
+$('#myDropdown2').hover(
+    function () {
+        $(this).fadeTo(500, 1);
+    }, 
+    function () {
+        $(this).fadeOut();
+    }
+);
+
+
 </script>
 
 <div class="bottom" id="test">

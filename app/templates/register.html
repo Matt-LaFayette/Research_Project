@@ -1,10 +1,14 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<div class="outer" style="margin-left: auto; margin-right: auto;">
-        <h1 style="text-align: center;">Register</h1>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/style.css') }}">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</script>
+    <div class="content">
+        <div class="top_header"><h1>Register</h1></div>
+<div class="outer_card" style="margin-left: auto; margin-right: auto;">
+    <div class="top_bar" style="height: 10px;"><h4 style="padding-left: 3%;">Information</h4></div>
+    <div class="login">
     <div class="input-group input-group-lg">
         <!-- <div class="input-group-prepend"> -->
 {% block content %}
@@ -44,6 +48,7 @@
         <p class="submit" style="margin-right: auto; margin-left: auto;">{{ form.submit() }}</p>
     </p>
     </form>
+    </div>
 </div>
 {% endblock %}
 </div>
@@ -51,7 +56,7 @@
 
 <script>
 
-$('#email').addClass('form-control');
+$('#email').addClass('email form-control');
 $('#username').addClass('form-control');
 $('#password').addClass('form-control');
 $('#password2').addClass('form-control');
@@ -59,4 +64,6 @@ $('#userrole').addClass('form-control');
 $('#submit').addClass('btn btn-primary');
 
 $('.submit').width($('#submit').outerWidth())
+
+$('.outer_card').height($('.login').innerHeight());
 </script>

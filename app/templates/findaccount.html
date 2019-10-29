@@ -16,14 +16,16 @@ function myFunction1() {
 
 <div class="outer_ticket_search">
   <div id="results">
-    <h2>Is this the correct customer?</h2>
+    <br>
+    <h2 style="font-weight: bold; text-align: center;">Is this the correct customer?</h2>
+    <br>
 <table class="table table-striped table-bordered table-hover">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Phone Number</th>
-      <th scope="col">Email Address</th>
+      <th scope="col" id="id">ID</th>
+      <th scope="col" id="name">Name</th>
+      <th scope="col" id="phonenumber">Phone Number</th>
+      <th scope="col" id="email_chart">Email Address</th>
       <th scope="col">Select</th>
     </tr>
   </thead>
@@ -34,7 +36,7 @@ function myFunction1() {
       <th scope="row" id="id">{{x.cx_id}}</th>
       <td id="name">{{x.customer_fname}}</td>
       <td id="phonenumber">{{x.phone_num}}</td>
-      <td id="email">{{x.email}}</td>
+      <td id="email_chart">{{x.email}}</td>
         <!-- handle this with an ajax call like before -->
       <td><input class="btn btn-secondary btn-sm btn-block" id="submit_button" type="submit" onclick="myFunction1()" name="{{loop.index}}Select"  value="Select"></td>
     </tr>

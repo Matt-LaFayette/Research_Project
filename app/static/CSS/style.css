@@ -105,10 +105,9 @@ body {
     border-style: solid;
 }
 
-	#dropdownMenuButton {
-		/*margin-top: 96%;*/
-
-	}
+  #dropdownMenuButton {
+    height: 2rem;
+  }
 
 /*login page media queries */
 @media only screen and (min-width: 744px) {
@@ -122,7 +121,7 @@ body {
 
 @media only screen and (min-width: 728px) {
   .outer_card {
-      margin-top: 10%;
+      margin-top: 8%;
       max-width: 728px;
       margin-left: auto;
       margin-right: auto;
@@ -136,7 +135,7 @@ body {
   }
 }
 
-@media only screen and (max-width: 321px) {
+@media only screen and (max-width: 342px) {
 	.top_header h1 {
 		font-size: 2rem;
 		clear: both;
@@ -147,7 +146,9 @@ body {
 		background: #004B87;
 		color: white;
 	}
-
+  #dropdownMenuButton {
+    height: 2rem;
+  }
 
 }
 @media only screen and (min-width: 334px) {
@@ -169,7 +170,7 @@ body {
 	.outer_card {
 		border: none;
 		border-style: none;
-    margin-top: 20%;
+    margin-top: 5%;
 	}
 }
 /*@media only screen and (min-width: 375px) {
@@ -219,9 +220,9 @@ body {
 
 
 #ticket_search {
-	padding-right: 7%;
+	padding-right: 15%;
     /*padding-top: 7%;*/
-    padding-left: 7%;
+    padding-left: 15%;
 }
 
 .error {
@@ -298,11 +299,19 @@ body {
   }
 }
 
-/*@media screen and (min-width: 421px) {
-  #logged_in_user {
-    position: absolute;
+/* On screens that are less than 540px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 540px) {
+  #phonenumber {
+    display: none;
   }
-}*/
+}
+
+/* On screens that are less than 428px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 428px) {
+  #email_chart {
+    display: none;
+  }
+}
 
 @media screen and (min-width: 701px) {
   #logged_in_user {
@@ -322,6 +331,10 @@ body {
     background: white;
     border-style: outset;
   }
+  #name, #id, #phonenumber, #email {
+    text-align: center;
+  }
+
 }
 
 
