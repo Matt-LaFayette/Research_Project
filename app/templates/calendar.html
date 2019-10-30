@@ -1,27 +1,115 @@
 {% include 'template.html' %}
 
 
-<script>
-	function ajaxfunction() {
 
-     $.ajax({
-       url : 'http://127.0.0.1:5000/calendar', 
-       type : 'POST',
-       success: function(msg) {
-       					$('#ticket_search').html("test");
-                         // $(results).fadeOut(800);
-                         // $('#test').load(document.URL + ' #test')
-                         // $('#test').fadeIn(800);
-         }
-     })
- };
-</script>
+
+
+
+
+
 
 <div class="outer_ticket_search">
-    <form method="GET" action="#">
-    {{ form.date_input }}
-	<button>test</button>
-</form>
+
+
+    <div class="row">
+
+<!--         <div class="col">
+            <div class="input-group-month">
+              <select class="custom-select" name="inputGroupSelect03" id="inputGroupSelect03">
+                <option selected>Month...</option>
+                <option value="1">January</option>
+                <option value="2">Febuary</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+              </select>
+            </div>
+        </div> -->
+<form method="POST" action="{{url_for('calendar', month=month)}}">
+        <div class="col">
+            <div class="input-group-day">
+              <select class="custom-select" name="inputGroupSelect03" id="inputGroupSelect03">
+                <option selected>Day...</option>
+                {% for x in range(daysinmonth) %}
+                <option value="{{x + 1}}">{{x + 1}}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <button onclick="ajaxfunction()">Select day</button>
+        </div>
+<!-- put route to bring up times here -->
+
+<!--         <div class="col">
+            <div class="input-group-year">
+              <select class="custom-select" id="inputGroupSelect05">
+                <option selected>Year...</option>
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+              </select>
+            </div>
+        </div> -->
+
+        <div class="col">
+            <div class="input-group-time" style="display: none;">
+              <select class="custom-select" name="inputGroupSelect06" id="inputGroupSelect06">
+                <option selected>Time...</option>
+                <option id="9AM" value="09:00:00">9am</option>
+                <option id="10AM" value="10:00:00">10am</option>
+                <option id="11AM" value="11:00:00">11am</option>
+                <option id="12PM" value="12:00:00">12pm</option>
+                <option id="1PM" value="13:00:00">1pm</option>
+                <option id="2PM" value="14:00:00">2pm</option>
+                <option id="3PM" value="15:00:00">3pm</option>
+                <option id="4PM" value="16:00:00">4pm</option>
+                <option id="5PM" value="17:00:00">5pm</option>
+              </select>
+              </form>
+            </div>
+            <input class="btn btn-secondary btn-sm btn-block" id="submit_button" type="submit" id="time_button">select time</input>
+        </div>
+
+<!-- post for time writing to db -->
+
+
+<script>
+    function ajaxfunction() {
+        event.preventDefault();
+     $.ajax({
+       url : 'http://127.0.0.1:5000/getdays/{{month}}', 
+       type : 'POST',
+       success: function(msg) {
+                        $('.input-group-time').show();
+                        $('#time_button').show();
+                        
+                        //script to scan already used appts and block those off
+                         for (i = 0; i < ($(".hidden").children().length); i++) {
+                            if ($(".month"+(i+1)).text() == {{month}}){
+                                if(($(".day"+(i+1))).text() == $("#inputGroupSelect03").val()) {
+                                    $('#'+ $(".hour"+(i+1)).text()).hide();
+                                }
+                            }
+                        }
+        }
+     })
+    };
+
+
+
+</script>
+
+
+</div>
+
+<br>
+	
+
     <!-- div for  -->
 <div id="appt_time" style="display: none;margin-left: 50%">
 	<br>

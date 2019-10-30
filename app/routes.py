@@ -164,7 +164,7 @@ def createcustomer():
 	form = CreateCustomer()
 	user = User.query.filter_by(username=current_user.username)
 	title = 'Customer'
-	return render_template('createcustomer.html', user=user, title=title, form=form)
+	return render_template('createcustomer.html', month=month, user=user, title=title, form=form)
 
 @app.route('/mytickets', methods=('GET', 'POST'))
 @login_required
@@ -197,7 +197,7 @@ def searchcustomer():
 	form1 = SearchCustomer()
 	user = User.query.filter_by(username=current_user.username)
 	title = "Search"
-	return render_template('searchcustomer.html', user=user, title=title, form1=form1)
+	return render_template('searchcustomer.html', month=month, user=user, title=title, form1=form1)
 
 #this route is linked to searchcustomer and displays the results found
 @app.route('/findaccount', methods=('GET', 'POST'))
@@ -336,7 +336,12 @@ def calendar(month):
 	user = User.query.filter_by(username=current_user.username)
 	dt = datetime.datetime.now()
 	yyyy = dt.year
-
+	print(monthrange(2019,10))
+	try:
+		print("day: " + request.form['inputGroupSelect03'])
+		# print("time: " + request.form['inputGroupSelect06'])
+	except:
+		print("month and or time failed")
 	try:
 		#testtime = Time.query.order_by('hour').all()
 		#####Need to change
@@ -344,11 +349,11 @@ def calendar(month):
 		sqlquery = text("SELECT month, day, date_format(hour, '%l%p') from time;")
 		sql = db.engine.execute(sqlquery)
 		testtime = sql.fetchall()
-		for x in testtime:
-			print (x)
+		# for x in testtime:
+		# 	print (x)
 	except:
 		print("unable to query time")
-	print (testtime)
+	# print (testtime)
 	# num_days = monthrange(2019, 2)[1] # num_days = 28
 	# print(num_days)
 	tc= HTMLCalendar(firstweekday=6)
@@ -376,8 +381,13 @@ def calendar(month):
 		print(form.date_input.data)
 	except:
 		print("failed to get date input")
-	return render_template('calendar.html', form=form, month=month, user=user, cal=cal, testtime=testtime)
+	daysinmonth = monthrange(2019,10)[1]
+	return render_template('calendar.html', daysinmonth=daysinmonth, form=form, month=month, user=user, cal=cal, testtime=testtime)
 
+@app.route("/getdays/<month>", methods=('GET', 'POST'))
+def getdays(month):
+	daysinmonth = monthrange(2019,10)
+	return str(daysinmonth)
 
 #route for line graph
 @app.route("/simple_chart")
