@@ -337,9 +337,10 @@ def calendar(month):
 	dt = datetime.datetime.now()
 	yyyy = dt.year
 	print(monthrange(2019,10))
+	# testing to see if form fields are being grabbed
 	try:
 		print("day: " + request.form['inputGroupSelect03'])
-		# print("time: " + request.form['inputGroupSelect06'])
+		print("time: " + request.form['inputGroupSelect06'])
 	except:
 		print("month and or time failed")
 	try:
@@ -353,9 +354,6 @@ def calendar(month):
 		# 	print (x)
 	except:
 		print("unable to query time")
-	# print (testtime)
-	# num_days = monthrange(2019, 2)[1] # num_days = 28
-	# print(num_days)
 	tc= HTMLCalendar(firstweekday=6)
 	cal = tc.formatmonth(int(year), int(month))
 	# might not need
@@ -377,10 +375,6 @@ def calendar(month):
 		print("committing...")
 	except:
 		print("I failed to grab the appt form")
-	try:
-		print(form.date_input.data)
-	except:
-		print("failed to get date input")
 	daysinmonth = monthrange(2019,10)[1]
 	return render_template('calendar.html', daysinmonth=daysinmonth, form=form, month=month, user=user, cal=cal, testtime=testtime)
 
