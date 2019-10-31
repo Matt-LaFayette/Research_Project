@@ -30,12 +30,6 @@ def load_user(user_id):
 
 customer = ""
 
-# try:
-# 	testtime = Time.query.all()
-# 	#print (testtime)
-# except:
-# 	print("I failed to query time")
-
 #cd C:\Users\MGLafayette\Desktop\Projects\Undergrade Research Project
 #env\Scripts\activate
 #set FLASK_ENV=development
@@ -205,7 +199,6 @@ def searchcustomer():
 def findaccount():
 	title = "Find Account"
 	form = SearchCustomer()
-	# print (session['response'])
 	customerid = form.cx_id.data
 	customerfname = form.customer_fname.data
 	customerlname = form.customer_lname.data
@@ -306,7 +299,7 @@ def selectcustomer(id):
 		for x in appt_info:
 			session['month'] = x.month
 			session['day'] = x.day
-			session['hour'] = x.hour
+			session['hour'] = str(x.hour)
 	except:
 		print("time query failed")
 	for x in cx_info:
@@ -336,26 +329,37 @@ def calendar(month):
 	user = User.query.filter_by(username=current_user.username)
 	dt = datetime.datetime.now()
 	yyyy = dt.year
-	print(monthrange(2019,10))
 	# testing to see if form fields are being grabbed
+
+#
+
+
+
+#
 	try:
 		print("day: " + request.form['inputGroupSelect03'])
+		day = request.form['inputGroupSelect03']
 		print("time: " + request.form['inputGroupSelect06'])
+		appt_time = request.form['inputGroupSelect06']
+		sql_get_id = text("SELECT sales_rep_id from sales__rep WHERE sales_first_name= '{}';".format(current_user.username))
+		sql_id = db.engine.execute(sql_get_id)
+		assigned_by = sql_id.fetchone()
+		print("assigned: " + str(assigned_by[0]))
+		apptime = Time(month=month, day=day, hour=appt_time, cx_id=session['id'], assigned_by=assigned_by[0])
+		db.session.add(apptime)
+		db.session.commit()
+		print("Successfully added appt to db")
 	except:
 		print("month and or time failed")
 	try:
-		#testtime = Time.query.order_by('hour').all()
-		#####Need to change
-		#testtime = []
 		sqlquery = text("SELECT month, day, date_format(hour, '%l%p') from time;")
 		sql = db.engine.execute(sqlquery)
 		testtime = sql.fetchall()
-		# for x in testtime:
-		# 	print (x)
 	except:
 		print("unable to query time")
 	tc= HTMLCalendar(firstweekday=6)
 	cal = tc.formatmonth(int(year), int(month))
+	
 	# might not need
 	try:
 		print(request.form.get('appt'))

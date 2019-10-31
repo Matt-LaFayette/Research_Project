@@ -1,138 +1,67 @@
 {% include 'template.html' %}
-
-
-
-
-
-
-
-
-
 <div class="outer_ticket_search">
-
-
     <div class="row">
+        <form method="POST" action="{{url_for('calendar', month=month)}}" style="display: contents;">
+                <div class="col">
+                    <div class="input-group-day">
+                      <select class="custom-select" name="inputGroupSelect03" id="inputGroupSelect03">
+                        <option selected>Day...</option>
+                        {% for x in range(daysinmonth) %}
+                        <option value="{{x + 1}}">{{x + 1}}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    <button class="btn btn-success btn-block" onclick="ajaxfunction()">Select day</button>
+                </div>
 
-<!--         <div class="col">
-            <div class="input-group-month">
-              <select class="custom-select" name="inputGroupSelect03" id="inputGroupSelect03">
-                <option selected>Month...</option>
-                <option value="1">January</option>
-                <option value="2">Febuary</option>
-                <option value="3">March</option>
-                <option value="4">April</option>
-                <option value="5">May</option>
-                <option value="6">June</option>
-                <option value="7">July</option>
-                <option value="8">August</option>
-                <option value="9">September</option>
-                <option value="10">October</option>
-                <option value="11">November</option>
-                <option value="12">December</option>
-              </select>
-            </div>
-        </div> -->
-<form method="POST" action="{{url_for('calendar', month=month)}}">
-        <div class="col">
-            <div class="input-group-day">
-              <select class="custom-select" name="inputGroupSelect03" id="inputGroupSelect03">
-                <option selected>Day...</option>
-                {% for x in range(daysinmonth) %}
-                <option value="{{x + 1}}">{{x + 1}}</option>
-                {% endfor %}
-              </select>
-            </div>
-            <button onclick="ajaxfunction()">Select day</button>
-        </div>
-<!-- put route to bring up times here -->
-
-<!--         <div class="col">
-            <div class="input-group-year">
-              <select class="custom-select" id="inputGroupSelect05">
-                <option selected>Year...</option>
-                <option value="2019">2019</option>
-                <option value="2020">2020</option>
-              </select>
-            </div>
-        </div> -->
-
-        <div class="col">
-            <div class="input-group-time" style="display: none;">
-              <select class="custom-select" name="inputGroupSelect06" id="inputGroupSelect06">
-                <option selected>Time...</option>
-                <option id="9AM" value="09:00:00">9am</option>
-                <option id="10AM" value="10:00:00">10am</option>
-                <option id="11AM" value="11:00:00">11am</option>
-                <option id="12PM" value="12:00:00">12pm</option>
-                <option id="1PM" value="13:00:00">1pm</option>
-                <option id="2PM" value="14:00:00">2pm</option>
-                <option id="3PM" value="15:00:00">3pm</option>
-                <option id="4PM" value="16:00:00">4pm</option>
-                <option id="5PM" value="17:00:00">5pm</option>
-              </select>
-              </form>
-            </div>
-            <input class="btn btn-secondary btn-sm btn-block" id="submit_button" type="submit" id="time_button">select time</input>
-        </div>
-
+                <div class="col">
+                    <div class="input-group-time" style="display: none;">
+                      <select class="custom-select" name="inputGroupSelect06" id="inputGroupSelect06">
+                        <option selected>Time...</option>
+                        <option id="9AM" value="09:00:00">9am</option>
+                        <option id="10AM" value="10:00:00">10am</option>
+                        <option id="11AM" value="11:00:00">11am</option>
+                        <option id="12PM" value="12:00:00">12pm</option>
+                        <option id="1PM" value="13:00:00">1pm</option>
+                        <option id="2PM" value="14:00:00">2pm</option>
+                        <option id="3PM" value="15:00:00">3pm</option>
+                        <option id="4PM" value="16:00:00">4pm</option>
+                        <option id="5PM" value="17:00:00">5pm</option>
+                      </select>
+                      </form>
+                    </div>
+                    <button class="btn btn-success btn-block" id="time_button" style="display: none;">Select Time</button>
+                </div>
+                <div class="col">
+                </div>
 <!-- post for time writing to db -->
-
-
-<script>
-    function ajaxfunction() {
-        event.preventDefault();
-     $.ajax({
-       url : 'http://127.0.0.1:5000/getdays/{{month}}', 
-       type : 'POST',
-       success: function(msg) {
-                        $('.input-group-time').show();
-                        $('#time_button').show();
-                        
-                        //script to scan already used appts and block those off
-                         for (i = 0; i < ($(".hidden").children().length); i++) {
-                            if ($(".month"+(i+1)).text() == {{month}}){
-                                if(($(".day"+(i+1))).text() == $("#inputGroupSelect03").val()) {
-                                    $('#'+ $(".hour"+(i+1)).text()).hide();
+    <script>
+        function ajaxfunction() {
+            event.preventDefault();
+         $.ajax({
+           url : 'http://127.0.0.1:5000/getdays/{{month}}', 
+           type : 'POST',
+           success: function(msg) {
+                            $('.input-group-time').show();
+                            $('#time_button').show();
+                            $('#submit_button').show();
+                            
+                            //script to scan already used appts and block those off
+                             for (i = 0; i < ($(".hidden").children().length); i++) {
+                                if ($(".month"+(i+1)).text() == {{month}}){
+                                    if(($(".day"+(i+1))).text() == $("#inputGroupSelect03").val()) {
+                                        $('#'+ $(".hour"+(i+1)).text()).hide();
+                                    }
                                 }
                             }
-                        }
-        }
-     })
-    };
-
-
-
-</script>
-
-
+            }
+         })
+        };
+    </script>
+<!-- End of row -->
 </div>
 
 <br>
-	
-
-    <!-- div for  -->
-<div id="appt_time" style="display: none;margin-left: 50%">
-	<br>
-	<br>
-	<div id="month" style="display: inline-block;"></div>/<div id="day" style="display: inline-block;"></div>
-	<p>need to find a way to submit month, date, and time to a table(Still need to create)</p>
-	<form method="POST" action="http://127.0.0.1:5000/calendar">
-	<select class="form-control" style="display: inline-block;" name="appt">
-	  <option value="9">9 AM</option>
-	  <option value="10">10 AM</option>
-	  <option value="11">11 AM</option>
-	  <option value="12">12 PM</option>
-	  <option value="13">1 PM</option>
-	  <option value="14">2 PM</option>
-	  <option value="15">3 PM</option>
-	  <option value="16">4 PM</option>
-	  <option value="17">5 PM</option>
-	</select>
-	<br>
-	<!-- add ajax function to add time-->
-	<input type="submit" name="test">
-	<!-- <button type="submit" class="btn btn-primary mb-2" onclick="ajaxfunction()">Select</button> -->
-</div>
 
 <script>
 	var d = new Date();
@@ -143,10 +72,12 @@
 </script>
 
 <script>
+    //cheating and using jquery to help format css
     $('#date_input').addClass('form-control');
     $('#date_input').prop({type:"datetime-local"});
     $('#date_input').css("width","30%");
     $('#date_input').css("text-align","center");
+    
 
 </script>
 
@@ -164,6 +95,7 @@
 
         <script>
             $('.btn.btn-outline-primary').css('width',($('.form-inline').width()/2))
+            
         </script>
 
         <br/>
@@ -230,12 +162,10 @@
         </select></form>
 
 
-
-
 </div>
 </div>
 
-<div class="hidden" style="display: visible;">
+<div class="hidden" style="display: none;">
 
 {% for x in testtime %}
     <div class="appt{{loop.index}}">
@@ -364,7 +294,7 @@ for (i = 0; i < len; i++) {
 
 
 
-
+$('.table').css('text-align','center');
     //checks values
     //$(".table").children().children().slice(2).children().is(":contains('10')" )
 

@@ -14,7 +14,7 @@ body {
   width: 80px;
 }
 
-#myDropdown {
+#myDropdown, #myDropdown1 {
   display: block;
   position: fixed;
   margin-left: 5%;
@@ -22,13 +22,6 @@ body {
   border: solid;
 }
 
-#myDropdown1 {
-  display: block;
-  position: fixed;
-  margin-left: 5%;
-  background: white;
-  border: solid;
-}
 
 #myDropdown2 {
   display: block;
