@@ -280,8 +280,6 @@ def masterlist():
 		ticket = Ticket.query.all()
 		user = User.query.all()
 		sales = Sales_Rep.query.all()
-		for x in ticket:
-			print(x.id)
 	except:
 		print("I failed the masterlist")
 		user = ""

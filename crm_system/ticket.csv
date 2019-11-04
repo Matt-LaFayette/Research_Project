@@ -1,62 +1,262 @@
 ﻿id,contact_name,account_id,description,version,priority,status,o365,o365status,valid_support,assigned_to
+80000002,Shir,40060989,Called twice and left voicemail,2019,Normal,Closed,1,No Contact,1,Anna-diana
+80000004,Lenna,40087209,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Irene
+80000005,May,40034483,Called twice and left voicemail,2019,Normal,Closed,1,No Contact,1,Alfy
+80000006,Ginni,40055314,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Sheba
+80000008,Chery,40007073,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Frederique
+80000009,Mylo,40035747,Called twice and left voicemail,2019,Normal,Closed,1,No Contact,1,Imogen
+80000010,Audrye,40038174,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Quincey
+80000011,Timmie,40062866,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Hesther
+80000012,Evangeline,40023590,Called twice and left voicemail,2019,Normal,Closed,1,No Contact,1,Gannon
 80000013,Tome,40004697,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Christa
 80000014,Erskine,40005868,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Catriona
-80000008,Chery,40007073,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Frederique
-80000060,Derron,40010570,Incorrect contact information,2020,Normal,Closed,1,Incorrect contact number,1,Gannon
-80000038,Natasha,40011693,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Catriona
-80000042,Catarina,40014532,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Faustina
-80000024,Emelda,40014706,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Nichols
-80000029,Demetri,40015243,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Alfy
-80000062,Arlette,40020445,Customer was unaware they were charged for 365,2020,Normal,Closed,1,Does not want,1,Catriona
-80000032,Rodolph,40020793,Called twice and left voicemail,2019,Normal,Closed,1,No Contact,1,Frederique
-80000012,Evangeline,40023590,Called twice and left voicemail,2019,Normal,Closed,1,No Contact,1,Gannon
-80000035,Faina,40027532,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Hesther
-80000044,Keith,40028289,Incorrect contact information,2019,Normal,Closed,1,Incorrect contact number,1,Dwain
-80000031,Corabel,40030728,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Babb
-80000005,May,40034483,Called twice and left voicemail,2019,Normal,Closed,1,No Contact,1,Alfy
-80000073,Maritsa,40035114,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Merrill
-80000009,Mylo,40035747,Called twice and left voicemail,2019,Normal,Closed,1,No Contact,1,Imogen
-80000048,Abeu,40036005,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Nichols
-80000065,Phaedra,40037504,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,David
-80000063,Nicolais,40037785,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Laney
-80000010,Audrye,40038174,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Quincey
-80000067,Waylin,40038182,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Matt
-80000086,Shela,40044260,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Catriona
-80000093,Lanita,40045312,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Meta
-80000047,Morse,40046085,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Keelby
-80000103,Chelsea,40046878,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Matt
-80000085,Tonya,40048032,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Christa
-80000054,Kin,40048424,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Sheba
-80000096,Kin,40048424,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Matt
-80000102,Jami,40050736,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Irene
-80000077,Adriena,40052055,Incorrect contact information,2020,Normal,Closed,1,Incorrect contact number,1,Alfy
-80000070,Irwin,40055294,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Constantina
-80000006,Ginni,40055314,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Sheba
-80000074,Jedediah,40056973,Customer was unaware they were charged for 365,2020,Normal,Closed,1,Does not want,1,Anna-diana
-80000002,Shir,40060989,Called twice and left voicemail,2019,Normal,Closed,1,No Contact,1,Anna-diana
 80000015,Michael,40062059,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Laney
-80000081,Rowena,40062764,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Imogen
-80000011,Timmie,40062866,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Hesther
-80000034,Lian,40064452,Customer was unaware they were charged for 365,2019,Normal,Closed,1,Does not want,1,Quincey
-80000097,Johan,40064990,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Irene
-80000104,Fredra,40065430,Customer was unaware they were charged for 365,2020,Normal,Closed,1,Does not want,1,Matt
-80000050,Chere,40069981,Customer was unaware they were charged for 365,2019,Normal,Closed,1,Does not want,1,Anna-diana
-80000083,Puff,40070364,Incorrect contact information,2020,Normal,Closed,1,Incorrect contact number,1,Hesther
-80000061,Priscella,40072987,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Christa
-80000057,Rici,40074891,Customer was unaware they were charged for 365,2020,Normal,Closed,1,Does not want,1,Imogen
-80000090,Wylie,40076024,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Faustina
-80000076,Rebeka,40079246,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Irene
-80000027,Porty,40080826,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Findlay
-80000053,Abigael,40080831,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Alfy
-80000088,Bonnee,40083325,Customer was unaware they were charged for 365,2020,Normal,Closed,1,Does not want,1,Arty
-80000040,Son,40083390,Customer was unaware they were charged for 365,2019,Normal,Closed,1,Does not want,1,Arty
-80000064,Kamillah,40084402,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Arty
-80000026,Brynn,40084695,Called twice and left voicemail,2019,Normal,Closed,1,No Contact,1,Anna-diana
-80000004,Lenna,40087209,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Irene
 80000019,Jeremias,40087512,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Matt
-80000092,Federico,40088714,Customer was unaware they were charged for 365,2020,Normal,Closed,1,Does not want,1,Dwain
-80000058,Lindsay,40088819,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Quincey
+80000024,Emelda,40014706,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Nichols
+80000026,Brynn,40084695,Called twice and left voicemail,2019,Normal,Closed,1,No Contact,1,Anna-diana
+80000027,Porty,40080826,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Findlay
+80000029,Demetri,40015243,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Alfy
+80000031,Corabel,40030728,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Babb
+80000032,Rodolph,40020793,Called twice and left voicemail,2019,Normal,Closed,1,No Contact,1,Frederique
+80000034,Lian,40064452,Customer was unaware they were charged for 365,2019,Normal,Closed,1,Does not want,1,Quincey
+80000035,Faina,40027532,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Hesther
+80000038,Natasha,40011693,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Catriona
+80000040,Son,40083390,Customer was unaware they were charged for 365,2019,Normal,Closed,1,Does not want,1,Arty
+80000042,Catarina,40014532,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Faustina
+80000044,Keith,40028289,Incorrect contact information,2019,Normal,Closed,1,Incorrect contact number,1,Dwain
+80000047,Morse,40046085,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Keelby
+80000048,Abeu,40036005,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Nichols
+80000050,Chere,40069981,Customer was unaware they were charged for 365,2019,Normal,Closed,1,Does not want,1,Anna-diana
+80000053,Abigael,40080831,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Alfy
+80000054,Kin,40048424,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Sheba
 80000056,Loralee,40090030,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Frederique
-80000099,Becky,40091870,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Matt
+80000057,Rici,40074891,Customer was unaware they were charged for 365,2020,Normal,Closed,1,Does not want,1,Imogen
+80000058,Lindsay,40088819,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Quincey
+80000060,Derron,40010570,Incorrect contact information,2020,Normal,Closed,1,Incorrect contact number,1,Gannon
+80000061,Priscella,40072987,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Christa
+80000062,Arlette,40020445,Customer was unaware they were charged for 365,2020,Normal,Closed,1,Does not want,1,Catriona
+80000063,Nicolais,40037785,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Laney
+80000064,Kamillah,40084402,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Arty
+80000065,Phaedra,40037504,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,David
+80000067,Waylin,40038182,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Matt
+80000070,Irwin,40055294,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Constantina
+80000073,Maritsa,40035114,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Merrill
+80000074,Jedediah,40056973,Customer was unaware they were charged for 365,2020,Normal,Closed,1,Does not want,1,Anna-diana
+80000076,Rebeka,40079246,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Irene
+80000077,Adriena,40052055,Incorrect contact information,2020,Normal,Closed,1,Incorrect contact number,1,Alfy
+80000081,Rowena,40062764,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Imogen
+80000083,Puff,40070364,Incorrect contact information,2020,Normal,Closed,1,Incorrect contact number,1,Hesther
+80000085,Tonya,40048032,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Christa
+80000086,Shela,40044260,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Catriona
 80000087,Corrinne,40097517,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Laney
+80000088,Bonnee,40083325,Customer was unaware they were charged for 365,2020,Normal,Closed,1,Does not want,1,Arty
+80000090,Wylie,40076024,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Faustina
 80000091,Caritta,40098339,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Matt
+80000092,Federico,40088714,Customer was unaware they were charged for 365,2020,Normal,Closed,1,Does not want,1,Dwain
+80000093,Lanita,40045312,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Meta
+80000096,Kin,40048424,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Matt
+80000097,Johan,40064990,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Irene
+80000099,Becky,40091870,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Matt
+80000102,Jami,40050736,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Irene
+80000103,Chelsea,40046878,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Matt
+80000104,Fredra,40065430,Customer was unaware they were charged for 365,2020,Normal,Closed,1,Does not want,1,Matt
+80000153,Noell,40004242,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,David
+80000159,Korry,40008403,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Irene
+80000162,Lothaire,40002625,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Alfy
+80000164,Adeline,40009142,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Laney
+80000169,Abbe,40008393,Customer was unaware they were charged for 365,2020,Normal,Closed,1,Does not want,1,Quincey
+80000173,Herminia,40000744,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Imogen
+80000176,Vernice,40003363,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Nichols
+80000177,Alvira,40005129,Customer was unaware they were charged for 365,2020,Normal,Closed,1,Does not want,1,Anna-diana
+80000178,Robinia,40006214,Customer was unaware they were charged for 365,2019,Normal,Closed,1,Does not want,1,Dwain
+80000179,Cornela,40005839,Called twice and left voicemail,2019,Normal,Closed,1,No Contact,1,Faustina
+80000181,Dorris,40005270,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Laney
+80000182,Zacharie,40009185,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Matt
+80000186,Feodora,40002831,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Matt
+80000189,Bunny,40005025,Incorrect contact information,2020,Normal,Closed,1,Incorrect contact number,1,Alfy
+80000200,Flo,40006135,Called twice and left voicemail,2019,Normal,Closed,1,No Contact,1,Anna-diana
+80000206,Tadeo,40006880,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Gannon
+80000207,Dwayne,40007104,Incorrect contact information,2020,Normal,Closed,1,Incorrect contact number,1,Dwain
+80000208,Cindie,40001307,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Meta
+80000211,Hugo,40009450,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Catriona
+80000214,Rosette,40003867,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Babb
+80000215,Derick,40007744,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Keelby
+80000216,Modestine,40007850,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Christa
+80000220,Sacha,40007315,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Laney
+80000223,Donall,40002290,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Christa
+80000227,Janaya,40009677,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Gannon
+80000234,Robinet,40001798,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Anna-diana
+80000235,Marcellus,40002132,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Irene
+80000240,Theodoric,40008409,Customer was unaware they were charged for 365,2019,Normal,Closed,1,Does not want,1,Anna-diana
+80000241,Em,40008832,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Irene
+80000242,Reid,40008669,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Findlay
+80000249,Gavin,40009752,Incorrect contact information,2019,Normal,Closed,1,Incorrect contact number,1,Dwain
+80000252,Kanya,40005603,Customer was unaware they were charged for 365,2020,Normal,Closed,1,Does not want,1,Anna-diana
+80000255,Sarine,40008352,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Imogen
+80000268,Reine,40009716,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Hesther
+80000273,Angelique,40005353,Customer was unaware they were charged for 365,2020,Normal,Closed,1,Does not want,1,Quincey
+80000277,Carrissa,40006348,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Laney
+80000282,Charlena,40002723,Called twice and left voicemail,2019,Normal,Closed,1,No Contact,1,Anna-diana
+80000291,Karrah,40004696,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Keelby
+80000297,Margot,40009566,Customer was unaware they were charged for 365,2019,Normal,Closed,1,Does not want,1,Catriona
+80000301,Christyna,40004092,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Nichols
+80000302,Jean,40008806,Customer was unaware they were charged for 365,2019,Normal,Closed,1,Does not want,1,Arty
+80000303,Blanche,40003325,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Catriona
+80000306,Perla,40000610,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Babb
+80000307,Junie,40008337,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Laney
+80000317,Beatrice,40000044,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Catriona
+80000319,Berty,40009829,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Babb
+80000318,Gabriel,40003521,Customer was unaware they were charged for 365,2020,Normal,Closed,1,Does not want,1,Catriona
+80000322,Fitz,40001823,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Laney
+80000324,Devi,40002933,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Frederique
+80000334,Livvie,40000391,Called twice and left voicemail,2019,Normal,Closed,1,No Contact,1,Frederique
+80000344,Eadie,40000473,Incorrect contact information,2019,Normal,Closed,1,Incorrect contact number,1,Dwain
+80000346,Tammi,40002670,Customer was unaware they were charged for 365,2019,Normal,Closed,1,Does not want,1,Arty
+80000353,Allene,40006403,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Catriona
+80000354,Gale,40005399,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Irene
+80000359,Les,40009277,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Christa
+80000369,Chic,40001756,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Sheba
+80000370,Flossie,40008810,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Arty
+80000376,Geri,40008888,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Matt
+80000380,Ketty,40003598,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Gannon
+80000385,Jessee,40006877,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Frederique
+80000390,Sal,40008969,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Frederique
+80000391,Jaynell,40004480,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Matt
+80000398,Pernell,40000416,Called twice and left voicemail,2019,Normal,Closed,1,No Contact,1,Gannon
+80000399,Jannel,40006018,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Alfy
+80000400,Townsend,40006099,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Arty
+80000401,Rabi,40001194,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Catriona
+80000418,Tam,40008201,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Constantina
+80000424,Adrianne,40009525,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Alfy
+80000426,Cassaundra,40000005,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Christa
+80000429,Goober,40001795,Customer was unaware they were charged for 365,2020,Normal,Closed,1,Does not want,1,Anna-diana
+80000440,Bo,40002655,Customer was unaware they were charged for 365,2019,Normal,Closed,1,Does not want,1,Arty
+80000441,Jojo,40006671,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Nichols
+80000442,Zedekiah,40004796,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Sheba
+80000444,Lemmy,40000756,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Nichols
+80000445,Gilligan,40006855,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Alfy
+80000446,Katya,40005181,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Anna-diana
+80000447,Marlyn,40002986,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Laney
+80000454,Amy,40008408,Customer was unaware they were charged for 365,2020,Normal,Closed,1,Does not want,1,Matt
+80000460,Shurlocke,40002564,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Findlay
+80000471,Umeko,40008699,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Alfy
+80000479,Ashton,40000331,Customer was unaware they were charged for 365,2019,Normal,Closed,1,Does not want,1,Catriona
+80000481,Aylmar,40003960,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Merrill
+80000486,Merwyn,40006473,Incorrect contact information,2020,Normal,Closed,1,Incorrect contact number,1,Gannon
+80000487,Thaddus,40008940,Customer was unaware they were charged for 365,2020,Normal,Closed,1,Does not want,1,Dwain
+80000495,Nanine,40007807,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Matt
+80000509,Daffi,40005038,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Constantina
+80000514,Sonja,40001873,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Hesther
+80000519,Talya,40009515,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Nichols
+80000520,Yvette,40003257,Incorrect contact information,2020,Normal,Closed,1,Incorrect contact number,1,Gannon
+80000521,Carmita,40007381,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Quincey
+80000529,Gun,40007509,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Matt
+80000531,Dosi,40003589,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Frederique
+80000532,Clem,40005855,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Irene
+80000548,Clementia,40003341,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Faustina
+80000549,Rutledge,40002240,Incorrect contact information,2020,Normal,Closed,1,Incorrect contact number,1,Hesther
+80000550,Jessey,40000168,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Catriona
+80000553,Eulalie,40008821,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Anna-diana
+80000554,Kurt,40004433,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Quincey
+80000558,Elmira,40001422,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Sheba
+80000573,Osborn,40007163,Called twice and left voicemail,2019,Normal,Closed,1,No Contact,1,Alfy
+80000575,Mitch,40001515,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Matt
+80000577,Mirelle,40005625,Incorrect contact information,2020,Normal,Closed,1,Incorrect contact number,1,Hesther
+80000588,Wit,40002802,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Irene
+80000592,Cherilynn,40001850,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Imogen
+80000597,Sukey,40008415,Incorrect contact information,2019,Normal,Closed,1,Incorrect contact number,1,Hesther
+80000598,Myrtice,40009473,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Faustina
+80000596,Kendricks,40003227,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Frederique
+80000599,Gardie,40008283,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Sheba
+80000600,Cindee,40008953,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Quincey
+80000603,Lillian,40001013,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,David
+80000610,Audrye,40006244,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Matt
+80000612,Evita,40003182,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Catriona
+80000615,Rebbecca,40007933,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Matt
+80000619,Henka,40007263,Called twice and left voicemail,2019,Normal,Closed,1,No Contact,1,David
+80000623,Gunilla,40004821,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Matt
+80000631,Margarita,40006631,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Catriona
+80000632,Rafi,40004634,Called twice and left voicemail,2019,Normal,Closed,1,No Contact,1,Catriona
+80000633,Barbette,40008089,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Irene
+80000635,Mollie,40009420,Incorrect contact information,2020,Normal,Closed,1,Incorrect contact number,1,Gannon
+80000634,Britt,40007696,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Meta
+80000637,Robinett,40003854,Incorrect contact information,2020,Normal,Closed,1,Incorrect contact number,1,Dwain
+80000641,Carmelita,40008640,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Irene
+80000644,Chery,40001337,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Keelby
+80000645,Jeannette,40004739,Called twice and left voicemail,2019,Normal,Closed,1,No Contact,1,Matt
+80000646,Debera,40003788,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Hesther
+80000648,Franni,40005328,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Imogen
+80000649,Arturo,40002684,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Arty
+80000652,Baron,40006243,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Frederique
+80000653,Alverta,40004694,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Meta
+80000657,Aurelie,40006416,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Frederique
+80000663,Winifred,40006388,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Christa
+80000666,Elwin,40001348,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Matt
+80000677,Rouvin,40004371,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Laney
+80000685,Lisha,40002199,Customer was unaware they were charged for 365,2020,Normal,Closed,1,Does not want,1,Matt
+80000691,Colline,40007057,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Hesther
+80000702,Joseito,40000204,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Faustina
+80000704,Camila,40002922,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Quincey
+80000710,Spencer,40001380,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Christa
+80000713,Ariel,40003128,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Christa
+80000717,Reinald,40003102,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Matt
+80000718,Gearalt,40001083,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Quincey
+80000722,Lorna,40000419,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Hesther
+80000723,Alberik,40000050,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Frederique
+80000741,Gerrard,40008367,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Hesther
+80000742,Bernete,40008595,Customer was unaware they were charged for 365,2020,Normal,Closed,1,Does not want,1,Imogen
+80000746,Julissa,40002873,Customer was unaware they were charged for 365,2020,Normal,Closed,1,Does not want,1,Dwain
+80000758,Tyler,40009309,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Catriona
+80000759,Ernesta,40001735,Incorrect contact information,2020,Normal,Closed,1,Incorrect contact number,1,Alfy
+80000764,Byram,40002985,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Matt
+80000770,Alessandro,40005002,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Irene
+80000778,Vera,40007206,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Nichols
+80000779,Ondrea,40000257,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Nichols
+80000782,Valli,40003934,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Alfy
+80000795,Jacky,40000691,Called twice and left voicemail,2019,Normal,Closed,1,No Contact,1,Alfy
+80000796,De,40007534,Called twice and left voicemail,2019,Normal,Closed,1,No Contact,1,Catriona
+80000802,Sarge,40008778,Customer was unaware they were charged for 365,2019,Normal,Closed,1,Does not want,1,Arty
+80000806,Reuven,40009588,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Frederique
+80000808,Geralda,40008633,Called twice and left voicemail,2019,Normal,Closed,1,No Contact,1,Faustina
+80000810,Vernon,40005488,Customer was unaware they were charged for 365,2020,Normal,Closed,1,Does not want,1,Matt
+80000822,Rem,40001982,Customer was unaware they were charged for 365,2020,Normal,Closed,1,Does not want,1,Quincey
+80000847,Ansel,40007118,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Babb
+80000845,Peirce,40007173,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Merrill
+80000850,Merrily,40007878,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Sheba
+80000851,Nessy,40007185,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Imogen
+80000861,Aldwin,40009970,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Merrill
+80000872,Gayle,40008326,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Anna-diana
+80000876,Grady,40006002,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Findlay
+80000886,Andres,40003963,Called twice and left voicemail,2019,Normal,Closed,1,No Contact,1,Imogen
+80000888,Alvy,40001064,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Laney
+80000889,Darcy,40005737,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Christa
+80000893,Gisella,40008438,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Christa
+80000895,Kiersten,40002363,Customer was unaware they were charged for 365,2019,Normal,Closed,1,Does not want,1,Imogen
+80000907,Judy,40001662,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Irene
+80000906,Benedicta,40009953,Called twice and left voicemail,2020,Normal,Closed,1,No Contact,1,Alfy
+80000908,Jeannie,40000136,Incorrect contact information,2019,Normal,Closed,1,Incorrect contact number,1,Gannon
+80000910,Sabine,40006154,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Irene
+80000915,Jemima,40009985,Called twice and left voicemail,2019,Normal,Closed,1,No Contact,1,Imogen
+80000916,Angelita,40005118,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Sheba
+80000917,Irvin,40000296,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Alfy
+80000918,Charlene,40006024,Customer was unaware they were charged for 365,2019,Normal,Closed,1,Does not want,1,Arty
+80000919,Corinna,40000705,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Merrill
+80000930,Marcella,40006067,Customer was unaware they were charged for 365,2020,Normal,Closed,1,Does not want,1,Arty
+80000931,Carlee,40008140,Incorrect contact information,2020,Normal,Closed,1,Incorrect contact number,1,Alfy
+80000932,Cosme,40004767,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Christa
+80000933,Jerrome,40001085,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Matt
+80000942,Kat,40002474,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Irene
+80000951,Corry,40009116,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Matt
+80000952,Towny,40006637,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Faustina
+80000956,Pattin,40005821,Customer was unaware they were charged for 365,2019,Normal,Closed,1,Does not want,1,Imogen
+80000959,Robinett,40005350,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Hesther
+80000963,Flynn,40006226,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Quincey
+80000965,Charita,40003465,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Alfy
+80000966,Victoria,40006871,Customer was unaware they were charged for 365,2020,Normal,Closed,1,Does not want,1,Catriona
+80000970,Lilian,40006370,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Matt
+80000971,Brenda,40006211,Onboarded customer successfully,2019,Normal,Closed,1,Onboarded,1,Matt
+80000972,Gunner,40002233,Customer was unaware they were charged for 365,2020,Normal,Closed,1,Does not want,1,Anna-diana
+80000977,Emelita,40002373,Called twice and left voicemail,2019,Normal,Closed,1,No Contact,1,Faustina
+80000991,Aube,40008298,Customer was unaware they were charged for 365,2020,Normal,Closed,1,Does not want,1,Anna-diana
+80000997,Dusty,40001736,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Constantina
+80000999,Leonidas,40009386,Onboarded customer successfully,2020,Normal,Closed,1,Onboarded,1,Frederique
