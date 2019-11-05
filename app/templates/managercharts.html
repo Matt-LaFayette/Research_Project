@@ -1,0 +1,7 @@
+<h1>manager charts</h1>
+  {% for x in sales_rep_arry %}
+  <a href="{{url_for('teamstats', rep=x[0][0])}}">{{x[0][0]}}</a><br>
+  {% endfor %}
+
+{{total_all_onboard}}
+  

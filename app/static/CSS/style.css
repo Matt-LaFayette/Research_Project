@@ -14,7 +14,7 @@ body {
   width: 80px;
 }
 
-#myDropdown, #myDropdown1 {
+#myDropdown, #myDropdown1, #myDropdown2 {
   display: block;
   position: fixed;
   margin-left: 5%;
@@ -22,14 +22,6 @@ body {
   border: solid;
 }
 
-
-#myDropdown2 {
-  display: block;
-  position: fixed;
-  margin-left: 5%;
-  background: white;
-  border: solid;
-}
 
 .dropdownside-content {
   display: none;
@@ -53,12 +45,11 @@ body {
 .show {display: block;}
 
 .content {
-	/*height: 100%;*/
   min-height: 815px;
-	/*display: flex;*/
 	align-items: center;
 	justify-content: center;
 }
+
 .bottom {
   position: fixed;
     bottom: 0;
@@ -74,40 +65,35 @@ body {
 }
 
 .top_header {
-	/*position: absolute;*/
 	top: 0;
 	text-align: center;
 	background: #004B87;
 	color: white;
-	/*display: flex;*/
-
 	align-items: center;
 }
 
 #back_button {
 	width: 3rem;
-    height: 1rem;
-    margin-top: .25rem;
-    margin-left: .25rem;
-    float: left;
-    background-color: #00DC00;
+  height: 1rem;
+  margin-top: .25rem;
+  margin-left: .25rem;
+  float: left;
+  background-color: #00DC00;
 }
 
 .outer_card {
 	border: 3px #d3d3d3;
-    border-style: solid;
+  border-style: solid;
 }
 
-  #dropdownMenuButton {
-    height: 2rem;
-  }
+#dropdownMenuButton {
+  height: 2rem;
+}
 
 /*login page media queries */
 @media only screen and (min-width: 744px) {
 	.outer_card {
-    	/*flex-basis: 35%;*/
     	justify-content: center;
-
 	}
 }
 
@@ -118,13 +104,7 @@ body {
       max-width: 728px;
       margin-left: auto;
       margin-right: auto;
-      height: 310px
-/*      width: 790px;
-      margin-left: 50%;
-      position: absolute;
-      top: 50%;
-      transform: translateX(-50%);*/
-
+      height: 310px;
   }
 }
 
@@ -157,6 +137,11 @@ body {
     	border-style: none;
     	font-size: 20px;
     }
+  .outer_ticket_search {
+    border: none;
+    border-style: none;
+    clear: both;
+    }
 }
 
 @media only screen and (max-width: 728px) {
@@ -166,11 +151,7 @@ body {
     margin-top: 5%;
 	}
 }
-/*@media only screen and (min-width: 375px) {
-	.outer_card {
-    	font-size: 19px;
-    }
-}*/
+
 
 /*end login page media queries*/
 
@@ -178,26 +159,14 @@ body {
 	font-size: 16px;
 }
 
-@media only screen and (max-width: 375px) {
-	.outer_ticket_search {
-		border: none;
-    border-style: none;
-    clear: both;
-    }
-}
 
 @media only screen and (min-width: 375px) {
     .outer_ticket_search {
-/*    	margin-left: 5%;
-    	margin-right: 5%;*/
-
     	height: 100%;
     	overflow: hidden;
       min-height: 815px;
     }
 }
-
-
 
 .login {
     padding-right: 10%;
@@ -209,7 +178,6 @@ body {
 #name, #address, #cx_id, #password, #log_in_name, #order_num, #cx_id, #contact_name, #description, #version, #priority, #status, #assigned_to {
 	width: 100%;
 }
-
 
 
 #ticket_search {
@@ -283,6 +251,20 @@ body {
   .sidebar {
   	display: none;
 }
+  #logged_in_user {
+    position: fixed;
+    bottom: 10px;
+    right: 0;
+    color: black;
+    border: black;
+    opacity: 0.75;
+    background: white;
+    border-style: outset;
+  }
+  #name, #id, #phonenumber, #email {
+    text-align: center;
+  }
+}
 
 /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
 @media screen and (max-width: 400px) {
@@ -311,23 +293,6 @@ body {
     position: absolute;
     display: inline-block;
   }
-}
-
-@media screen and (max-width: 700px) {
-  #logged_in_user {
-    position: fixed;
-    bottom: 10px;
-    right: 0;
-    color: black;
-    border: black;
-    opacity: 0.75;
-    background: white;
-    border-style: outset;
-  }
-  #name, #id, #phonenumber, #email {
-    text-align: center;
-  }
-
 }
 
 
