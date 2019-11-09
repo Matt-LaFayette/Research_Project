@@ -4,13 +4,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
 <body style="display: block;">
 	<h1 style="text-align: center; margin-bottom: 0; background: black; color: white">Manager View</h1>
-	<div class="content" style="height: 100%; display: flex;">
+	<div class="content" style="height: 100%;">
 
 <br>
 <div class="rep_list" style="width: max-content; display: block; height: max-content;">
-	<br>
 	<h2>Team Members</h2>
-<div class="rep_quick_stats" style="display: inline-block;">
+<div class="rep_quick_stats" style="display: inline-block; float: left; position: absolute;">
 <table class="table table-striped table-bordered table-hover">
   <thead class="thead-dark">
     <tr>
@@ -40,10 +39,46 @@
 		<div class="no_contact">{{total_all_nocontact}}</div>
 		<div class="not_want">{{total_all_notwant}}</div>
 		<div class="incorrect_contact">{{total_all_incorrectcontact}}</div>
+		<div class="grand_total">{{total_all_onboard+total_all_nocontact+total_all_notwant+total_all_incorrectcontact}}</div>
 	</div>
-
-
-<br><br>
+<div class="rowkeeper">
+<div class="row">
+	<div class="col-md">
+	</div>
+	<div class="col-md">
+	</div>
+	<div class="col-md">
+		<div class="card" style="border-width: 3px; text-align: center;">
+  			<div class="card-body">
+    			<h5 class="card-title">Overall Activation Rate</h5>
+    			<p class="active-card-text">
+    				<script>
+    					$('.active-card-text').text(Math.round($('.onboarded').text()/$('.grand_total').text() * 100));
+    				</script>%
+    			</p>
+    		<a href="#" class="btn btn-primary">View</a>
+  			</div>
+		</div>
+	</div>
+	<div class="col-md">
+		<div class="card" style="border-width: 3px; text-align: center;">
+  			<div class="card-body">
+    			<h5 class="card-title">Did Not Activate</h5>
+    			<p class="failed-card-text">
+    				<script>
+    					$('.failed-card-text').text(100-$('.active-card-text').text().replace('%', ''));
+    				</script>%</p>
+    		<a href="#" class="btn btn-primary">View</a>
+  			</div>
+		</div>
+	</div>
+	<div class="col-md">
+	</div>
+	<div class="col-md">
+	</div>
+</div>
+</div>
+<br><br><br><br>
 		<div class="row" style="margin: auto;">
 			<!-- Left column -->
   			<div class="col" style="display: inline-block; width: 50%;">
