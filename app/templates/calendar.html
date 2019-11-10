@@ -39,7 +39,7 @@
         function ajaxfunction() {
             event.preventDefault();
          $.ajax({
-           url : 'http://127.0.0.1:5000/getdays/{{month}}', 
+           url : '{{url_for("calendar", month=month)}}', 
            type : 'POST',
            success: function(msg) {
                             $('.input-group-time').show();
