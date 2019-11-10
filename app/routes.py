@@ -327,13 +327,6 @@ def calendar(month):
 	user = User.query.filter_by(username=current_user.username)
 	dt = datetime.datetime.now()
 	yyyy = dt.year
-	# testing to see if form fields are being grabbed
-
-#
-
-
-
-#
 	try:
 		print("day: " + request.form['inputGroupSelect03'])
 		day = request.form['inputGroupSelect03']

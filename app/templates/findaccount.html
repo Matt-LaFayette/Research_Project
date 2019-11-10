@@ -3,7 +3,7 @@
 function myFunction1() {
 
     $.ajax({
-      url : 'http://127.0.0.1:5000/selectcustomer/' + $('#id').html(), 
+      url : '{{url_for("selectcustomer")}}' + $('#id').html(), 
       type : 'GET',
       success: function(msg) {                   
                         $(results).fadeOut(800);
