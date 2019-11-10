@@ -45,7 +45,7 @@ body {
 .show {display: block;}
 
 .content {
-  min-height: 815px;
+  /*min-height: 815px;*/
 	align-items: center;
 	justify-content: center;
 }
@@ -246,6 +246,7 @@ body {
   	display: none;
   }
 }
+
 /* On screens that are less than 700px wide, make the sidebar into a topbar */
 @media screen and (max-width: 700px) {
   .sidebar {
@@ -263,6 +264,66 @@ body {
   }
   #name, #id, #phonenumber, #email {
     text-align: center;
+  }
+}
+
+@media screen and (min-width: 1270px) {
+  #charts {
+    width: max-content;
+    margin: auto;
+  }
+}
+
+
+@media screen and (max-width: 1264px) {
+  #pie {
+    margin: auto;
+  }
+}
+
+
+@media screen and (min-width: 1264px) {
+  body {
+    overflow: hidden;
+  }
+  #pie {
+    display: inline-block;
+  }
+}
+
+@media screen and (max-width: 566px) {
+  #pie {
+    margin-left: auto;
+    margin-right: auto;
+  }
+    #myPieChart  {
+    width: 336px;
+    height: 230px;
+  }
+  #myChart {
+    width: 300px;
+  }
+}
+
+@media screen and (min-width: 567px) {
+  #myPieChart, #myChart {
+    width: 600px;
+    height: 400px;
+  }
+}
+
+@media screen and (min-width: 376px) { 
+  #na {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 376px) {
+  #ic, #r, #nc {
+    display: none;
+  }
+  #na {
+    display: block;
   }
 }
 

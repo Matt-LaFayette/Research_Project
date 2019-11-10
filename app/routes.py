@@ -617,7 +617,7 @@ def charts():
 	re_label = "yellow"
 	no_label = "blue"
 	if (current_user.role != "manager"):
-		return render_template('charts.html', total_status=total_status, incorrect_status=incorrect_status, onboard_stats=onboard_stats, nocontact_status=nocontact_status, notwant_status=notwant_status, values=values, labels=labels, legend=legend, activated=activated, refused=refused, no_answer=no_answer)
+		return render_template('charts.html', total_status=total_status, incorrect_status=incorrect_status, onboard_stats=onboard_stats, nocontact_status=nocontact_status, notwant_status=notwant_status, values=values, labels=labels, legend=legend)
 	return render_template('managercharts.html', values=values, labels=labels, legend=legend, sales_rep_arry_fail=sales_rep_arry_fail, zip=zip, sales_rep_arry=sales_rep_arry, total_all_onboard=total_all_onboard, total_all_notwant=total_all_notwant, total_all_nocontact=total_all_nocontact, total_all_incorrectcontact=total_all_incorrectcontact)
 
 @app.route("/teamstats/<rep>")
@@ -734,7 +734,8 @@ def Incorrect_Contact():
 		'on t.cx_id = tic.account_id ' +
 		'join sales__rep s ' + 
 		'on s.sales_rep_id = t.assigned_by ' +
-		'where tic.o365status = "Incorrect contact number";')
+		'where tic.o365status = "Incorrect contact number" ' +
+		'order by s.sales_rep_id;')
 		sql6 = db.engine.execute(Incorrect_details)
 		Incorrect_query_details = sql6.fetchall()
 
@@ -761,7 +762,8 @@ def Refused():
 		'on t.cx_id = tic.account_id ' +
 		'join sales__rep s ' + 
 		'on s.sales_rep_id = t.assigned_by ' +
-		'where tic.o365status = "Does not want";')
+		'where tic.o365status = "Does not want" ' +
+		'order by s.sales_rep_id;')
 		sql7 = db.engine.execute(refused_details)
 		refused_query_details = sql7.fetchall()
 
@@ -788,7 +790,8 @@ def No_Contact():
 		'on t.cx_id = tic.account_id ' +
 		'join sales__rep s ' + 
 		'on s.sales_rep_id = t.assigned_by ' +
-		'where tic.o365status = "No Contact";')
+		'where tic.o365status = "No Contact" ' +
+		'order by s.sales_rep_id;')
 		sql8 = db.engine.execute(contact_details)
 		contact_query_details = sql8.fetchall()
 
