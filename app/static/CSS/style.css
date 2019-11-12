@@ -349,6 +349,26 @@ body {
   }
 }
 
+
+
+
+  .rep_list {
+    width: max-content;
+  }
+
+  .rep_quick_stats {
+    display: inline-block;
+    float: left;
+  }
+
+@media screen and (max-width: 650px) {
+  .rep_quick_stats {
+    clear: both;
+    display: block;
+  }
+}
+
+
 @media screen and (min-width: 701px) {
   #logged_in_user {
     position: absolute;
@@ -364,3 +384,4 @@ body {
     /*min-width:425px;*/
 	}
 }
+
