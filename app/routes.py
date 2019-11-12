@@ -616,6 +616,7 @@ def charts():
 @app.route("/teamstats/<rep>")
 @login_required
 def teamstats(rep):
+	sr = rep
 	try:
 		getonboarded = text('select s.sales_first_name, count(tic.id) from time t '
 		+ 'join ticket tic '
@@ -627,6 +628,8 @@ def teamstats(rep):
 		+ 'having s.sales_first_name = "{}";'.format(rep))
 		sql = db.engine.execute(getonboarded)
 		onboard_stats = sql.fetchall()
+		if (not onboard_stats):
+			onboard_stats.append((rep, 0))
 		#print (onboard_stats)
 
 		getnotwant = ("select s.sales_first_name, count(tic.o365status) from time t "
@@ -639,6 +642,8 @@ def teamstats(rep):
 			+ "having sales_first_name = '{}';".format(rep))
 		sql1 = db.engine.execute(getnotwant)
 		notwant_status = sql1.fetchall()
+		if (not notwant_status):
+			notwant_status.append((rep, 0))
 		#print (notwant_status)
 
 		getnocontact = text("select s.sales_first_name, count(tic.o365status) from time t "
@@ -651,6 +656,8 @@ def teamstats(rep):
 			+ "having sales_first_name = '{}';".format(rep))
 		sql2 = db.engine.execute(getnocontact)
 		nocontact_status = sql2.fetchall()
+		if (not nocontact_status):
+			nocontact_status.append((rep, 0))
 		#print (nocontact_status)
 
 		getincorrect = text("select s.sales_first_name, count(tic.o365status) from time t "
@@ -663,7 +670,9 @@ def teamstats(rep):
 			+ "having sales_first_name = '{}';".format(rep))
 		sql3 = db.engine.execute(getincorrect)
 		incorrect_status = sql3.fetchall()
-		#print(total_status)
+		if (not incorrect_status):
+			incorrect_status.append((rep, 0))
+		#print(incorrect_status)
 
 		gettotal = text("select s.sales_first_name, count(tic.o365status) from time t "
 			+ "join ticket tic "
@@ -674,10 +683,34 @@ def teamstats(rep):
 			+ "having sales_first_name = '{}';".format(rep))
 		sql4 = db.engine.execute(gettotal)
 		total_status = sql4.fetchall()
-		print(total_status)
+		#print(total_status)
 	except:
 		print("team stats failed")
-	return render_template('teamstats.html', total_status=total_status)
+	total_month_stats = []
+	values = []
+	for x in range(1,13):
+		getmonthtotal = text("select count(t.month), s.sales_first_name from time t " +
+		"join sales__rep s " +
+		"on s.sales_rep_id = t.assigned_by " +
+		"join ticket tic " +
+		"on tic.account_id = t.cx_id "
+		"where t.month = '{}' and tic.o365status = 'onboarded' and s.sales_first_name = '{}' ".format(x,rep) +
+		"group by s.sales_first_name;")
+		sqlmonth = db.engine.execute(getmonthtotal)
+		test = sqlmonth.fetchall()
+		total_month_stats.append(test)
+		if total_month_stats[x-1]:
+			#print(x)
+			values.append(total_month_stats[x-1][0][0])
+		else:
+			values.append(0)
+		x = x + 1
+	legend = 'Clients Activated'
+	labels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+	ac_label = "red"
+	re_label = "yellow"
+	no_label = "blue"
+	return render_template('teamstats.html', values=values, labels=labels, total_status=total_status, incorrect_status=incorrect_status, nocontact_status=nocontact_status, notwant_status=notwant_status, onboard_stats=onboard_stats, sr=sr)
 
 #probably will need to pass in rep name to url
 @app.route("/Activated")
