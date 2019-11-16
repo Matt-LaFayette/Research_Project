@@ -101,9 +101,9 @@
 					        var label = chartData.labels[idx];
 					        var value = chartData.datasets[0].data[idx];
 
-					        var url = "http://example.com/?label=" + label + "&value=" + value;
+					        var url = window.location.origin + '/' + label + '/' + '{{sr}}';
 					        console.log(url);
-					        window.location.href = label.trim();
+					        window.location.href = url;
 					        // alert(url);
 					      }
 					    };

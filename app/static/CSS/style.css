@@ -237,7 +237,7 @@ body {
 
 @media screen and (min-height: 900px) {
   div.content {
-  overflow: hidden;
+  /*overflow: hidden;*/
 
   }
 }
@@ -392,3 +392,62 @@ body {
 	}
 }
 
+
+@media 
+only screen and (max-width: 530px),
+(min-device-width: 768px) and (max-device-width: 530px)  {
+
+  /* Force table to not be like tables anymore */
+  .smalltable table, .smalltable thead, .smalltable tbody, .smalltable th, .smalltable td, .smalltable tr { 
+    display: block; 
+  }
+  
+  /* Hide table headers (but not display: none;, for accessibility) */
+  .smalltable thead tr { 
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  
+  .smalltable tr { border: 1px solid #666666; }
+  
+  .smalltable td { 
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee; 
+    position: relative;
+    padding-left: 50%; 
+  }
+  
+  .smalltable td:before { 
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 45%; 
+    padding-right: 10px; 
+    white-space: nowrap;
+  }
+  
+  .smalltable h1 {
+    background-color: black;
+    color: white;
+  }
+
+  /*
+  Label the data
+  */
+  .smalltable td:nth-of-type(1):before { content: "Sales Id"; }
+  .smalltable td:nth-of-type(2):before { content: "Sales Name"; }
+  .smalltable td:nth-of-type(3):before { content: "Account"; }
+  .smalltable td:nth-of-type(4):before { content: "Contact"; }
+  .smalltable td:nth-of-type(5):before { content: "Ticket"; }
+  .smalltable td:nth-of-type(6):before { content: "Description"; }
+  .smalltable td:nth-of-type(7):before { content: "Status"; }
+  .smalltable td:nth-of-type(8):before { content: "Support Rep"; }
+
+  .data {
+    text-align: right;
+  }
+}

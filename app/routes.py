@@ -683,6 +683,8 @@ def teamstats(rep):
 			+ "having sales_first_name = '{}';".format(rep))
 		sql4 = db.engine.execute(gettotal)
 		total_status = sql4.fetchall()
+		if (not total_status):
+			total_status.append((rep, 0))
 		#print(total_status)
 	except:
 		print("team stats failed")
@@ -713,11 +715,10 @@ def teamstats(rep):
 	return render_template('teamstats.html', values=values, labels=labels, total_status=total_status, incorrect_status=incorrect_status, nocontact_status=nocontact_status, notwant_status=notwant_status, onboard_stats=onboard_stats, sr=sr)
 
 #probably will need to pass in rep name to url
-@app.route("/Activated")
+@app.route("/Activated/<rep>")
 @login_required
-def Activated():
-	if (current_user.role != "manager"):
-		rep = current_user.username
+def Activated(rep):
+	if (rep != "All"):
 		onboarded_details= text('select s.sales_first_name, tic.o365status, tic.id, tic.description, tic.account_id, tic.assigned_to, tic.contact_name, s.sales_rep_id, s.sales_first_name from time t ' +
 		'join ticket tic ' +
 		'on t.cx_id = tic.account_id ' +
@@ -727,7 +728,7 @@ def Activated():
 		sql5 = db.engine.execute(onboarded_details)
 		onboarded_query_details = sql5.fetchall()
 
-	elif (current_user.role == "manager"):
+	elif (rep == "All"):
 		onboarded_details= text('select s.sales_first_name, tic.o365status, tic.id, tic.description, tic.account_id, tic.assigned_to, tic.contact_name, s.sales_rep_id, s.sales_first_name from time t ' +
 		'join ticket tic ' +
 		'on t.cx_id = tic.account_id ' +
@@ -740,11 +741,10 @@ def Activated():
 
 	return render_template('Activated.html', onboarded_query_details=onboarded_query_details)
 
-@app.route("/Incorrect_Contact")
+@app.route("/Incorrect_Contact/<rep>")
 @login_required
-def Incorrect_Contact():
-	if (current_user.role != "manager"):
-		rep = current_user.username
+def Incorrect_Contact(rep):
+	if (rep != "All"):
 		Incorrect_details= text('select s.sales_first_name, tic.o365status, tic.id, tic.description, tic.account_id, tic.assigned_to, tic.contact_name, s.sales_rep_id, s.sales_first_name from time t ' +
 		'join ticket tic ' +
 		'on t.cx_id = tic.account_id ' +
@@ -754,7 +754,7 @@ def Incorrect_Contact():
 		sql6 = db.engine.execute(Incorrect_details)
 		Incorrect_query_details = sql6.fetchall()
 
-	elif (current_user.role == "manager"):
+	elif (rep == "All"):
 		Incorrect_details= text('select s.sales_first_name, tic.o365status, tic.id, tic.description, tic.account_id, tic.assigned_to, tic.contact_name, s.sales_rep_id, s.sales_first_name from time t ' +
 		'join ticket tic ' +
 		'on t.cx_id = tic.account_id ' +
@@ -768,11 +768,10 @@ def Incorrect_Contact():
 	return render_template('Incorrect_Contact.html', Incorrect_query_details=Incorrect_query_details)
 
 
-@app.route("/Refused")
+@app.route("/Refused/<rep>")
 @login_required
-def Refused():
-	if (current_user.role != "manager"):
-		rep = current_user.username
+def Refused(rep):
+	if (rep != "All"):
 		refused_details= text('select s.sales_first_name, tic.o365status, tic.id, tic.description, tic.account_id, tic.assigned_to, tic.contact_name, s.sales_rep_id, s.sales_first_name from time t ' +
 		'join ticket tic ' +
 		'on t.cx_id = tic.account_id ' +
@@ -782,7 +781,7 @@ def Refused():
 		sql7 = db.engine.execute(refused_details)
 		refused_query_details = sql7.fetchall()
 
-	elif (current_user.role == "manager"):
+	elif (rep == "All"):
 		refused_details= text('select s.sales_first_name, tic.o365status, tic.id, tic.description, tic.account_id, tic.assigned_to, tic.contact_name, s.sales_rep_id, s.sales_first_name from time t ' +
 		'join ticket tic ' +
 		'on t.cx_id = tic.account_id ' +
@@ -796,11 +795,10 @@ def Refused():
 	return render_template('Refused.html', refused_query_details=refused_query_details)
 
 
-@app.route("/No_Contact")
+@app.route("/No_Contact/<rep>")
 @login_required
-def No_Contact():
-	if (current_user.role != "manager"):
-		rep = current_user.username
+def No_Contact(rep):
+	if (rep != "All"):
 		contact_details= text('select s.sales_first_name, tic.o365status, tic.id, tic.description, tic.account_id, tic.assigned_to, tic.contact_name, s.sales_rep_id, s.sales_first_name from time t ' +
 		'join ticket tic ' +
 		'on t.cx_id = tic.account_id ' +
@@ -810,7 +808,7 @@ def No_Contact():
 		sql8 = db.engine.execute(contact_details)
 		contact_query_details = sql8.fetchall()
 
-	elif (current_user.role == "manager"):
+	elif (rep == "All"):
 		contact_details= text('select s.sales_first_name, tic.o365status, tic.id, tic.description, tic.account_id, tic.assigned_to, tic.contact_name, s.sales_rep_id, s.sales_first_name from time t ' +
 		'join ticket tic ' +
 		'on t.cx_id = tic.account_id ' +

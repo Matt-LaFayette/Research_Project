@@ -46,8 +46,7 @@
 		<div class="grand_total">{{total_all_onboard+total_all_nocontact+total_all_notwant+total_all_incorrectcontact}}</div>
 </div>
 
-<div class="rowkeeper">
-<div class="row">
+<div class="row 1">
 	<div class="col-md">
 	</div>
 	<div class="col-md">
@@ -55,7 +54,7 @@
 	<div class="col-md">
 		<div class="card" style="border-width: 3px; text-align: center;">
   			<div class="card-body">
-    			<h5 class="card-title">Overall Activation Rate</h5>
+    			<h5 class="card-title">Overall Activation</h5>
     			<p class="active-card-text">
     				<script>
     					$('.active-card-text').text(Math.round($('.onboarded').text()/$('.grand_total').text() * 100));
@@ -82,7 +81,6 @@
 	<div class="col-md">
 	</div>
 </div>
-</div>
 <!-- end card rate rows -->
 <br><br>
 
@@ -91,7 +89,7 @@
 			<!-- Left column -->
   			<div class="col" style="display: inline-block;">
   				
-  				<canvas id="myPieChart" width="600" height="400" style="left:50%; margin: auto;"></canvas>
+  				<canvas id="myPieChart" style="left:50%; margin: auto;"></canvas>
   				<p id="caption" style="text-align: center;">Total Activations</p>
   				<!-- Script for circle chart -->
 				<script>
@@ -135,9 +133,9 @@
 					        var label = chartData.labels[idx];
 					        var value = chartData.datasets[0].data[idx];
 
-					        var url = "http://example.com/?label=" + label + "&value=" + value;
+					        var url = window.location.origin + '/' + label + '/All';
 					        console.log(url);
-					        window.location.href = label.trim();
+					        window.location.href = url;
 					        // alert(url);
 					      }
 					    };
@@ -149,7 +147,7 @@
 			<!-- End of Left Column -->
 			<!-- Right column -->
  			<div class="col" style="display: inline-block;">
-  				<canvas id="myChart" width="600" height="400" style="left:50%; margin: auto;"></canvas>
+  				<canvas id="myChart" style="left:50%; margin: auto;"></canvas>
 				<p id="caption" style="text-align: center;">Activations per month</p>
 				<script type="text/javascript">// Global parameters:
 				// do not resize the chart canvas when its container does (keep at 600x400px)
@@ -207,5 +205,13 @@
   			</div>
   			<!-- End of Right Column -->
 
-
+<!-- Cheating and using js instead of css -->
+<script>
+	if ($(window).width() < 860) {
+   $('.rep_quick_stats').css({'width':'100%','z-index':'1','position':'relative'});
+	$('.rep_list').css({'width':'100%','text-align':'center'});
+	$('.row.1').css('display','block')
+	$('#myChart').width($('.col').width());
+}
+</script>
 </body>
