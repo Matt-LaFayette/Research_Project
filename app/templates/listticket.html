@@ -4,7 +4,12 @@
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/style.css') }}">
-
+<script>
+    if ($(window).width() < 830) {
+    $('th').css({'text-align':'center','vertical-align':'middle'});
+  }
+</script>
+<body class="listticket">
 {% include 'template.html' %}
 <div class="outer_ticket_search">
 {% if session['name'] %}
@@ -17,6 +22,8 @@
       <th scope="col">#</th>
       <th scope="col">Account ID</th>
       <th scope="col">Contact</th>
+      <th class="description" scope="col">Description</th>
+      <th scope="col">Office 365 Status</th>
       <th scope="col">Status</th>
       <th scope="col">Assigned to</th>
     </tr>
@@ -24,11 +31,13 @@
   <tbody>
     <tr>
 {% for x in ticket %}
-      <th scope="row">{{x.id}}</th>
-      <td>{{x.account_id}}</td>
-      <td>{{x.contact_name}}</td>
-      <td>{{x.status}}</td>
-      <td>{{x.assigned_to}}</td>
+      <td><div class="data">{{x.id}}</div></td>
+      <td><div class="data">{{x.account_id}}</div></td>
+      <td><div class="data">{{x.contact_name}}</div></td>
+      <td class="description"><div class="data">{{x.description}}</div></td>
+      <td><div class="data">{{x.o365status}}</div></td>
+      <td><div class="data">{{x.status}}</div></td>
+      <td><div class="data">{{x.assigned_to}}</div></td>
     </tr>
 {% endfor %}
   </tbody>
@@ -39,6 +48,21 @@
 <h2 style="text-align: center;">Please select a customer from the Search area</h2>
 
 {% endif %}
+<script>
+  if ($(window).width() < 540) {
+    $('#logged_in_user').css('bottom','0');
+  }
+  if ($(window).width() < 870) {
+    $('.bottom').css('position','inherit');
+  }
+  if ($(window).width() < 870) {
+    $('.description').hide();
+  }
+  if ($(window).width() < 1087) {
+    $('th').css({'text-align':'center','vertical-align':'middle'});
+    $('tbody').css('text-align','center');
+  }
 
 
-
+</script>
+</body>

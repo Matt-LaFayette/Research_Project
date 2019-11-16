@@ -54,9 +54,10 @@ body {
   position: fixed;
     bottom: 0;
     right: 0;
-    margin-left: 80%;
+    /*margin-left: 80%;*/
     background-color: white;
     border-style: outset;
+    color: black;
 }
 
 #disableme {
@@ -74,7 +75,7 @@ body {
 
 #back_button {
 	width: 3rem;
-  height: 1rem;
+  height: 2rem;
   margin-top: .25rem;
   margin-left: .25rem;
   float: left;
@@ -110,7 +111,7 @@ body {
 
 @media only screen and (max-width: 342px) {
 	.top_header h1 {
-		font-size: 2rem;
+		/*font-size: 2rem;*/
 		clear: both;
 		margin-bottom: 0;
 
@@ -241,14 +242,14 @@ body {
 
   }
 }
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 750px) {
   .dropdown {
   	display: none;
   }
 }
 
 /* On screens that are less than 700px wide, make the sidebar into a topbar */
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
   .sidebar {
   	display: none;
 }
@@ -350,14 +351,6 @@ body {
 }
 
 
-
-
-
-
-
-
-
-
   .rep_list {
     width: max-content;
   }
@@ -392,7 +385,7 @@ body {
 	}
 }
 
-
+/*For the managers sales charts and activated, no_contact, etc*/
 @media 
 only screen and (max-width: 530px),
 (min-device-width: 768px) and (max-device-width: 530px)  {
@@ -451,3 +444,63 @@ only screen and (max-width: 530px),
     text-align: right;
   }
 }
+
+
+/*For the listticket page*/
+@media 
+only screen and (max-width: 530px),
+(min-device-width: 768px) and (max-device-width: 530px)  {
+
+  /* Force table to not be like tables anymore */
+  .listticket table, .listticket thead, .listticket tbody, .listticket th, .listticket td, .listticket tr { 
+    display: block; 
+  }
+  
+  /* Hide table headers (but not display: none;, for accessibility) */
+  .listticket thead tr { 
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  
+  .listticket tr { border: 1px solid #666666; }
+  
+  .listticket td { 
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee; 
+    position: relative;
+    padding-left: 50%; 
+  }
+  
+  .listticket td:before { 
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 45%; 
+    padding-right: 10px; 
+    white-space: nowrap;
+  }
+  
+
+  /*
+  Label the data
+  */
+  .listticket td:nth-of-type(1):before { content: "#"; }
+  .listticket td:nth-of-type(2):before { content: "Account ID"; }
+  .listticket td:nth-of-type(3):before { content: "Contact"; }
+  .listticket td:nth-of-type(4):before { content: "Description"; }
+  .listticket td:nth-of-type(5):before { content: "Office 365 Status"; }
+  .listticket td:nth-of-type(6):before { content: "Ticket Status"; }
+  .listticket td:nth-of-type(7):before { content: "Assigned to"; }
+
+  .data {
+    text-align: right;
+  }
+}
+
+
+
+

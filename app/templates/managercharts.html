@@ -18,8 +18,8 @@
   <thead class="thead-dark">
     <tr>
     	<th scope="col">Rep</th>
-    	<th scope="col">Good</th>
-    	<th scope="col">Bad</th>
+    	<th scope="col">Activated</th>
+    	<th scope="col">Missed</th>
     </tr>
 </thead>
 <tbody>
@@ -93,8 +93,12 @@
   				<p id="caption" style="text-align: center;">Total Activations</p>
   				<!-- Script for circle chart -->
 				<script>
-				Chart.defaults.global.responsive = false;
-
+				if ($(window).width() < 860) {
+				Chart.defaults.global.responsive = true;
+				}
+				else {
+					Chart.defaults.global.responsive = false;
+				}
 				var ctx = document.getElementById("myPieChart").getContext("2d");
 
 				nowant = $('.not_want').text()
@@ -151,7 +155,12 @@
 				<p id="caption" style="text-align: center;">Activations per month</p>
 				<script type="text/javascript">// Global parameters:
 				// do not resize the chart canvas when its container does (keep at 600x400px)
-				Chart.defaults.global.responsive = false;
+				if ($(window).width() < 860) {
+				Chart.defaults.global.responsive = true;
+				}
+				else {
+					Chart.defaults.global.responsive = false;
+				}
 				 
 				// define the chart data
 				var chartData = {
@@ -208,10 +217,13 @@
 <!-- Cheating and using js instead of css -->
 <script>
 	if ($(window).width() < 860) {
-   $('.rep_quick_stats').css({'width':'100%','z-index':'1','position':'relative'});
+    $('.rep_quick_stats').css({'width':'100%','z-index':'1','position':'relative'});
 	$('.rep_list').css({'width':'100%','text-align':'center'});
-	$('.row.1').css('display','block')
+	$('.row.1').css('display','block');
 	$('#myChart').width($('.col').width());
 }
+	if ($(window).width() < 893) {
+		$('body').css('overflow-x','hidden');
+	}
 </script>
 </body>

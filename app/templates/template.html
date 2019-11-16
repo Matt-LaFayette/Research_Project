@@ -96,17 +96,6 @@ function dropDown2() {
 }
 
 
-// $('#myDropdown').on({
-//   mouseenter: function() {
-//     $(this).fadeTo(500, 1); // or whatever
-//   },
-//   mouseleave: function() {
-//     $(this).fadeTo(500, 0.85); // or whatever
-//   }
-// }, '#myDropdown');
-
-// $('#myDropdown').hover( function ()  { $(this).fadeTo(500,0);});
-
 
 $('#myDropdown').hover(
     function () {
@@ -146,16 +135,21 @@ $('#dropdownMenuButton').css('width', header_height);
 			</div>
 		</div>
 	{% for x in user %} 
-		{% if x.role != 'sales' %}
+		{% if x.role != 'sales'%}
+			{% if x.role == 'manager' and session['id']  %}
 			<a href="#" onclick="dropDown1()">History..</a>
 				<div class="dropdownside1">
 					<div id="myDropdown1" class="dropdown-content" style="display: none">
+					{% if x.role != 'manager' %}
 					<a href="{{ url_for('mytickets') }}">My Tickets</a>
+					{% endif %}
 					{% if session['id'] %}
 					<a href="{{url_for('listticket')}}">View Tickets</a>
 					{% endif %}
 					</div>
 				</div>
+		
+		{% endif %}
 		{% endif %}
 	{% endfor %}
 	<a href="#" onclick="dropDown2()">Search..</a>
@@ -212,17 +206,21 @@ $('#myDropdown2').hover(
 );
 
 
+
+
 </script>
 
-<div class="bottom" id="test">
+<div class="bottom" id="test" style="text-align: center;">
 	{% if session['id'] %}
-		<div class="customer_info">Currently using customer: {{session['id']}}<br>{{session['name']}}<br>
+		<div class="customer_info">Using: {{session['id']}}<br>{{session['name']}}<br>
 		</div>
-		{% if session['day'] %}
-			<div class="appt" style="position: fixed; right: 1%; color: lightgreen;">Appointment: {{ session['month'] }}/{{session['day']}} at {{session['hour']}}
-			</div>
-		{% endif %}
 		<button type="button" onclick="myFunction()" class="btn btn-warning">Clear</button>
 	{% endif %}
 	
 </div>
+<script>
+  if ($(window).width() < 750) {
+	$('#test').css('bottom',$('#logged_in_user').height() + 15);
+	$('#logged_in_user').css({'left':'0','right':'0','position':'fixed'});
+}
+</script>

@@ -175,7 +175,7 @@ def listticket():
 	try:
 		if session['name']:
 			name = session['name']
-			title = 'Tickets for ' + name
+			title = 'Tickets'
 		else:
 			title = "Error"
 		ticket = Ticket.query.filter_by(account_id=session['id'])
@@ -379,13 +379,13 @@ def getdays(month):
 	return str(daysinmonth)
 
 #route for line graph
-@app.route("/simple_chart")
-@login_required
-def chart():
-	legend = 'Clients Activated'
-	labels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "December"]
-	values = [10, 9, 8, 7, 6, 4, 7, 8]
-	return render_template('chart.html', values=values, labels=labels, legend=legend)
+# @app.route("/simple_chart")
+# @login_required
+# def chart():
+# 	legend = 'Clients Activated'
+# 	labels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "December"]
+# 	values = [10, 9, 8, 7, 6, 4, 7, 8]
+# 	return render_template('chart.html', values=values, labels=labels, legend=legend)
 
 #pie chart
 #select s.sales_first_name, count(tic.id) from time t
