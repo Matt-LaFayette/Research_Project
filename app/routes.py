@@ -57,7 +57,6 @@ def index():
 			print("found user")
 			if check_password_hash(user.password_hash, form.password.data):
 				login_user(user, remember=True)
-				print(user.role)
 				flash("success")
 				if (user.role == "support"):
 					return redirect(url_for('createticket'))
@@ -92,9 +91,7 @@ def template():
 	#https://pythonhosted.org/Flask-Session/
 	#will probably need to add this
 	user = User.query.filter_by(username=current_user.username)
-	print(current_user.username)
 	month = int(now.month)
-	print (month)
 	try:
 		test = session['id']
 		cx_info = Customer.query.filter_by(cx_id=test)
@@ -109,8 +106,6 @@ def template():
 			print (x.customer_name)
 	except:
 		print("I failed to print customer name")
-	for y in user:
-		print (y.role)
 	return render_template('template.html', month=month, user=user, cx_info=cx_info, test=str(test))
 
 #TEST
@@ -140,7 +135,6 @@ def register():
 def salesorder():
 	form = Invoice()
 	title = 'New Order'
-	print(month)
 	user = User.query.filter_by(username=current_user.username)
 	return render_template('salesorder.html', month=month, user=user, title=title, form=form)
 
@@ -212,16 +206,11 @@ def findaccount():
 		x = 1
 		for customer in cx:
 			select = str(x) + 'Select'
-			print ("Im' printing " + select)
 			st = str(select)
-			print ("Im' printing " + st)
 			# selection = request.form.get(st)
 			# print (selection)
 			x = x + 1
-			print(type(st))
 			# session['name'] = customer.customer_name
-			if st == 'Select':
-				print("success")
 	return render_template('findaccount.html', cxbyid=cxbyid, title=title)
 
 
@@ -229,7 +218,7 @@ def findaccount():
 @app.route('/test', methods=('GET', 'POST'))
 def test():
 	form = CreateCustomer()
-	customer = Customer(customer_name=form.customer_name.data, company_name=form.company_name.data, city=form.city.data, state=form.state.data, address=form.address.data, zip_code=form.zip_code.data, email=form.email.data, phone_num=form.phone_num.data)
+	customer = Customer(customer_name=form.customer_fname.data, company_name=form.company_lname.data, city=form.city.data, state=form.state.data, address=form.address.data, zip_code=form.zip_code.data, email=form.email.data, phone_num=form.phone_num.data)
 	try:
 		db.session.add(customer)
 		db.session.commit()
@@ -237,7 +226,7 @@ def test():
 		db.session.rollback()
 		return 'I failed and rolled back'
 	# x = request.form['temptest']
-	cx = Customer.query.filter_by(customer_name=form.customer_name.data).all()
+	cx = Customer.query.filter_by(customer_name=form.customer_fname.data).all()
 	# session['response']= x
 	# for x in cx:
 	# 	print(x.cx_id)
@@ -482,7 +471,6 @@ def charts():
 			test = sqlmonth.fetchall()
 			total_month_stats.append(test)
 			if total_month_stats[x-1]:
-				print(x)
 				values.append(total_month_stats[x-1][0][0])
 			else:
 				values.append(0)
@@ -499,12 +487,10 @@ def charts():
 			test = sqlmonth.fetchall()
 			total_month_stats.append(test)
 			if total_month_stats[x-1]:
-				print(x)
 				values.append(total_month_stats[x-1][0][0])
 			else:
 				values.append(0)
 			x = x + 1
-	print(values)
 	#gets individual month value
 	#print(total_month_stats[2][0][0])
 	#out of range
