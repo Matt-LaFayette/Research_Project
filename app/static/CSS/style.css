@@ -165,7 +165,7 @@ body {
     .outer_ticket_search {
     	height: 100%;
     	overflow: hidden;
-      min-height: 815px;
+      /*min-height: 815px;*/
     }
 }
 

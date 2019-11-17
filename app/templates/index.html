@@ -12,7 +12,8 @@
 </head>
 <body style="overflow: hidden; height: 100%">
 	<div class="content">
-		<div class="top_header"><h1>Log In</h1></div>
+		<div class="top_header" style="display: block;"><h1 style="text-align: center; display: inline-block;">Log In</h1><div id="logged_in_user" style="display: inline-block; right: 15;">Logged in: {{current_user.username}}<br><a href="{{url_for('searchcustomer')}}">Open</a> / <a href="{{url_for('logout')}}">Log Out </a>
+				</div></div>
 			<div class="outer_card">
 				<div class="top_bar" style="height: 10px;"><h4 style="padding-left: 3%;">Login</h4></div>
 				<div class="outer_login">

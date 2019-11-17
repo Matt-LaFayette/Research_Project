@@ -63,13 +63,6 @@
 
 <br>
 
-<script>
-	// var d = new Date();
-	// document.getElementById("month").innerHTML = d.getMonth() + 1;
-	// document.getElementById("day").innerHTML = d.getDate();
-
-
-</script>
 
 <script>
     //cheating and using jquery to help format css
@@ -81,20 +74,20 @@
 
 </script>
 
-<div class="calendar" id="calendar" style="width: 70%; display: block;">
+<div class="calendar" id="calendar" style="display: block;">
 {{cal|safe}}
         </table>
     </form>
         <div class="form-inline">
 
-            <a href="{{url_for('calendar', month=month|int-1)}}"><button type="button" class="btn btn-outline-primary btn-md" id="previous_month">Previous</button></a>
+            <a href="{{url_for('calendar', month=month|int-1)}}" style="width: 50%"><button type="button" class="btn btn-outline-primary btn-md" id="previous_month" style="width: 100%">Previous</button></a>
 
 
-            <a href="{{url_for('calendar', month=month|int + 1)}}"><button type="button" class="btn btn-outline-primary btn-md" id="next_month">Next</button></a>
+            <a href="{{url_for('calendar', month=month|int + 1)}}" style="width: 50%"><button type="button" class="btn btn-outline-primary btn-md" id="next_month" style="width: 100%">Next</button></a>
         </div>
 
         <script>
-            $('.btn.btn-outline-primary').css('width',($('.form-inline').width()/2))
+            // $('.btn.btn-outline-primary').css('width',($('.form-inline').width()/2))
             
         </script>
 
@@ -103,7 +96,65 @@
 
 
 </div>
+<div class="appt_info_sm_screen" style="visibility: hidden;">
+    <table class="table">
+        <h1 style="text-align: center;">
+            {% if month == '1' %}
+            January
+            {% elif month == '2' %}
+            Febuary
+            {% elif month == '3' %}
+            March
+            {% elif month == '4' %}
+            April
+            {% elif month == '5' %}
+            May
+            {% elif month == '6' %}
+            June
+            {% elif month == '7' %}
+            July
+            {% elif month == '8' %}
+            August
+            {% elif month == '9' %}
+            September
+            {% elif month == '10' %}
+            October
+            {% elif month == '11' %}
+            November
+            {% elif month == '12' %}
+            December
+            {% endif %}
+        </h1>
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Day</th>
+      <th scope="col">Hour</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for x in testtime %}
+{% if x.month == month %}
+    <tr>
+      <th scope="row">{{x.day}}</th>
+      <td>{{x[2]}}</td>
+    </tr>
+{% endif %}
+{% endfor %}
+  </tbody>
+</table>
+<div class="form-inline">
+
+            <a href="{{url_for('calendar', month=month|int-1)}}" style="width: 50%"><button type="button" class="btn btn-outline-primary btn-md" id="previous_month" style="width: 100%">Previous</button></a>
+
+
+            <a href="{{url_for('calendar', month=month|int + 1)}}" style="width: 50%"><button type="button" class="btn btn-outline-primary btn-md" id="next_month" style="width: 100%">Next</button></a>
+        </div>
+        <br><br><br><br>
 </div>
+</div>
+
+
+
 
 <div class="hidden" style="display: none;">
 
@@ -245,4 +296,14 @@ $('.table').css('text-align','center');
     // $(".hidden").each(function(index) {
     //     console.log($(".month"+(index+1)));
     // });
+if ($(window).width() > 1455) {
+    $('.calendar').css('width','70%');
+}
+
+if ($(window).width() < 430) {
+    $('.calendar').css('display','none');
+    $('.appt_info_sm_screen').css('visibility','visible');
+    $('.bottom').css('position','inherit');
+}
+
 </script>

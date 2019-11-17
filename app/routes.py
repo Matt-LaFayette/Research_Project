@@ -371,7 +371,8 @@ def calendar(month):
 	except:
 		print("I failed to grab the appt form")
 	daysinmonth = monthrange(2019,10)[1]
-	return render_template('calendar.html', daysinmonth=daysinmonth, form=form, month=month, user=user, cal=cal, testtime=testtime)
+	title="Calendar"
+	return render_template('calendar.html', title=title, daysinmonth=daysinmonth, form=form, month=month, user=user, cal=cal, testtime=testtime)
 
 @app.route("/getdays/<month>", methods=('GET', 'POST'))
 def getdays(month):
