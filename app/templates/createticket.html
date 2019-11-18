@@ -1,18 +1,22 @@
 {% include 'template.html' %}
 
 <script>
-// function myFunction3() {
-//     $.ajax({
-//       url : 'http://127.0.0.1:5000/addticket', 
-//       type : 'GET',
-//       success: function(msg) {
-//       					$('#ticket_search').html("test");
-//                         // $(results).fadeOut(800);
-//                         // $('#test').load(document.URL + ' #test')
-//                         // $('#test').fadeIn(800);
-//         }
-//     })
-// };
+function myFunction3() {
+    $.ajax({
+      url : 'http://127.0.0.1:5000/createticket', 
+      type : 'POST',
+      data: $('form').serialize(),
+      success: function(msg) {
+      					if(confirm('Success')){
+      						window.location.reload();
+      					}
+      					// $('#ticket_search').html("test");
+                        // $(results).fadeOut(800);
+                        // $('#test').load(document.URL + ' #test')
+                        // $('#test').fadeIn(800);
+        }
+    })
+};
 
 
 
@@ -43,7 +47,7 @@ $('body').css('width', $('.content').width());
 			{{ form.o365.label }} {{ form.o365(size=20) }}
 		</div>
 		<br><br>
-		<form method="POST" id="cform" action="#">
+		<form id="cform">
 	  		<div class="form-group">
 	   			<br>
 	    		{{ form.csrf_token }}
@@ -71,7 +75,7 @@ $('body').css('width', $('.content').width());
 
 				<input type="text" id="disableme" id="assigned_to" name="assigned_to" value="{{current_user.username}}">
 		    	<br><br>
-		    	<input class="btn btn-secondary btn-sm btn-block" id="submit_button" type="submit" value="Create Ticket">
+		    	<input class="btn btn-secondary btn-sm btn-block" type="reset" id="submit_button" onclick="myFunction3()" value="Create Ticket">
 		    </div>
 		</form>
 	</div>
@@ -104,8 +108,7 @@ document.getElementById("o365").onclick = expandInfo;
 document.getElementById("status").className = "form-control form-control-sm";
 </script>
 <script>
-	$('.outer_ticket_search').css('height',$('#cform').height()+$('.top_header').height());
-	$('.sidebar').css('height',$('#cform').height()+$('.top_header').height());
+	$('#ticket_search').css('padding-bottom','70px')
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>

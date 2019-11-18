@@ -21,7 +21,6 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Account ID</th>
-      <th scope="col">Contact</th>
       <th class="description" scope="col">Description</th>
       <th scope="col">Office 365 Status</th>
       <th scope="col">Status</th>
@@ -33,7 +32,6 @@
 {% for x in ticket %}
       <td><div class="data">{{x.id}}</div></td>
       <td><div class="data">{{x.account_id}}</div></td>
-      <td><div class="data">{{x.contact_name}}</div></td>
       <td class="description"><div class="data">{{x.description}}</div></td>
       <td><div class="data">{{x.o365status}}</div></td>
       <td><div class="data">{{x.status}}</div></td>

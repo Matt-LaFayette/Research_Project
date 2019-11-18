@@ -1,20 +1,23 @@
 {% include 'template.html' %}
-		<div class="outer_ticket_search">
-{% for x in customer %}
-<h2>Customer, {{ x.customer_name }} has been added with an ID of {{ x.cx_id }}</h2>
-{% endfor %}
-<br>
-<br>
-<p>put email here or something</p>
+	
 
+<div class="outer_ticket_search" style="text-align: center; height: 100%">
+	<table style="width: 100%;height: 100%">
+		<tr>
+			{% for x in customer %}
+				<th style="text-align: center;">
+					<h2>Customer: {{ x.customer_fname }} has been added</h2><br>
+					<h2>with an ID of </h2><br>
+					<h2>of</h2><br>
+					<h2>{{ x.cx_id }}</h2>
+			{% endfor %}
+				</th>
+		</tr>
+	</table>
+	<br><br>
 </div>
-				</div>
-			</div>
-		</div>
 
-
-</body>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 </body>
 </html>

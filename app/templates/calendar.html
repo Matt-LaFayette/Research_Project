@@ -1,9 +1,13 @@
 {% include 'template.html' %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
 <div class="outer_ticket_search">
     <div class="row">
         <form method="POST" action="{{url_for('calendar', month=month)}}" style="display: contents;">
                 <div class="col">
                     <div class="input-group-day">
+
                       <select class="custom-select" name="inputGroupSelect03" id="inputGroupSelect03">
                         <option selected>Day...</option>
                         {% for x in range(daysinmonth) %}
@@ -296,9 +300,9 @@ $('.table').css('text-align','center');
     // $(".hidden").each(function(index) {
     //     console.log($(".month"+(index+1)));
     // });
-if ($(window).width() > 1455) {
-    $('.calendar').css('width','70%');
-}
+// if ($(window).width() > 1455) {
+//     $('.calendar').css('width','70%');
+// }
 
 if ($(window).width() < 430) {
     $('.calendar').css('display','none');
@@ -307,3 +311,5 @@ if ($(window).width() < 430) {
 }
 
 </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>

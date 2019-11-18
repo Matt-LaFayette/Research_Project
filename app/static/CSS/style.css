@@ -9,6 +9,10 @@ body {
   display: inline-block;
 }
 
+#ticket_search {
+  padding-bottom: 60px;
+}
+
 .calendar td {
   height: 80px;
   width: 80px;
@@ -163,7 +167,7 @@ body {
 
 @media only screen and (min-width: 375px) {
     .outer_ticket_search {
-    	height: 100%;
+    	/*height: 100%;*/
     	overflow: hidden;
       /*min-height: 815px;*/
     }
@@ -259,11 +263,11 @@ body {
     right: 0;
     color: black;
     border: black;
-    opacity: 0.75;
+    opacity: 0.65;
     background: white;
     border-style: outset;
   }
-  #name, #id, #phonenumber, #email {
+  #name, #id, #phonenumber, {
     text-align: center;
   }
 }
@@ -454,8 +458,13 @@ only screen and (max-width: 530px),
   /* Force table to not be like tables anymore */
   .listticket table, .listticket thead, .listticket tbody, .listticket th, .listticket td, .listticket tr { 
     display: block; 
+    
   }
   
+  .listticket table {
+    padding-bottom: 70px;
+  }
+
   /* Hide table headers (but not display: none;, for accessibility) */
   .listticket thead tr { 
     position: absolute;
@@ -491,10 +500,9 @@ only screen and (max-width: 530px),
   .listticket td:nth-of-type(1):before { content: "#"; }
   .listticket td:nth-of-type(2):before { content: "Account ID"; }
   .listticket td:nth-of-type(3):before { content: "Contact"; }
-  .listticket td:nth-of-type(4):before { content: "Description"; }
-  .listticket td:nth-of-type(5):before { content: "Office 365 Status"; }
-  .listticket td:nth-of-type(6):before { content: "Ticket Status"; }
-  .listticket td:nth-of-type(7):before { content: "Assigned to"; }
+  .listticket td:nth-of-type(4):before { content: "Office 365 Status"; }
+  .listticket td:nth-of-type(5):before { content: "Ticket Status"; }
+  .listticket td:nth-of-type(6):before { content: "Assigned to"; }
 
   .data {
     text-align: right;
@@ -502,5 +510,44 @@ only screen and (max-width: 530px),
 }
 
 
+@media 
+only screen and (max-width: 530px),
+(min-device-width: 768px) and (max-device-width: 530px)  {
 
+  /* Force table to not be like tables anymore */
+  .ml_smalltable table, .ml_smalltable thead, .ml_smalltable tbody, .ml_smalltable th, .ml_smalltable td, .ml_smalltable tr { 
+    display: block; 
+  }
+  
+  /* Hide table headers (but not display: none;, for accessibility) */
+  .ml_smalltable thead tr { 
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  
+  .ml_smalltable tr { border: 1px solid #666666; }
+  
+  .ml_smalltable td { 
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee; 
+    position: relative; 
+  }
+  
+  .ml_smalltable td:before { 
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 45%; 
+    padding-right: 10px; 
+    white-space: nowrap;
+  }
+
+  .data {
+    text-align: right;
+  }
+}
 

@@ -149,6 +149,17 @@ def ticket():
 @app.route('/createcustomer', methods=('GET', 'POST'))
 @login_required
 def createcustomer():
+	try:
+		form = CreateCustomer()
+		print("getting")
+		customer = Customer(customer_fname=form.customer_fname.data, customer_lname=form.customer_lname.data, company_name=form.company_name.data, city=form.city.data, state=form.state.data, address=form.address.data, zip_code=form.zip_code.data, email=form.email.data, phone_num=form.phone_num.data)
+		print("adding")
+		db.session.add(customer)
+		print("commiting")
+		db.session.commit()
+	except:
+		db.session.rollback()
+		print('I failed to create customer and rolled back')
 	form = CreateCustomer()
 	user = User.query.filter_by(username=current_user.username)
 	title = 'Customer'
@@ -218,7 +229,7 @@ def findaccount():
 @app.route('/test', methods=('GET', 'POST'))
 def test():
 	form = CreateCustomer()
-	customer = Customer(customer_name=form.customer_fname.data, company_name=form.company_lname.data, city=form.city.data, state=form.state.data, address=form.address.data, zip_code=form.zip_code.data, email=form.email.data, phone_num=form.phone_num.data)
+	customer = Customer(customer_fname=form.customer_fname.data, customer_lname=form.customer_lname.data, company_name=form.company_name.data, city=form.city.data, state=form.state.data, address=form.address.data, zip_code=form.zip_code.data, email=form.email.data, phone_num=form.phone_num.data)
 	try:
 		db.session.add(customer)
 		db.session.commit()
@@ -226,11 +237,13 @@ def test():
 		db.session.rollback()
 		return 'I failed and rolled back'
 	# x = request.form['temptest']
-	cx = Customer.query.filter_by(customer_name=form.customer_fname.data).all()
+	cx = Customer.query.filter_by(customer_fname=form.customer_fname.data, customer_lname=form.customer_lname.data, company_name=form.company_name.data, city=form.city.data, state=form.state.data, address=form.address.data, zip_code=form.zip_code.data, email=form.email.data, phone_num=form.phone_num.data).all()
 	# session['response']= x
 	# for x in cx:
 	# 	print(x.cx_id)
-	return render_template('test.html', test=test, customer=cx)
+	title = "Add"
+	user = User.query.filter_by(username=current_user.username)
+	return render_template('test.html', user=user, title=title, test=test, customer=cx)
 
 @app.route('/new', methods=('GET', 'POST'))
 def new():
@@ -330,7 +343,7 @@ def calendar(month):
 		db.session.commit()
 		print("Successfully added appt to db")
 	except:
-		print("month and or time failed")
+	 	print("month and or time failed")
 	try:
 		sqlquery = text("SELECT month, day, date_format(hour, '%l%p') from time;")
 		sql = db.engine.execute(sqlquery)
