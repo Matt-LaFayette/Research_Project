@@ -36,6 +36,7 @@ class MyForm(FlaskForm):
 class Invoice(FlaskForm):
 	invoice_num = IntegerField('Invoice Number', validators=[NumberRange(min=100000000,max=100999999)])
 	amount = IntegerField('Amount', validators=[DataRequired()])
+	description = TextAreaField('Description', validators=[DataRequired()])
 	date_created = DateField('Date', format='%m-%d-%Y')
 	cx_id = IntegerField('Customer ID', validators=[DataRequired()])
 	support_plan = BooleanField('Valid Support?')

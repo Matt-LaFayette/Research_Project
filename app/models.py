@@ -85,6 +85,7 @@ class Time(db.Model):
 class Invoice(db.Model):
 	invoice_num = db.Column(Integer, primary_key=True, auto_increment=True)
 	amount = db.Column(Integer, unique=False, nullable=False)
+	description = db.Column(String(240), unique=False, nullable=False)
 	date_created = db.Column(Date, unique=False, nullable=False)
 	cx_id = db.Column(Integer, ForeignKey("customer.cx_id"), unique=True, nullable=False) 
 	support_plan = db.Column(String(120), unique=False, nullable=True)

@@ -7,8 +7,10 @@
 	      		<div class="form-group">
 	    		{{ form.csrf_token }}
 	    	</br>
-	    		{{ form.invoice_num.label }} {{form.invoice_num(size=20) }}
+	    		{{ form.invoice_num.label }} {{ form.invoice_num(size=20) }}
 	    	</br>
+	    		{{ form.description.label }} {{ form.description }}
+	    	<br>
 	    		{{ form.amount.label }} {{form.amount(size=20) }}	    		
 	    	</br>
 				{{ form.date_created.label }} {{ form.date_created(size=20) }}
