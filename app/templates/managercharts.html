@@ -47,9 +47,9 @@
 </div>
 
 <div class="row 1">
-	<div class="col-md">
+	<div class="col-md" id="hide_when_small">
 	</div>
-	<div class="col-md">
+	<div class="col-md" id="hide_when_small1">
 	</div>
 	<div class="col-md">
 		<div class="card" style="border-width: 3px; text-align: center;">
@@ -85,6 +85,7 @@
 <br><br>
 		<div class="row" style="margin: auto;">
 			<!-- Left column -->
+			<div class="col-2" id="rep_quick_stats_size"></div>
   			<div class="col" style="display: inline-block;">
   				
   				<canvas id="myPieChart" style="left:50%; margin: auto;"></canvas>
@@ -211,9 +212,18 @@
 				</script>
   			</div>
   			<!-- End of Right Column -->
-
 <!-- Cheating and using js instead of css -->
 <script>
+	if ($(window).width() > 1750) {
+		$('.rep_quick_stats').css('position','absolute');
+
+	}
+
+	if ($(window).width() < 1650) {
+	$('#hide_when_small').css('display', 'none');
+	$('#hide_when_small1').css('display', 'none');
+	}
+
 	if ($(window).width() < 860) {
     $('.rep_quick_stats').css({'width':'100%','z-index':'1','position':'relative'});
 	$('.rep_list').css({'width':'100%','text-align':'center'});

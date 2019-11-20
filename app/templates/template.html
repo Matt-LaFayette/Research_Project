@@ -50,7 +50,6 @@
 					{% endfor %}
 					<a class="dropdown-item" href="{{ url_for('createcustomer')}}">New Customer</a>
 					<a class="dropdown-item" href="{{ url_for('calendar', month=month)}}">Appointment</a>
-					<a class="dropdown-item" href="{{ url_for('salesorder')}}">Orders</a>
 					<a class="dropdown-item" href="{{ url_for('searchcustomer')}}">Search</a>
 
 					{% for x in user %} 
@@ -133,7 +132,6 @@ $('#dropdownMenuButton').css('width', header_height);
 			{% endfor %}
 			<a href="{{ url_for('createcustomer')}}">Customer</a>
 			<a href="{{ url_for('calendar', month=month)}}">Appointment</a>
-			<a href="{{ url_for('salesorder')}}">Orders</a>
 			</div>
 		</div>
 	{% for x in user %} 

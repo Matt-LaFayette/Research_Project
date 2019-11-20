@@ -1,13 +1,16 @@
-{% include 'template.html' %}
 
+{% include 'template.html' %}
+<script>
+	$('.sidebar').css('height',$('body').height());
+</script>
 
 <div class="outer_ticket_search">
 			<div id="ticket_search">
-	      	<form method="POST" id="cform" action="{{url_for('test')}}">
+	      	<form method="POST" id="cform" action="{{url_for('salesorder')}}" onsubmit="setTimeout(function(){window.location.reload();},20)">
 	      		<div class="form-group">
 	    		{{ form.csrf_token }}
 	    	</br>
-	    		{{ form.invoice_num.label }} {{ form.invoice_num(size=20) }}
+	    		{{ form.invoice_num.label }} {{ form.invoice_num(size=20, value=next_num) }}
 	    	</br>
 	    		{{ form.description.label }} {{ form.description }}
 	    	<br>
@@ -15,9 +18,9 @@
 	    	</br>
 				{{ form.date_created.label }} {{ form.date_created(size=20) }}
 			</br>
-				{{ form.cx_id.label }} {{ form.cx_id(size=20) }}
+				{{ form.cx_id.label }} {{ form.cx_id(size=20, value=session['id']) }}
 	    	</br>
-	    		{{ form.support_plan(cols="23", rows="2") }} {{ form.support_plan.label }}  
+ 
 			</br>
 			</br>
 				{{ form.sales_rep_id.label }} {{ form.sales_rep_id(size=20) }}
@@ -25,10 +28,19 @@
 				{{ form.valid_support_date.label }} {{ form.valid_support_date(size=20) }}
 	    	</br>
 	    	</br>
-	    		<input class="btn btn-secondary btn-sm btn-block" id="submit_button" onclick="myFunction()" type="submit" name="name"  value="Submit Order">
+	    		<input class="btn btn-secondary btn-sm btn-block" id="submit_button" type="submit" name="name"  value="Submit Order">
 	    		</div>
 			</form>
+			{% if session['id'] %}
 			<script>
+				$("#cx_id").prop("disabled", true);
+			</script>
+			{% endif %}
+			<script>
+				$("#submit_button").click(function () {
+        			$("form").trigger("reset");
+    			});
+					$("#invoice_num").prop("disabled", true);
 					var inputs = document.getElementsByTagName("input");
 						for (var i = 0; i < inputs.length; i++) {
 							console.log(inputs[i]);
@@ -36,10 +48,18 @@
           						inputs[i].className = "form-control form-control-sm";
           					}; 
 						};
-						document.getElementById("back_button").className = "btn btn-secondary btn-sm"
-						document.getElementById("support_plan").className = "form-check-input"
-						document.getElementById("submit_button").className = "btn btn-secondary btn-sm btn-block"
-						document.getElementById("description").className = "form-control form-control-sm";
+						document.getElementById("back_button").className = "btn btn-secondary btn-sm";
+						document.getElementById("support_plan").className = "form-check-input";
+						document.getElementById("submit_button").className = "btn btn-secondary btn-sm btn-block";
 						document.getElementById("priority").className = "form-control form-control-sm";
 						document.getElementById("status").className = "form-control form-control-sm";
 					</script>
+				</body>
+					<script>
+	$( document ).ready(function() {
+		$('.sidebar').css('height',$('.content').height());
+	});
+</script>
+
+
+

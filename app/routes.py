@@ -3,7 +3,7 @@ from flask import Flask, render_template, flash, redirect, url_for, request, ses
 from config import Config
 from datetime import time
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
-from app.models import User, Ticket, Customer, Time, Sales_Rep
+from app.models import User, Ticket, Customer, Time, Sales_Rep, Invoice
 from app.forms import RegistrationForm, TicketCreate, MyForm, TicketSearch, CreateCustomer, SearchCustomer, Invoice, ApptDate
 from sqlalchemy.exc import IntegrityError
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -135,8 +135,35 @@ def register():
 def salesorder():
 	form = Invoice()
 	title = 'New Order'
+	sql = text('SELECT count(*) + 1 from invoice;');
+	next_num = db.engine.execute(sql)
+	invnum = 0
+	for x in next_num:
+		invnum = x[0]
+	# This one not working?
+	#print( datetime.datetime.today())
+	# print(form.valid_support_date.data)	
+	#print(request.form["invoice_num"])
+	# try:
+	# 	#print(form.date_created.data)
+		#invoice2 = Invoice(invoice_num=form.invoice_num.data, amount=str(form.amount.data), description=str(form.description.data), date_created=datetime.datetime.today(), cx_id=str(form.cx_id.data), sales_rep_id=str(form.sales_rep_id.data))
+	try:
+		invoice = text('INSERT INTO invoice (invoice_num, amount, description, cx_id, sales_rep_id, valid_support_date, date_created) VALUES ({}, {}, "{}", {}, {}, {}, {});'.format(invnum, form.amount.data, 'x', form.cx_id.data, form.sales_rep_id.data, '11/19/2019', '11/19/2019'))
+		print(invoice)
+		db.engine.execute(invoice)
+		db.session.commit()
+	except:
+		print('bad')
+		#for x in invoice2:
+		#	print(x)
+		#invoice = Invoice(invoice_num=next_num[0], amount=str(form.amount.data), description=str(form.description.data), date_created=str(form.date_created.data), cx_id=str(form.cx_id.data), support_plan=str(form.support_plan.data), sales_rep_id=str(form.sales_rep_id.data), valid_support_date=str(form.valid_support_date.data))
+	#db.session.add(invoice)
+	#db.session.commit()
+	# except:
+	#  	print("failed writing ivnoice to table")
 	user = User.query.filter_by(username=current_user.username)
-	return render_template('salesorder.html', month=month, user=user, title=title, form=form)
+	now = datetime.datetime.now()
+	return render_template('salesorder.html', next_num=invnum, month=month, user=user, title=title, form=form)
 
 
 @app.route('/ticket', methods=('GET', 'POST'))

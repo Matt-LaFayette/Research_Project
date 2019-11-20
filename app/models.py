@@ -87,7 +87,7 @@ class Invoice(db.Model):
 	amount = db.Column(Integer, unique=False, nullable=False)
 	description = db.Column(String(240), unique=False, nullable=False)
 	date_created = db.Column(Date, unique=False, nullable=False)
-	cx_id = db.Column(Integer, ForeignKey("customer.cx_id"), unique=True, nullable=False) 
+	cx_id = db.Column(Integer, nullable=False) 
 	support_plan = db.Column(String(120), unique=False, nullable=True)
 	sales_rep_id = db.Column(Integer, unique=False, nullable=False)
 	valid_support_date = db.Column(Date, unique=False, nullable=False)
@@ -147,9 +147,6 @@ except:
 
 try:
 	sql = text('ALTER TABLE Customer AUTO_INCREMENT = 40000000')
-	db.engine.execute(sql)
-
-	sql = text('ALTER TABLE Invoice AUTO_INCREMENT = 10000000')
 	db.engine.execute(sql)
 
 	# https://stackoverflow.com/questions/30207493/sqlalchemy-orm-exc-flusherror-instance-has-a-null-identity-key

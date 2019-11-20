@@ -64,7 +64,7 @@ class SearchCustomer(FlaskForm):
 	address = TextAreaField('Address', validators=[Optional()])
 	zip_code = StringField('Zip', validators=[DataRequired()])
 	email = StringField('Email', validators=[DataRequired()])
-	phone_num = StringField('Phone Number', validators=[DataRequired()])
+	phone_num = StringField('Phone Number', validators=[Optional()])
 	cx_id = IntegerField('Customer ID', validators=[NumberRange(min=400000000,max=400999999), Optional()])
 
 #Form to register a new username and password
