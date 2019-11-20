@@ -189,7 +189,7 @@ def createcustomer():
 		print('I failed to create customer and rolled back')
 	form = CreateCustomer()
 	user = User.query.filter_by(username=current_user.username)
-	title = 'Customer'
+	title = 'Cx'
 	return render_template('createcustomer.html', month=month, user=user, title=title, form=form)
 
 @app.route('/mytickets', methods=('GET', 'POST'))
