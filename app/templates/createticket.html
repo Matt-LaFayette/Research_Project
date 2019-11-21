@@ -72,7 +72,7 @@ $('body').css('width', $('.content').width());
 					{{ form.status.label }} {{ form.status }}
 				<br><br>
 				<div id="hidden" style="display: none;">{{ form.o365status.label }} {{ form.o365status}}<br><br></div>
-
+					{{ form.assigned_to.label }}
 				<input type="text" id="disableme" id="assigned_to" name="assigned_to" value="{{current_user.username}}">
 		    	<br><br>
 		    	<input class="btn btn-secondary btn-sm btn-block" type="reset" id="submit_button" onclick="myFunction3()" value="Create Ticket">

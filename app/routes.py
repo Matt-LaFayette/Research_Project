@@ -62,8 +62,6 @@ def index():
 					return redirect(url_for('createticket'))
 				if (user.role == "sales"):
 					return redirect(url_for('searchcustomer'))
-				
-
 		return '<h1>Invalid username or password</h1>'
 	return render_template('index.html', form=form)
 
@@ -231,6 +229,7 @@ def searchcustomer():
 def findaccount():
 	title = "Find Account"
 	form = SearchCustomer()
+	month = int(now.month)
 	customerid = form.cx_id.data
 	customerfname = form.customer_fname.data
 	customerlname = form.customer_lname.data
@@ -264,7 +263,7 @@ def findaccount():
 			# print (selection)
 			x = x + 1
 			# session['name'] = customer.customer_name
-	return render_template('findaccount.html', user=user, cxbyphonenum=cxbyphonenum, cxbyfname=cxbyfname, cxbylname=cxbylname, cxbyid=cxbyid, title=title)
+	return render_template('findaccount.html', month=month, user=user, cxbyphonenum=cxbyphonenum, cxbyfname=cxbyfname, cxbylname=cxbylname, cxbyid=cxbyid, title=title)
 
 
 

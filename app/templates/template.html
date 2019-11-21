@@ -53,10 +53,11 @@
 					<a class="dropdown-item" href="{{ url_for('searchcustomer')}}">Search</a>
 
 					{% for x in user %} 
-						{% if x.role == "Support" or "manager" %}
+						{% if x.role == "sales" %}
 							<a class="dropdown-item" href="{{ url_for('charts')}}">Charts</a>
 						{% endif %}
 						{% if x.role == "manager" %}
+							<a class="dropdown-item" href="{{ url_for('charts')}}">Charts</a>
 							<a class="dropdown-item" href="{{url_for('masterlist')}}"  target="_blank">Master List</a>
 						{% endif %}
 					{% endfor %}
@@ -160,7 +161,7 @@ $('#dropdownMenuButton').css('width', header_height);
 		</div>
 		<!-- Change later for other roles -->
 		{% for x in user %} 
-			{% if x.role == "Support" or "manager" %}
+			{% if x.role == "sales" or "manager" %}
 				<a href="{{ url_for('charts')}}">Charts</a>
 			{% endif %}
 			{% if x.role == "manager" %}

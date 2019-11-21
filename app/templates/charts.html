@@ -32,7 +32,7 @@
     	<th scope="col" class="bg-primary" id="ic">Incorrect Contact</th>
     	<th scope="col" class="bg-primary" id="r">Refused</th>
     	<th scope="col" class="bg-primary" id="nc">No Contact</th>
-    	<th scope="col" class="bg-primary" id="na">Not Activated</th>
+    	<th scope="col" class="bg-primary" id="na">Total</th>
     </tr>
 </thead>
 <tbody>
@@ -99,9 +99,9 @@
 					        var label = chartData.labels[idx];
 					        var value = chartData.datasets[0].data[idx];
 
-					        var url = "http://example.com/?label=" + label + "&value=" + value;
+					        var url = window.location.origin + '/' + label + '/' + '{{current_user.username}}';
 					        console.log(url);
-					        window.location.href = label.trim();
+					        window.location.href = url;
 					        // alert(url);
 					      }
 					    };
